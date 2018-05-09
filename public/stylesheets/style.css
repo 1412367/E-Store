@@ -1436,7 +1436,8 @@ position:relative;
 	bottom: -17px !important;
 }
 #PPMiniCart {
-    left: 44% !important;
+	left: 44% !important;
+	z-index:999;
 }
 .minicart-showing #PPMiniCart form{
     overflow-x: hidden;

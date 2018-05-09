@@ -10,8 +10,14 @@ html
     script(type='application/x-javascript').
       addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
       function hideURLbar(){ window.scrollTo(0,1); }
+
+    // js
+    script(type='text/javascript', src='js/jquery-2.1.4.min.js')
+    // //js  
+
     // tags
     link(href='/stylesheets/bootstrap.css', rel='stylesheet', type='text/css', media='all')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/jquery-ui.css')
     link(href='/stylesheets/style.css', rel='stylesheet', type='text/css', media='all')
     link(href='/stylesheets/font-awesome.css', rel='stylesheet')
     link(href='/stylesheets/easy-responsive-tabs.css', rel='stylesheet', type='text/css')
@@ -118,107 +124,76 @@ html
                       a.menu__link(href='index')
                         | Trang chủ 
                         span.sr-only (current)
+
                   if page == 'about'      
                     li.menu__item.menu__item--current
                       a.menu__link(href='about') Về chúng tôi
                   else
                     li.menu__item
                       a.menu__link(href='about') Về chúng tôi
+
+                  if page == 'mobile&tablet'      
+                    li.menu__item.menu__item--current
+                      a.menu__link(href='mobile&tablet') Mobile & Tablet 
+                  else
+                    li.menu__item
+                      a.menu__link(href='mobile&tablet') Mobile & Tablet 
+
+                  if page == 'laptop'      
+                    li.menu__item.menu__item--current
+                      a.menu__link(href='laptop') Laptop
+                  else
+                    li.menu__item
+                      a.menu__link(href='laptop') Laptop
+                  
                   li.dropdown.menu__item
                     a.dropdown-toggle.menu__link(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                      | Mobile & Tablet 
+                      | Phụ kiện 
                       span.caret
-                    ul.dropdown-menu.multi-column.columns-3
+                    ul.dropdown-menu.dropdown-menu-right.multi-column.columns-3(style='padding: 20px 10px 20px 30px; min-width: 620px; font-size: 17px;')
                       .agile_inner_drop_nav_info
-                        .col-sm-6.multi-gd-img1.multi-gd-text
-                          a(href='mens.html', style='margin-top:auto; margin-bottom:auto')
-                            img(src='images/top2.jpg', alt=' ')
-                        .col-sm-3.multi-gd-img
-                          ul.multi-column-dropdown
-                            li
-                              a(href='mens.html') Apple
-                            li
-                              a(href='mens.html') Asus
-                            li
-                              a(href='mens.html') BKAV
-                            li
-                              a(href='mens.html') FPT
-                            li
-                              a(href='mens.html') HTC
-                            li
-                              a(href='mens.html') Huawei
-                            li
-                              a(href='mens.html') Mobell
-                        .col-sm-3.multi-gd-img
-                          ul.multi-column-dropdown
-                            li
-                              a(href='mens.html') Motorola
-                            li
-                              a(href='mens.html') Nokia
-                            li
-                              a(href='mens.html') OPPO
-                            li
-                              a(href='mens.html') Samsung
-                            li
-                              a(href='mens.html') Sony
-                            li
-                              a(href='mens.html') Vivo
-                            li
-                              a(href='mens.html') Xiaomi
-                        .clearfix
-                  li.dropdown.menu__item
-                    a.dropdown-toggle.menu__link(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                      | Laptop 
-                      span.caret
-                    ul.dropdown-menu.multi-column.columns-3
-                      .agile_inner_drop_nav_info
-                        .col-sm-3.multi-gd-img
-                          ul.multi-column-dropdown
-                            li
-                              a(href='womens.html') Clothing
-                            li
-                              a(href='womens.html') Wallets
-                            li
-                              a(href='womens.html') Footwear
-                            li
-                              a(href='womens.html') Watches
-                            li
-                              a(href='womens.html') Accessories
-                            li
-                              a(href='womens.html') Bags
-                            li
-                              a(href='womens.html') Caps & Hats
-                        .col-sm-3.multi-gd-img
-                          ul.multi-column-dropdown
-                            li
-                              a(href='womens.html') Jewellery
-                            li
-                              a(href='womens.html') Sunglasses
-                            li
-                              a(href='womens.html') Perfumes
-                            li
-                              a(href='womens.html') Beauty
-                            li
-                              a(href='womens.html') Shirts
-                            li
-                              a(href='womens.html') Sunglasses
-                            li
-                              a(href='womens.html') Swimwear
-                        .col-sm-6.multi-gd-img.multi-gd-text
+                        .col-sm-6.multi-gd-img1.multi-gd-text(style='padding: 8px 0px 0px 0px')
                           a(href='womens.html')
                             img(src='images/top1.jpg', alt=' ')
+                        .col-sm-3.multi-gd-img(style='padding-left: 30px')
+                          ul.multi-column-dropdown
+                            li
+                              a(href='womens.html') Bàn phím
+                            li
+                              a(href='womens.html') Chuột
+                            li
+                              a(href='womens.html') Cáp sạc
+                            li
+                              a(href='womens.html') Cốc sạc
+                            li
+                              a(href='womens.html') Loa
+                        .col-sm-3.multi-gd-img(style='margin-left: -5px')
+                          ul.multi-column-dropdown
+                            li
+                              a(href='womens.html') Ổ cứng di động
+                            li
+                              a(href='womens.html') Pin sạc dự phòng
+                            li
+                              a(href='womens.html') Tai nghe
+                            li
+                              a(href='womens.html') Thẻ nhớ
+                            li
+                              a(href='womens.html') Usb
+                        
                         .clearfix
-                  li.menu__item.dropdown
-                    a.menu__link(href='#', data-toggle='dropdown')
-                      | Phụ kiện 
-                      b.caret
-                    ul.dropdown-menu.agile_short_dropdown
-                      li
-                        a(href='icons.html') Web Icons
-                      li
-                        a(href='typography.html') Typography
+
+                  //- li.menu__item.dropdown
+                  //-   a.menu__link(href='#', data-toggle='dropdown')
+                  //-     | Phụ kiện 
+                  //-     b.caret
+                  //-   ul.dropdown-menu.agile_short_dropdown
+                  //-     li
+                  //-       a(href='icons.html') Web Icons
+                  //-     li
+                  //-       a(href='typography.html') Typography
+                  
                   li.menu__item
-                    a.menu__link(href='contact.html') Contact
+                    a.menu__link(href='contact') Liên hệ
         .top_nav_right
           .wthreecartaits.wthreecartaits2.cart.cart.box_1
             form.last(action='#', method='post')
@@ -347,15 +322,189 @@ html
         // //Modal content
     // //Modal2
 
+    
 
     block content
+
+
+
+    // /grids
+    .coupons
+      .coupons-grids.text-center
+        .w3layouts_mail_grid
+          .col-md-3.w3layouts_mail_grid_left
+            .w3layouts_mail_grid_left1.hvr-radial-out
+              i.fa.fa-truck(aria-hidden='true')
+            .w3layouts_mail_grid_left2
+              h3 FREE SHIPPING
+              p Lorem ipsum dolor sit amet, consectetur
+          .col-md-3.w3layouts_mail_grid_left
+            .w3layouts_mail_grid_left1.hvr-radial-out
+              i.fa.fa-headphones(aria-hidden='true')
+            .w3layouts_mail_grid_left2
+              h3 24/7 SUPPORT
+              p Lorem ipsum dolor sit amet, consectetur
+          .col-md-3.w3layouts_mail_grid_left
+            .w3layouts_mail_grid_left1.hvr-radial-out
+              i.fa.fa-shopping-bag(aria-hidden='true')
+            .w3layouts_mail_grid_left2
+              h3 MONEY BACK GUARANTEE
+              p Lorem ipsum dolor sit amet, consectetur
+          .col-md-3.w3layouts_mail_grid_left
+            .w3layouts_mail_grid_left1.hvr-radial-out
+              i.fa.fa-gift(aria-hidden='true')
+            .w3layouts_mail_grid_left2
+              h3 FREE GIFT COUPONS
+              p Lorem ipsum dolor sit amet, consectetur
+          .clearfix  
+    // grids
+    // footer
+    .footer
+      .footer_agile_inner_info_w3l
+        .col-md-3.footer-left
+          h2
+            a(href='index.html')
+              span E
+              |  Store
+          p
+            | Lorem ipsum quia dolor
+            | sit amet, consectetur, adipisci velit, sed quia non
+            | numquam eius modi tempora.
+          ul.social-nav.model-3d-0.footer-social.w3_agile_social.two
+            li
+              a.facebook(href='#')
+                .front
+                  i.fa.fa-facebook(aria-hidden='true')
+                .back
+                  i.fa.fa-facebook(aria-hidden='true')
+            &#32;
+            li
+              a.twitter(href='#')
+                .front
+                  i.fa.fa-twitter(aria-hidden='true')
+                .back
+                  i.fa.fa-twitter(aria-hidden='true')
+            &#32;
+            li
+              a.instagram(href='#')
+                .front
+                  i.fa.fa-instagram(aria-hidden='true')
+                .back
+                  i.fa.fa-instagram(aria-hidden='true')
+            &#32;
+            li
+              a.pinterest(href='#')
+                .front
+                  i.fa.fa-linkedin(aria-hidden='true')
+                .back
+                  i.fa.fa-linkedin(aria-hidden='true')
+            &#32;
+        .col-md-9.footer-right
+          .sign-grds
+            .col-md-4.sign-gd
+              h4
+                | Our 
+                span Information
+              ul
+                li
+                  a(href='index') Trang chủ
+                li
+                  a(href='about') Về chúng tôi
+                li
+                  a(href='mobile&tablet') Mobile & Tablet
+                li
+                  a(href='womens.html') Phụ kiện
+                li
+                  a(href='contact') Liên hệ
+            .col-md-5.sign-gd-two
+              h4
+                | Store 
+                span Information
+              .w3-address
+                .w3-address-grid
+                  .w3-address-left
+                    i.fa.fa-phone(aria-hidden='true')
+                  .w3-address-right
+                    h6 Số điện thoại
+                    p +1 234 567 8901
+                  .clearfix  
+                .w3-address-grid
+                  .w3-address-left
+                    i.fa.fa-envelope(aria-hidden='true')
+                  .w3-address-right
+                    h6 Địa chỉ Email
+                    p
+                      | Email :
+                      a(href='mailto:example@email.com')  mail@example.com
+                  .clearfix  
+                .w3-address-grid
+                  .w3-address-left
+                    i.fa.fa-map-marker(aria-hidden='true')
+                  .w3-address-right
+                    h6 Địa chỉ cửa hàng
+                    p
+                      | Broome St, NY 10002,California, USA.
+                  .clearfix  
+            .col-md-3.sign-gd.flickr-post
+              h4
+                | Flickr 
+                span Posts
+              ul
+                li
+                  a(href='single.html')
+                    img.img-responsive(src='images/t1.jpg', alt=' ')
+                &#32;
+                li
+                  a(href='single.html')
+                    img.img-responsive(src='images/t2.jpg', alt=' ')
+                &#32;
+                li
+                  a(href='single.html')
+                    img.img-responsive(src='images/t3.jpg', alt=' ')
+                &#32;
+                li
+                  a(href='single.html')
+                    img.img-responsive(src='images/t4.jpg', alt=' ')
+                &#32;
+                li
+                  a(href='single.html')
+                    img.img-responsive(src='images/t1.jpg', alt=' ')
+                &#32;
+                li
+                  a(href='single.html')
+                    img.img-responsive(src='images/t2.jpg', alt=' ')
+                &#32;
+                li
+                  a(href='single.html')
+                    img.img-responsive(src='images/t3.jpg', alt=' ')
+                &#32;
+                li
+                  a(href='single.html')
+                    img.img-responsive(src='images/t2.jpg', alt=' ')
+                &#32;
+                li
+                  a(href='single.html')
+                    img.img-responsive(src='images/t4.jpg', alt=' ')
+                &#32;
+            .clearfix
+        .clearfix
+        .agile_newsletter_footer
+          .col-sm-6.newsleft
+            h3 SIGN UP FOR NEWSLETTER !
+          .col-sm-6.newsright
+            form(action='#', method='post')
+              input(type='email', placeholder='Enter your email...', name='email', required='')
+              &#32;
+              input(type='submit', value='Submit')
+          .clearfix
+        p.copy-right
+          | &copy 2017 Elite shoppy. All rights reserved | Design by 
+          a(href='http://w3layouts.com/') W3layouts
+    // //footer
 
     a#toTop.scroll(href='#home', style='display: block;')
       span#toTopHover(style='opacity: 1;')  
 
-    // js
-    script(type='text/javascript', src='js/jquery-2.1.4.min.js')
-    // //js
 
     script(src='js/modernizr.custom.js')
     // Custom-JavaScript-File-Links
