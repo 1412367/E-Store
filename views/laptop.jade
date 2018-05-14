@@ -5,7 +5,7 @@ block content
     .container
       h3
         |  
-        span Mobile & Tablet  
+        span Laptop
       // /w3_short
       .services-breadcrumb
         .agile_inner_breadcrumb
@@ -13,7 +13,7 @@ block content
             li
               a(href='index.html') Trang chủ
               i |
-            li Mobile & Tablet
+            li Laptop
       // //w3_short
 
 
@@ -327,14 +327,11 @@ block content
               img.pro-image-back(src='images/s1.jpg', alt='')
               .men-cart-pro
                 .inner-men-cart-pro
-                  a.link-product-add-cart(href='single.html') 
-                    | Quick View
-              span.product-new-top 
-                | New
+                  a.link-product-add-cart(href='single.html') Quick View
+              span.product-new-top New
             .item-info-product
               h4
-                a(href='single.html') 
-                  | Running Shoes
+                a(href='single.html') Running Shoes
               .info-product-price
                 span.item_price $80.99
                 del $89.71
@@ -358,9 +355,8 @@ block content
           .col-md-3.product-men
             .men-pro-item.simpleCart_shelfItem
               .men-thumb-item
-                img.pro-image-front(src=product.image_paths[0], alt=product.title+' front_image')
-                .div-image-back
-                  img.image-back(src=product.image_paths[1], alt=product.title+' back_image')
+                img.pro-image-front(src=product.imagePaths[0], alt=product.title+' image front')
+                img.pro-image-back(src=product.imagePaths[1], alt=product.title+' image back')
                 .men-cart-pro
                   .inner-men-cart-pro
                     a.link-product-add-cart(href='single.html') Quick View
@@ -370,7 +366,7 @@ block content
                   a(href='single.html') #{product.title}
                 .info-product-price
                   span.item_price $#{product.price}
-                  //- del $69.71
+                  del $69.71
                 .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
                   form(action='#', method='post')
                     fieldset

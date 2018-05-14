@@ -7,10 +7,19 @@ var schema = new Schema ({
     weight: {type: String},
     cpu: {type: String},
     gpu: {type: String},
-    ram: {type: String},
-    storage: {type: String},
+
+    ram_type: {type: String},
+    ram_size_GB: {type: Number},
+
+    storage_type: {type: String},
+    storage_size: {type: Number},
+    storage_uom: {type: String},
+
     memory_cards: {type: String},
-    display: {type: String},
+
+    scr_type: {type: String},
+    scr_size_INCH: {type: Number},
+    
     battery: {type: String},
     os: {type: String},
     front_camera: {type: String},

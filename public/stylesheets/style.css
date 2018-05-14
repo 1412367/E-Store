@@ -1468,23 +1468,39 @@ button.w3view-cart {
     padding-bottom: 20px;
 }
 .men-thumb-item {
-    position: relative;
+	position: relative;
+	/* width: 255px; */
+	height: 255px;
+	text-align: center;
+	overflow: hidden;
 }
 .item-info-product {
-    text-align: center;
+	text-align: center;
     margin: 20px 0 0;
 }
+.item-info-product h4 {
+	margin: 0px 10px;
+	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+}
 .men-thumb-item::before {
-    width: 100%;
+	/* edited for image center vertically & horizontally */
+	/* width: 100%; */
+    width: 1px;
     height: 100%;
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     left: 0;
     content: "";
     opacity: 0;
     z-index: 9;
     visibility: hidden;
-    transition: all 0.5s ease-out 0s;
+	transition: all 0.5s ease-out 0s;
+
+	/* added */
+    display: inline-block;
+    vertical-align: middle;
 }
 .men-thumb-item .pro-image-front {
     opacity: 1;
@@ -1493,17 +1509,27 @@ button.w3view-cart {
 .men-thumb-item img {
     transition: all 0.5s ease-out 0s;
 }
-.pro-image-back {
-    transform: rotateY(180deg);
-    opacity: 0;
-    visibility: hidden;
+.div-image-back {
     position: absolute;
     top: 0;
-    left: 0;
+	left: 0;
+	height:255px;
 }
-.men-thumb-item img {
+.div-image-back::before {
+    width: 1px;
+    height: 100%;
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+}
+.image-back {
+	transform: rotateY(180deg);
+    opacity: 0;
+    visibility: hidden;
+}
+/* .men-thumb-item img {
     transition: all 0.5s ease-out 0s;
-}
+} */
 .men-cart-pro {
     bottom: 0;
     left: 0;
@@ -1582,15 +1608,23 @@ button.w3view-cart {
     opacity: 0;
     visibility: hidden;
 }
-.men-thumb-item:hover .pro-image-back {
+
+.men-thumb-item:hover .image-back {
     transform: rotateY(0deg);
     opacity: 1;
     visibility: visible;
-    background: #f7f7f7;
 }
+
 .men-thumb-item img {
     transition: all 0.5s ease-out 0s;
-    padding: 52px 50px 20px;
+	padding: 20px 20px 0px;
+	
+	/* edited for image center vertically & horizontally */
+	display: inline-block;
+    vertical-align: middle;
+    max-width:99%;
+    max-height:100%;
+
 }
 .men-thumb-item:hover .men-cart-pro {
     opacity: 1;
@@ -3555,9 +3589,9 @@ p.w3ls_para {
 		width: 1000px;
 		height: 400px;
 	}
-	.men-thumb-item img {
+	/* .men-thumb-item img {
 		padding: 29px 20px 11px;
-	}
+	} */
 	.product-men {
 		padding: 0 10px;
 	}

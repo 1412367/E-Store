@@ -11,43 +11,16 @@ Product_type.on('index', err => {
 
     var product_types = [
         new Product_type ({
-            product_type: 'Mobile'
+            name: 'Mobile'
         }),
         new Product_type ({
-            product_type: 'Tablet'
+            name: 'Tablet'
         }),
         new Product_type ({
-            product_type: 'Laptop'
+            name: 'Laptop'
         }),
         new Product_type ({
-            product_type: 'Bàn phím'
-        }),
-        new Product_type ({
-            product_type: 'Chuột'
-        }),
-        new Product_type ({
-            product_type: 'Cáp sạc'
-        }),
-        new Product_type ({
-            product_type: 'Cốc sạc'
-        }),
-        new Product_type ({
-            product_type: 'Loa'
-        }),
-        new Product_type ({
-            product_type: 'Ổ cứng di động'
-        }),
-        new Product_type ({
-            product_type: 'Pin sạc dự phòng'
-        }),
-        new Product_type ({
-            product_type: 'Tai nghe'
-        }),
-        new Product_type ({
-            product_type: 'Thẻ nhớ'
-        }),
-        new Product_type ({
-            product_type: 'Usb'
+            name: 'Phụ kiện'
         })
     ]
 

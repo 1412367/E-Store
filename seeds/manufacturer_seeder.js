@@ -11,49 +11,49 @@ Manufacturer.on('index', err => {
 
     var manufacturers = [
         new Manufacturer ({
-            manufacturer: 'Apple'
+            name: 'Apple'
         }),
         new Manufacturer ({
-            manufacturer: 'Oppo'
+            name: 'Oppo'
         }),
         new Manufacturer ({
-            manufacturer: 'Samsung'
+            name: 'Samsung'
         }),
         new Manufacturer ({
-            manufacturer: 'HTC'
+            name: 'HTC'
         }),
         new Manufacturer ({
-            manufacturer: 'Asus'
+            name: 'Asus'
         }),
         new Manufacturer ({
-            manufacturer: 'Dell'
+            name: 'Dell'
         }),
         new Manufacturer ({
-            manufacturer: 'HP'
+            name: 'HP'
         }),
         new Manufacturer ({
-            manufacturer: 'Nokia'
+            name: 'Nokia'
         }),
         new Manufacturer ({
-            manufacturer: 'Google'
+            name: 'Google'
         }),
         new Manufacturer ({
-            manufacturer: 'Lenovo'
+            name: 'Lenovo'
         }),
         new Manufacturer ({
-            manufacturer: 'Windows'
+            name: 'Windows'
         }),
         new Manufacturer ({
-            manufacturer: 'SanDisk'
+            name: 'SanDisk'
         }),
         new Manufacturer ({
-            manufacturer: 'Kingston'
+            name: 'Kingston'
         }),
         new Manufacturer ({
-            manufacturer: 'Seagate'
+            name: 'Seagate'
         }),
         new Manufacturer ({
-            manufacturer: 'Xiaomi'
+            name: 'Xiaomi'
         })
     ]
 
