@@ -383,16 +383,10 @@ html
                 | Our 
                 span Information
               ul
-                li
-                  a(href='index') Trang chủ
-                li
-                  a(href='about') Về chúng tôi
-                li
-                  a(href='mobile&tablet') Mobile & Tablet
-                li
-                  a(href='womens.html') Phụ kiện
-                li
-                  a(href='contact') Liên hệ
+                each tab in navbar_tabs
+                  li
+                    a(href=tab.link)
+                      | #{tab.name}
             .col-md-5.sign-gd-two
               h4
                 | Store 
@@ -403,7 +397,7 @@ html
                     i.fa.fa-phone(aria-hidden='true')
                   .w3-address-right
                     h6 Số điện thoại
-                    p +1 234 567 8901
+                    p 0169 504 2165
                   .clearfix  
                 .w3-address-grid
                   .w3-address-left
@@ -412,7 +406,7 @@ html
                     h6 Địa chỉ Email
                     p
                       | Email :
-                      a(href='mailto:example@email.com')  mail@example.com
+                      a(href='mailto:1412367@student.hcmus.edu.vn')  mail@example.com
                   .clearfix  
                 .w3-address-grid
                   .w3-address-left
@@ -420,7 +414,7 @@ html
                   .w3-address-right
                     h6 Địa chỉ cửa hàng
                     p
-                      | Broome St, NY 10002,California, USA.
+                      | 333 Trần Bình Trọng, phường 4, quận 5, tp Hồ Chí Minh
                   .clearfix  
             .col-md-3.sign-gd.flickr-post
               h4

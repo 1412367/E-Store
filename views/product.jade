@@ -66,9 +66,9 @@ block content
                                 input(type='hidden', name='cmd', value='_cart')
                                 input(type='hidden', name='add', value='1')
                                 input(type='hidden', name='business', value=' ')
-                                input(type='hidden', name='item_name', value='Wing Sneakers')
-                                input(type='hidden', name='amount', value='650.00')
-                                input(type='hidden', name='discount_amount', value='1.00')
+                                input(type='hidden', name='item_name', value=product.title)
+                                input(type='hidden', name='amount', value=product.price)
+                                input(type='hidden', name='discount_amount', value='0')
                                 input(type='hidden', name='currency_code', value='USD')
                                 input(type='hidden', name='return', value=' ')
                                 input(type='hidden', name='cancel_return', value=' ')
@@ -110,19 +110,62 @@ block content
                 #horizontalTab
                     ul.resp-tabs-list
                         li Description
+                        if (product.specifications)
+                            li Specifications
                         li Reviews
-                        li Information
                     .resp-tabs-container
                         // /tab_one
                         .tab1
                             .single_page_agile_its_w3ls
-                                h6 Lorem ipsum dolor sit amet
-                                p
-                                    | Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.
-                                p.w3ls_para
-                                    | Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.
+                                h6 #{product.title}
+                                p #{product.description}
                         // //tab_one
-                        .tab2
+                        if (product.specifications)
+                            .tab2
+                                .single_page_agile_its_w3ls
+                                    h6 Model: #{product.specifications.model}
+                                    if (product.specifications.dimensions)
+                                        p Dimensions: #{product.specifications.dimensions}
+                                    if (product.specifications.weight)
+                                        p Weight: #{product.specifications.weight}
+                                    if (product.specifications.cpu)
+                                        p CPU: #{product.specifications.cpu}
+                                    if (product.specifications.gpu)
+                                        p GPU: #{product.specifications.gpu}
+                                    if (product.specifications.ram_type)
+                                        p Ram type: #{product.specifications.ram_type}
+                                    if (product.specifications.ram_size_GB)
+                                        p Ram size: #{product.specifications.ram_size_GB} GB
+                                    if (product.specifications.storage_type)
+                                        p Storage type: #{product.specifications.storage_type}
+                                    if (product.specifications.storage_size)
+                                        p Storage size: #{product.specifications.storage_size} #{product.specifications.storage_uom}
+                                    if (product.specifications.memory_cards)
+                                        p Memory cards: #{product.specifications.memory_cards}
+                                    if (product.specifications.scr_type)
+                                        p Screen type: #{product.specifications.scr_type}
+                                    if (product.specifications.scr_size_INCH)
+                                        p Screen size: #{product.specifications.scr_size_INCH} inch
+                                    if (product.specifications.battery)
+                                        p Battery: #{product.specifications.battery}
+                                    if (product.specifications.os)
+                                        p OS: #{product.specifications.os}
+                                    if (product.specifications.front_camera)
+                                        p Front camera: #{product.specifications.front_camera}
+                                    if (product.specifications.back_camera)
+                                        p Back camera: #{product.specifications.back_camera}
+                                    if (product.specifications.sim)
+                                        p Sim: #{product.specifications.sim}
+                                    if (product.specifications.wifi)
+                                        p Wifi: #{product.specifications.wifi}
+                                    if (product.specifications.usb)
+                                        p USB: #{product.specifications.usb}
+                                    if (product.specifications.bluetooth)
+                                        p Bluetooth: #{product.specifications.bluetooth}
+                                    
+                                    //- p.w3ls_para Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor.
+
+                        .tab3
                             .single_page_agile_its_w3ls
                                 .bootstrap-tab-text-grids
                                     .bootstrap-tab-text-grid
@@ -148,13 +191,6 @@ block content
                                             input(type='email', name='Email', required='Email')
                                             textarea(name='Message', required='')
                                             input(type='submit', value='SEND')
-                        .tab3
-                            .single_page_agile_its_w3ls
-                                h6 Big Wing Sneakers (Navy)
-                                p
-                                    | Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.
-                                p.w3ls_para
-                                    | Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.
             // //new_arrivals
             // /slider_owl
             .w3_agile_latest_arrivals
