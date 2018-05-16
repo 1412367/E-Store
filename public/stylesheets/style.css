@@ -2631,6 +2631,7 @@ h2.typoh2{
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   margin: 0 auto;
+  height: 310px;
 }
 .rslides_tabs li:first-child {
   margin-left: 0;
@@ -2852,13 +2853,13 @@ border-bottom: 1px solid #e5e3db;
 .css-treeview label {
     padding: 5px;
     margin: 2px;
-    font-size: 0.9em;
+    /* font-size: 0.9em; */
     color: #545454;
     letter-spacing: 1px;
 }
 
 .css-treeview a {
-    padding: 7px 0 0 31px;
+    padding: 7px 0 0 70px;
     margin: 2px;
     font-size: 14px;
     letter-spacing: 1px;

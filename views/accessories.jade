@@ -5,7 +5,7 @@ block content
     .container
       h3
         |  
-        span Laptop 
+        span Phụ kiện 
       // /w3_short
       .services-breadcrumb
         .agile_inner_breadcrumb
@@ -13,7 +13,7 @@ block content
             li
               a(href='index.html') Trang chủ
               i |
-            li Laptop
+            li Phụ kiện
       // //w3_short
 
 
@@ -42,6 +42,15 @@ block content
                 each manufacturer in manufacturer_list
                   li
                     a(href='?manufacturer=#{manufacturer.id}') #{manufacturer.name}
+            li
+              input#item-1(type='checkbox', checked='checked')
+              label(for='item-1')
+                i.fa.fa-long-arrow-right(aria-hidden='true')
+                |  Loại phụ kiện
+              ul
+                each accessories_type in accessories_type_list
+                  li
+                    a(href='?accessories_type=#{accessories_type._id}') #{accessories_type.name}
         .clearfix
       .col-md-8.products-right
         h5

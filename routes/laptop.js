@@ -5,10 +5,21 @@ var Product = require('../models/product');
 var Product_Type = require('../models/product_type')
 
 router.get('/', function(req, res, next) {
-    Product_Type.find({product_type: { $in: [ 'Laptop' ]}}, '_id', function (err, ids) {
-        Product.find({product_type_id: { $in: ids}}, function (err, docs) {
-            res.render('laptop', { title: 'Express', navActive: 'laptop', products: docs});
+    var manufacturer = req.query.manufacturer;
+    console.log('manufacturer: ' + manufacturer);
+    Product.find()
+    .populate({
+        path: 'product_type',
+        match: {name: 'Laptop'}
+    })
+    .populate({path: 'manufacturer', match: {_id:manufacturer} })
+    .populate('specifications')
+    .exec(function (err, products) {
+        products = products.filter(function(product) {
+            // return only products with product_type and manufacturer != undefined
+            return product.product_type && product.manufacturer; 
         });
+        res.render('laptop', { title: 'Express', products: products});
     });
 });
 

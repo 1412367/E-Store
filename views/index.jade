@@ -1,67 +1,1094 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
-  p Welcome to #{title}
+  // banner
+  #myCarousel.carousel.slide(data-ride='carousel')
+    // Indicators
+    ol.carousel-indicators
+      li.active(data-target='#myCarousel', data-slide-to='0')
+      li(data-target='#myCarousel', data-slide-to='1')
+      li(data-target='#myCarousel', data-slide-to='2')
+      li(data-target='#myCarousel', data-slide-to='3')
+      li(data-target='#myCarousel', data-slide-to='4')
+    .carousel-inner(role='listbox')
+      .item.active
+        .container
+          .carousel-caption
+            h3
+              | The Biggest 
+              span Sale
+            p Special for today
+            a.hvr-outline-out.button2(href='mens.html') Shop Now 
+      .item.item2
+        .container
+          .carousel-caption
+            h3
+              | Summer 
+              span Collection
+            p New Arrivals On Sale
+            a.hvr-outline-out.button2(href='mens.html') Shop Now 
+      .item.item3
+        .container
+          .carousel-caption
+            h3
+              | The Biggest 
+              span Sale
+            p Special for today
+            a.hvr-outline-out.button2(href='mens.html') Shop Now 
+      .item.item4
+        .container
+          .carousel-caption
+            h3
+              | Summer 
+              span Collection
+            p New Arrivals On Sale
+            a.hvr-outline-out.button2(href='mens.html') Shop Now 
+      .item.item5
+        .container
+          .carousel-caption
+            h3
+              | The Biggest 
+              span Sale
+            p Special for today
+            a.hvr-outline-out.button2(href='mens.html') Shop Now 
+    a.left.carousel-control(href='#myCarousel', role='button', data-slide='prev')
+      span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
+      span.sr-only Previous
+    a.right.carousel-control(href='#myCarousel', role='button', data-slide='next')
+      span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
+      span.sr-only Next
+    // The Modal
+  // //banner
+  .banner_bottom_agile_info
+    .container
+      .banner_bottom_agile_info_inner_w3ls
+        .col-md-6.wthree_banner_bottom_grid_three_left1.grid
+          figure.effect-roxy
+            img.img-responsive(src='images/bottom1.jpg', alt=' ')
+            figcaption
+              h3
+                span F
+                | all Ahead
+              p New Arrivals
+        .col-md-6.wthree_banner_bottom_grid_three_left1.grid
+          figure.effect-roxy
+            img.img-responsive(src='images/bottom2.jpg', alt=' ')
+            figcaption
+              h3
+                span F
+                | all Ahead
+              p New Arrivals
+        .clearfix
+  // schedule-bottom
+  .schedule-bottom
+    .col-md-6.agileinfo_schedule_bottom_left
+      img.img-responsive(src='images/mid.jpg', alt=' ')
+    .col-md-6.agileits_schedule_bottom_right
+      .w3ls_schedule_bottom_right_grid
+        h3
+          | Save up to 
+          span 50%
+          |  in this week
+        p
+          | Suspendisse varius turpis efficitur erat laoreet dapibus.
+          | Mauris sollicitudin scelerisque commodo.Nunc dapibus mauris sed metus finibus posuere.
+        .col-md-4.w3l_schedule_bottom_right_grid1
+          i.fa.fa-user-o(aria-hidden='true')
+          h4 Customers
+          h5.counter 653
+        .col-md-4.w3l_schedule_bottom_right_grid1
+          i.fa.fa-calendar-o(aria-hidden='true')
+          h4 Events
+          h5.counter 823
+        .col-md-4.w3l_schedule_bottom_right_grid1
+          i.fa.fa-shield(aria-hidden='true')
+          h4 Awards
+          h5.counter 45
+        .clearfix  
+    .clearfix  
+  // //schedule-bottom
+  // banner-bootom-w3-agileits
+  .banner-bootom-w3-agileits
+    .container
+      h3.wthree_text_info
+        | What's 
+        span Trending
+      .col-md-5.bb-grids.bb-left-agileits-w3layouts
+        a(href='womens.html')
+          .bb-left-agileits-w3layouts-inner.grid
+            figure.effect-roxy
+              img.img-responsive(src='images/bb1.jpg', alt=' ')
+              figcaption
+                h3
+                  span S
+                  | ale
+                p Upto 55%
+      .col-md-7.bb-grids.bb-middle-agileits-w3layouts
+        a(href='mens.html')
+          .bb-middle-agileits-w3layouts.grid
+            figure.effect-roxy
+              img.img-responsive(src='images/bottom3.jpg', alt=' ')
+              figcaption
+                h3
+                  span S
+                  | ale
+                p Upto 55%
+        a(href='mens.html')
+          .bb-middle-agileits-w3layouts.forth.grid
+            figure.effect-roxy
+              img.img-responsive(src='images/bottom4.jpg', alt=' ')
+              figcaption
+                h3
+                  span S
+                  | ale
+                p Upto 65%
+        .clearfix
+  // /grids
+  .agile_last_double_sectionw3ls
+    .col-md-6.multi-gd-img.multi-gd-text
+      a(href='womens.html')
+        img(src='images/bot_1.jpg', alt=' ')
+        h4
+          | Flat 
+          span 50%
+          |  offer
+    .col-md-6.multi-gd-img.multi-gd-text
+      a(href='womens.html')
+        img(src='images/bot_2.jpg', alt=' ')
+        h4
+          | Flat 
+          span 50%
+          |  offer
+    .clearfix
+  // /grids
+  // /new_arrivals
+  .new_arrivals_agile_w3ls_info
+    .container
+      h3.wthree_text_info
+        | New 
+        span Arrivals
+      #horizontalTab
+        ul.resp-tabs-list
+          li  Men's
+          li  Women's
+          li  Bags
+          li  Footwear
+        .resp-tabs-container
+          // /tab_one
+          .tab1
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/m1.jpg', alt='')
+                  img.pro-image-back(src='images/m1.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Formal Blue Shirt
+                  .info-product-price
+                    span.item_price $45.99
+                    del $69.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Formal Blue Shirt')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/m2.jpg', alt='')
+                  img.pro-image-back(src='images/m2.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Gabi Full Sleeve Sweatshirt
+                  .info-product-price
+                    span.item_price $45.99
+                    del $69.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Sweatshirt')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/m3.jpg', alt='')
+                  img.pro-image-back(src='images/m3.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Dark Blue Track Pants
+                  .info-product-price
+                    span.item_price $80.99
+                    del $89.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Dark Blue Track Pants')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/m4.jpg', alt='')
+                  img.pro-image-back(src='images/m4.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Round Neck Black T-Shirt
+                  .info-product-price
+                    span.item_price $190.99
+                    del $159.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Black T-Shirt')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/m5.jpg', alt='')
+                  img.pro-image-back(src='images/m5.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Men's Black Jeans
+                  .info-product-price
+                    span.item_price $60.99
+                    del $90.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value="Men's Black Jeans")
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/m7.jpg', alt='')
+                  img.pro-image-back(src='images/m7.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Analog Watch
+                  .info-product-price
+                    span.item_price $160.99
+                    del $290.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Analog Watch')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/m6.jpg', alt='')
+                  img.pro-image-back(src='images/m6.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Reversible Belt
+                  .info-product-price
+                    span.item_price $30.99
+                    del $50.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Reversible Belt')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/m8.jpg', alt='')
+                  img.pro-image-back(src='images/m8.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Party Men's Blazer
+                  .info-product-price
+                    span.item_price $260.99
+                    del $390.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value="Party Men's Blazer")
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .clearfix
+          // //tab_one
+          // /tab_two
+          .tab2
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/w1.jpg', alt='')
+                  img.pro-image-back(src='images/w1.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') A-line Black Skirt
+                  .info-product-price
+                    span.item_price $130.99
+                    del $189.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='A-line Black Skirt')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/w2.jpg', alt='')
+                  img.pro-image-back(src='images/w2.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Sleeveless Solid Blue Top
+                  .info-product-price
+                    span.item_price $140.99
+                    del $189.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Sleeveless Solid Blue Top')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/w3.jpg', alt='')
+                  img.pro-image-back(src='images/w3.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Skinny Jeans
+                  .info-product-price
+                    span.item_price $150.99
+                    del $189.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Skinny Jeans ')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/w4.jpg', alt='')
+                  img.pro-image-back(src='images/w4.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Black Basic Shorts
+                  .info-product-price
+                    span.item_price $120.99
+                    del $189.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Black Basic Shorts')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/w5.jpg', alt='')
+                  img.pro-image-back(src='images/w5.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Pink Track Pants
+                  .info-product-price
+                    span.item_price $220.99
+                    del $389.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Pink Track Pants')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/w6.jpg', alt='')
+                  img.pro-image-back(src='images/w6.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Analog Watch
+                  .info-product-price
+                    span.item_price $320.99
+                    del $489.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Analog Watch')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/w7.jpg', alt='')
+                  img.pro-image-back(src='images/w7.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Ankle Length Socks
+                  .info-product-price
+                    span.item_price $100.99
+                    del $159.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Ankle Length Socks')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/w8.jpg', alt='')
+                  img.pro-image-back(src='images/w8.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Reebok Women's Tights
+                  .info-product-price
+                    span.item_price $130.99
+                    del $169.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value="Reebok Women's Tights")
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .clearfix
+          // //tab_two
+          .tab3
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/b1.jpg', alt='')
+                  img.pro-image-back(src='images/b1.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Laptop Messenger Bag
+                  .info-product-price
+                    span.item_price $140.99
+                    del $169.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value=' Laptop Messenger Bag')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/b2.jpg', alt='')
+                  img.pro-image-back(src='images/b2.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Puma Backpack
+                  .info-product-price
+                    span.item_price $127.99
+                    del $169.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Puma Backpack')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/b3.jpg', alt='')
+                  img.pro-image-back(src='images/b3.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html')  Laptop Backpack
+                  .info-product-price
+                    span.item_price $120.99
+                    del $189.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value=' Laptop Backpack')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/b4.jpg', alt='')
+                  img.pro-image-back(src='images/b4.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Travel Duffel Bag 
+                  .info-product-price
+                    span.item_price $190.99
+                    del $259.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Travel Duffel Bag ')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/b5.jpg', alt='')
+                  img.pro-image-back(src='images/b5.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html')  Hand-held Bag 
+                  .info-product-price
+                    span.item_price $190.99
+                    del $259.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value=' Hand-held Bag ')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/b6.jpg', alt='')
+                  img.pro-image-back(src='images/b6.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Butterflies Bag 
+                  .info-product-price
+                    span.item_price $190.99
+                    del $259.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Butterflies Bag')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/b7.jpg', alt='')
+                  img.pro-image-back(src='images/b7.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Costa Swiss Bag 
+                  .info-product-price
+                    span.item_price $290.99
+                    del $359.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Costa Swiss Bag')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/b8.jpg', alt='')
+                  img.pro-image-back(src='images/b8.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Noble Designs Bag 
+                  .info-product-price
+                    span.item_price $120.99
+                    del $159.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Noble Designs Bag ')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .clearfix
+          .tab4
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/s1.jpg', alt='')
+                  img.pro-image-back(src='images/s1.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Running Shoes
+                  .info-product-price
+                    span.item_price $80.99
+                    del $89.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Running Shoes')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/s2.jpg', alt='')
+                  img.pro-image-back(src='images/s2.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Shoetopia Lace Up
+                  .info-product-price
+                    span.item_price $90.99
+                    del $59.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Shoetopia Lace Up')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/s3.jpg', alt='')
+                  img.pro-image-back(src='images/s3.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Steemo Casuals(Black)
+                  .info-product-price
+                    span.item_price $90.99
+                    del $59.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Steemo Casuals (Black)')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/s4.jpg', alt='')
+                  img.pro-image-back(src='images/s4.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Benetton Flip Flops
+                  .info-product-price
+                    span.item_price $40.99
+                    del $99.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Benetton Flip Flops')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/s5.jpg', alt='')
+                  img.pro-image-back(src='images/s5.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Moonwalk Bellies 
+                  .info-product-price
+                    span.item_price $80.99
+                    del $99.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Moonwalk Bellies')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/s6.jpg', alt='')
+                  img.pro-image-back(src='images/s6.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Aero Canvas Loafers  
+                  .info-product-price
+                    span.item_price $120.99
+                    del $199.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Aero Canvas Loafers')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/s7.jpg', alt='')
+                  img.pro-image-back(src='images/s7.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Sparx Sporty Canvas Shoes
+                  .info-product-price
+                    span.item_price $160.99
+                    del $199.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Sparx Sporty Canvas Shoes')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .col-md-3.product-men
+              .men-pro-item.simpleCart_shelfItem
+                .men-thumb-item
+                  img.pro-image-front(src='images/s8.jpg', alt='')
+                  img.pro-image-back(src='images/s8.jpg', alt='')
+                  .men-cart-pro
+                    .inner-men-cart-pro
+                      a.link-product-add-cart(href='single.html') Quick View
+                  span.product-new-top New
+                .item-info-product
+                  h4
+                    a(href='single.html') Women BLACK Heels
+                  .info-product-price
+                    span.item_price $180.99
+                    del $199.71
+                  .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                    form(action='#', method='post')
+                      fieldset
+                        input(type='hidden', name='cmd', value='_cart')
+                        input(type='hidden', name='add', value='1')
+                        input(type='hidden', name='business', value=' ')
+                        input(type='hidden', name='item_name', value='Women BLACK Heels')
+                        input(type='hidden', name='amount', value='30.99')
+                        input(type='hidden', name='discount_amount', value='1.00')
+                        input(type='hidden', name='currency_code', value='USD')
+                        input(type='hidden', name='return', value=' ')
+                        input(type='hidden', name='cancel_return', value=' ')
+                        input.button(type='submit', name='submit', value='Add to cart')
+            .clearfix
+  // //new_arrivals
+  // /we-offer
+  .sale-w3ls
+    .container
+      h6
+        | We Offer Flat 
+        span 40%
+        |  Discount
+      a.hvr-outline-out.button2(href='single.html') Shop Now 
+  // //we-offer

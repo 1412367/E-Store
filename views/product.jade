@@ -1,0 +1,287 @@
+extends layout
+
+block content    
+    // banner-bootom-w3-agileits
+    .banner-bootom-w3-agileits
+        .container
+            .col-md-4.single-right-left
+                .grid.images_3_of_2
+                    .flexslider
+                        ul.slides
+                            each image_path in product.image_paths
+                                li(data-thumb=image_path)
+                                    .thumb-image
+                                        img.img-responsive(src=image_path, data-imagezoom='true')
+                        .clearfix
+            .col-md-8.single-right-left.simpleCart_shelfItem
+                h3 #{product.title}
+                p
+                    span.item_price $#{product.price}
+                    //- del - $900
+                //- .rating1
+                //-     span.starRating
+                //-         input#rating5(type='radio', name='rating', value='5')
+                //-         label(for='rating5') 5
+                //-         input#rating4(type='radio', name='rating', value='4')
+                //-         label(for='rating4') 4
+                //-         input#rating3(type='radio', name='rating', value='3', checked='')
+                //-         label(for='rating3') 3
+                //-         input#rating2(type='radio', name='rating', value='2')
+                //-         label(for='rating2') 2
+                //-         input#rating1(type='radio', name='rating', value='1')
+                //-         label(for='rating1') 1
+                .description
+                    h5 Check delivery, payment options and charges at your location
+                    form(action='#', method='post')
+                        input(type='text', value='Enter pincode', onfocus="this.value = '';", onblur="if (this.value == '') {this.value = 'Enter pincode';}", required='')
+                        | &#32
+                        input(type='submit', value='Check')
+                .color-quality
+                    .color-quality-right
+                        h5 Quality :
+                        input(type='number', value='1', style='padding: 5px 0px 5px 40px; width: 100px')
+                .occasional
+                    h5 Color :
+                    each color in product.colors
+                        .colr
+                            label.radio
+                                input(type='radio', name='color', checked='')
+                                i
+                                | #{color}
+                    //- .colr
+                    //-     label.radio
+                    //-         input(type='radio', name='radio')
+                    //-         i
+                    //-         | Sneakers
+                    //- .colr
+                    //-     label.radio
+                    //-         input(type='radio', name='radio')
+                    //-         i
+                    //-         | Formal Shoes
+                    .clearfix  
+                .occasion-cart
+                    .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                        form(action='#', method='post')
+                            fieldset
+                                input(type='hidden', name='cmd', value='_cart')
+                                input(type='hidden', name='add', value='1')
+                                input(type='hidden', name='business', value=' ')
+                                input(type='hidden', name='item_name', value='Wing Sneakers')
+                                input(type='hidden', name='amount', value='650.00')
+                                input(type='hidden', name='discount_amount', value='1.00')
+                                input(type='hidden', name='currency_code', value='USD')
+                                input(type='hidden', name='return', value=' ')
+                                input(type='hidden', name='cancel_return', value=' ')
+                                input.button(type='submit', name='submit', value='Add to cart')
+                ul.social-nav.model-3d-0.footer-social.w3_agile_social.single_page_w3ls
+                    li.share Share On : 
+                    | &#32
+                    li
+                        a.facebook(href='#')
+                            .front
+                                i.fa.fa-facebook(aria-hidden='true')
+                            .back
+                                i.fa.fa-facebook(aria-hidden='true')
+                    | &#32
+                    li
+                        a.twitter(href='#')
+                            .front
+                                i.fa.fa-twitter(aria-hidden='true')
+                            .back
+                                i.fa.fa-twitter(aria-hidden='true')
+                    | &#32
+                    li
+                        a.instagram(href='#')
+                            .front
+                                i.fa.fa-instagram(aria-hidden='true')
+                            .back
+                                i.fa.fa-instagram(aria-hidden='true')
+                    | &#32
+                    li
+                        a.pinterest(href='#')
+                            .front
+                                i.fa.fa-linkedin(aria-hidden='true')
+                            .back
+                                i.fa.fa-linkedin(aria-hidden='true')
+                    | &#32
+            .clearfix  
+            // /new_arrivals
+            .responsive_tabs_agileits
+                #horizontalTab
+                    ul.resp-tabs-list
+                        li Description
+                        li Reviews
+                        li Information
+                    .resp-tabs-container
+                        // /tab_one
+                        .tab1
+                            .single_page_agile_its_w3ls
+                                h6 Lorem ipsum dolor sit amet
+                                p
+                                    | Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.
+                                p.w3ls_para
+                                    | Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.
+                        // //tab_one
+                        .tab2
+                            .single_page_agile_its_w3ls
+                                .bootstrap-tab-text-grids
+                                    .bootstrap-tab-text-grid
+                                        .bootstrap-tab-text-grid-left
+                                            img.img-responsive(src='images/t1.jpg', alt=' ')
+                                        .bootstrap-tab-text-grid-right
+                                            ul
+                                                li
+                                                    a(href='#') Admin
+                                                li
+                                                    a(href='#')
+                                                        i.fa.fa-reply-all(aria-hidden='true')
+                                                        |  Reply
+                                            p
+                                                | Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget.Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
+                                                | suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
+                                                | vel eum iure reprehenderit.
+                                        .clearfix  
+                                    .add-review
+                                        h4 add a review
+                                        form(action='#', method='post')
+                                            input(type='text', name='Name', required='Name')
+                                            input(type='email', name='Email', required='Email')
+                                            textarea(name='Message', required='')
+                                            input(type='submit', value='SEND')
+                        .tab3
+                            .single_page_agile_its_w3ls
+                                h6 Big Wing Sneakers (Navy)
+                                p
+                                    | Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.
+                                p.w3ls_para
+                                    | Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.
+            // //new_arrivals
+            // /slider_owl
+            .w3_agile_latest_arrivals
+                h3.wthree_text_info
+                    | Featured 
+                    span Arrivals
+                .col-md-3.product-men.single
+                    .men-pro-item.simpleCart_shelfItem
+                        .men-thumb-item
+                            img.pro-image-front(src='images/w2.jpg', alt='')
+                            img.pro-image-back(src='images/w2.jpg', alt='')
+                            .men-cart-pro
+                                .inner-men-cart-pro
+                                    a.link-product-add-cart(href='single.html') Quick View
+                            span.product-new-top New
+                        .item-info-product
+                            h4
+                                a(href='single.html') Sleeveless Solid Blue Top
+                            .info-product-price
+                                span.item_price $140.99
+                                del $189.71
+                            .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                                form(action='#', method='post')
+                                    fieldset
+                                        input(type='hidden', name='cmd', value='_cart')
+                                        input(type='hidden', name='add', value='1')
+                                        input(type='hidden', name='business', value=' ')
+                                        input(type='hidden', name='item_name', value='Sleeveless Solid Blue Top')
+                                        input(type='hidden', name='amount', value='30.99')
+                                        input(type='hidden', name='discount_amount', value='1.00')
+                                        input(type='hidden', name='currency_code', value='USD')
+                                        input(type='hidden', name='return', value=' ')
+                                        input(type='hidden', name='cancel_return', value=' ')
+                                        input.button(type='submit', name='submit', value='Add to cart')
+                .col-md-3.product-men.single
+                    .men-pro-item.simpleCart_shelfItem
+                        .men-thumb-item
+                            img.pro-image-front(src='images/w4.jpg', alt='')
+                            img.pro-image-back(src='images/w4.jpg', alt='')
+                            .men-cart-pro
+                                .inner-men-cart-pro
+                                    a.link-product-add-cart(href='single.html') Quick View
+                            span.product-new-top New
+                        .item-info-product
+                            h4
+                                a(href='single.html') Black Basic Shorts
+                            .info-product-price
+                                span.item_price $120.99
+                                del $189.71
+                            .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                                form(action='#', method='post')
+                                    fieldset
+                                        input(type='hidden', name='cmd', value='_cart')
+                                        input(type='hidden', name='add', value='1')
+                                        input(type='hidden', name='business', value=' ')
+                                        input(type='hidden', name='item_name', value='Black Basic Shorts')
+                                        input(type='hidden', name='amount', value='30.99')
+                                        input(type='hidden', name='discount_amount', value='1.00')
+                                        input(type='hidden', name='currency_code', value='USD')
+                                        input(type='hidden', name='return', value=' ')
+                                        input(type='hidden', name='cancel_return', value=' ')
+                                        input.button(type='submit', name='submit', value='Add to cart')
+                .col-md-3.product-men.single
+                    .men-pro-item.simpleCart_shelfItem
+                        .men-thumb-item
+                            img.pro-image-front(src='images/s6.jpg', alt='')
+                            img.pro-image-back(src='images/s6.jpg', alt='')
+                            .men-cart-pro
+                                .inner-men-cart-pro
+                                    a.link-product-add-cart(href='single.html') Quick View
+                            span.product-new-top New
+                        .item-info-product
+                            h4
+                                a(href='single.html') Aero Canvas Loafers  
+                            .info-product-price
+                                span.item_price $120.99
+                                del $199.71
+                            .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                                form(action='#', method='post')
+                                    fieldset
+                                        input(type='hidden', name='cmd', value='_cart')
+                                        input(type='hidden', name='add', value='1')
+                                        input(type='hidden', name='business', value=' ')
+                                        input(type='hidden', name='item_name', value='Aero Canvas Loafers')
+                                        input(type='hidden', name='amount', value='30.99')
+                                        input(type='hidden', name='discount_amount', value='1.00')
+                                        input(type='hidden', name='currency_code', value='USD')
+                                        input(type='hidden', name='return', value=' ')
+                                        input(type='hidden', name='cancel_return', value=' ')
+                                        input.button(type='submit', name='submit', value='Add to cart')
+                .col-md-3.product-men.single
+                    .men-pro-item.simpleCart_shelfItem
+                        .men-thumb-item
+                            img.pro-image-front(src='images/w7.jpg', alt='')
+                            img.pro-image-back(src='images/w7.jpg', alt='')
+                            .men-cart-pro
+                                .inner-men-cart-pro
+                                    a.link-product-add-cart(href='single.html') Quick View
+                            span.product-new-top New
+                        .item-info-product
+                            h4
+                                a(href='single.html') Ankle Length Socks
+                            .info-product-price
+                                span.item_price $100.99
+                                del $159.71
+                            .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+                                form(action='#', method='post')
+                                    fieldset
+                                        input(type='hidden', name='cmd', value='_cart')
+                                        input(type='hidden', name='add', value='1')
+                                        input(type='hidden', name='business', value=' ')
+                                        input(type='hidden', name='item_name', value='Ankle Length Socks')
+                                        input(type='hidden', name='amount', value='30.99')
+                                        input(type='hidden', name='discount_amount', value='1.00')
+                                        input(type='hidden', name='currency_code', value='USD')
+                                        input(type='hidden', name='return', value=' ')
+                                        input(type='hidden', name='cancel_return', value=' ')
+                                        input.button(type='submit', name='submit', value='Add to cart')
+                .clearfix  
+                // //slider_owl
+    // FlexSlider
+    script.
+        // Can also be used with $(document).ready()
+        $(window).load(function() {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });
+    // //FlexSlider

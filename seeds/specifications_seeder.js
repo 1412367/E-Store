@@ -39,7 +39,7 @@ Specifications.on('index', err => {
             if (err) {
                 console.log(err);
             }
-            if (done === 45) {
+            if (done === 60) {
                 mongoose.disconnect();
             }
             if ( ++i < 15 ) {
@@ -75,7 +75,7 @@ Specifications.on('index', err => {
             if (err) {
                 console.log(err);
             }
-            if (done === 45) {
+            if (done === 60) {
                 mongoose.disconnect();
             }
             if ( ++i < 15 ) {
@@ -111,7 +111,7 @@ Specifications.on('index', err => {
             if (err) {
                 console.log(err);
             }
-            if (done === 45) {
+            if (done === 60) {
                 mongoose.disconnect();
             }
             if ( ++i < 15 ) {
@@ -120,7 +120,44 @@ Specifications.on('index', err => {
         });
     }
 
+    var loop4 = function(i) {
+        var specifications = new Specifications ({
+            model: "Accessory test No."+ i +"'s model",
+            dimensions: '153.6 x 76.5 x 9.2 mm (6.05 x 3.01 x 0.36 inches)',
+            weight: '158 g (5.57 oz)',
+            cpu: 'Octa-core 1.3 GHz Cortex-A53',
+            gpu: 'Mali-T720MP3',
+            ram_size_GB: 2,
+            storage_size: 32,
+            storage_uom: 'GB',
+            memory_cards: 'microSD, up to 256 GB (dedicated slot)',
+            scr_type: 'IPS LCD capacitive touchscreen, 16M colors, 1080 x 1920 pixels, 16:9 ratio',
+            scr_size_INCH: 5.5,
+            battery: 'Non-removable Li-Po 3300 mAh battery',
+            os: 'Android 5.1.1 (Lollipop), upgradable to 6.0 (Marshmallow)',
+            front_camera: '5 MP, f/2.2',
+            back_camera: '13 MP, f/2.2, phase detection autofocus, dual-LED dual-tone flash',
+            sim: 'Dual SIM (Micro-SIM, dual stand-by)',
+            wifi: 'Wi-Fi 802.11 a/b/g/n/ac, Wi-Fi Direct, hotspot',
+            usb: 'microUSB 2.0',
+            bluetooth: '4.0, A2DP, LE',
+        });
+        console.log(++done + ' done !');
+        specifications.save(function (err, result) {
+            if (err) {
+                console.log(err);
+            }
+            if (done === 60) {
+                mongoose.disconnect();
+            }
+            if ( ++i < 15 ) {
+                loop4(i);
+            }
+        });
+    }
+
     loop1(0);
     loop2(0);
     loop3(0);
+    loop4(0);
 });

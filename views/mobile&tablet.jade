@@ -37,183 +37,132 @@ block content
               input#item-0(type='checkbox', checked='checked')
               label(for='item-0')
                 i.fa.fa-long-arrow-right(aria-hidden='true')
-                |  Men's Wear
+                |  Thương hiệu
               ul
-                li
-                  input#item-0-0(type='checkbox')
-                  label(for='item-0-0')
-                    i.fa.fa-long-arrow-right(aria-hidden='true')
-                    | Ethnic Wear
-                  ul
-                    li
-                      a(href='mens.html') Shirts
-                    li
-                      a(href='mens.html') Caps
-                    li
-                      a(href='mens.html') Shoes
-                    li
-                      a(href='mens.html') Pants
-                    li
-                      a(href='mens.html') SunGlasses
-                    li
-                      a(href='mens.html') Trousers
-                li
-                  input#item-0-1(type='checkbox')
-                  label(for='item-0-1')
-                    i.fa.fa-long-arrow-right(aria-hidden='true')
-                    |  Party Wear
-                  ul
-                    li
-                      a(href='mens.html') Shirts
-                    li
-                      a(href='mens.html') Caps
-                    li
-                      a(href='mens.html') Shoes
-                    li
-                      a(href='mens.html') Pants
-                    li
-                      a(href='mens.html') SunGlasses
-                    li
-                      a(href='mens.html') Trousers
-                li
-                  input#item-0-2(type='checkbox')
-                  label(for='item-0-2')
-                    i.fa.fa-long-arrow-right(aria-hidden='true')
-                    |  Casual Wear
-                  ul
-                    li
-                      a(href='mens.html') Shirts
-                    li
-                      a(href='mens.html') Caps
-                    li
-                      a(href='mens.html') Shoes
-                    li
-                      a(href='mens.html') Pants
-                    li
-                      a(href='mens.html') SunGlasses
-                    li
-                      a(href='mens.html') Trousers
-            li
-              input#item-1(type='checkbox', checked='checked')
-              label(for='item-1')
-                i.fa.fa-long-arrow-right(aria-hidden='true')
-                |  Best Collections
-              ul
-                li
-                  input#item-1-0(type='checkbox', checked='checked')
-                  label(for='item-1-0')
-                    i.fa.fa-long-arrow-right(aria-hidden='true')
-                    |  New Arrivals
-                  ul
-                    li
-                      a(href='mens.html') Shirts
-                    li
-                      a(href='mens.html') Shoes
-                    li
-                      a(href='mens.html') Pants
-                    li
-                      a(href='mens.html') SunGlasses
-            li
-              input#item-2(type='checkbox', checked='checked')
-              label(for='item-2')
-                i.fa.fa-long-arrow-right(aria-hidden='true')
-                |  Best Offers
-              ul
-                li
-                  input#item-2-0(type='checkbox')
-                  label(for='item-2-0')
-                    i.fa.fa-long-arrow-right(aria-hidden='true')
-                    |  Summer Discount Sales
-                  ul
-                    li
-                      a(href='mens.html') Shirts
-                    li
-                      a(href='mens.html') Shoes
-                    li
-                      a(href='mens.html') Pants
-                    li
-                      a(href='mens.html') SunGlasses
-                li
-                  input#item-2-1(type='checkbox')
-                  label(for='item-2-1')
-                    i.fa.fa-long-arrow-right(aria-hidden='true')
-                    |  Exciting Offers
-                  ul
-                    li
-                      a(href='mens.html') Shirts
-                    li
-                      a(href='mens.html') Shoes
-                    li
-                      a(href='mens.html') Pants
-                    li
-                      a(href='mens.html') SunGlasses
-                li
-                  input#item-2-2(type='checkbox')
-                  label(for='item-2-2')
-                    i.fa.fa-long-arrow-right(aria-hidden='true')
-                    |  Flat Discounts
-                  ul
-                    li
-                      a(href='mens.html') Shirts
-                    li
-                      a(href='mens.html') Shoes
-                    li
-                      a(href='mens.html') Pants
-                    li
-                      a(href='mens.html') SunGlasses
-        .community-poll
-          h4 Community Poll
-          .swit.form
-            form
-              .check_box
-                .radio
-                  label
-                    input(type='radio', name='radio', checked='')
-                    i
-                    | More convenient for shipping and delivery
-              .check_box
-                .radio
-                  label
-                    input(type='radio', name='radio')
-                    i
-                    | Lower Price
-              .check_box
-                .radio
-                  label
-                    input(type='radio', name='radio')
-                    i
-                    | Track your item
-              .check_box
-                .radio
-                  label
-                    input(type='radio', name='radio')
-                    i
-                    | Bigger Choice
-              .check_box
-                .radio
-                  label
-                    input(type='radio', name='radio')
-                    i
-                    | More colors to choose
-              .check_box
-                .radio
-                  label
-                    input(type='radio', name='radio')
-                    i
-                    | Secured Payment
-              .check_box
-                .radio
-                  label
-                    input(type='radio', name='radio')
-                    i
-                    | Money back guaranteed
-              .check_box
-                .radio
-                  label
-                    input(type='radio', name='radio')
-                    i
-                    | Others
-              input(type='submit', value='SEND')
+                each manufacturer in manufacturer_list
+                  li
+                    a(href='?manufacturer=#{manufacturer.id}') #{manufacturer.name}
+            //- li
+            //-   input#item-1(type='checkbox', checked='checked')
+            //-   label(for='item-1')
+            //-     i.fa.fa-long-arrow-right(aria-hidden='true')
+            //-     |  Best Collections
+            //-   ul
+            //-     li
+            //-       input#item-1-0(type='checkbox', checked='checked')
+            //-       label(for='item-1-0')
+            //-         i.fa.fa-long-arrow-right(aria-hidden='true')
+            //-         |  New Arrivals
+            //-       ul
+            //-         li
+            //-           a(href='mens.html') Shirts
+            //-         li
+            //-           a(href='mens.html') Shoes
+            //-         li
+            //-           a(href='mens.html') Pants
+            //-         li
+            //-           a(href='mens.html') SunGlasses
+            //- li
+            //-   input#item-2(type='checkbox', checked='checked')
+            //-   label(for='item-2')
+            //-     i.fa.fa-long-arrow-right(aria-hidden='true')
+            //-     |  Best Offers
+            //-   ul
+            //-     li
+            //-       input#item-2-0(type='checkbox')
+            //-       label(for='item-2-0')
+            //-         i.fa.fa-long-arrow-right(aria-hidden='true')
+            //-         |  Summer Discount Sales
+            //-       ul
+            //-         li
+            //-           a(href='mens.html') Shirts
+            //-         li
+            //-           a(href='mens.html') Shoes
+            //-         li
+            //-           a(href='mens.html') Pants
+            //-         li
+            //-           a(href='mens.html') SunGlasses
+            //-     li
+            //-       input#item-2-1(type='checkbox')
+            //-       label(for='item-2-1')
+            //-         i.fa.fa-long-arrow-right(aria-hidden='true')
+            //-         |  Exciting Offers
+            //-       ul
+            //-         li
+            //-           a(href='mens.html') Shirts
+            //-         li
+            //-           a(href='mens.html') Shoes
+            //-         li
+            //-           a(href='mens.html') Pants
+            //-         li
+            //-           a(href='mens.html') SunGlasses
+            //-     li
+            //-       input#item-2-2(type='checkbox')
+            //-       label(for='item-2-2')
+            //-         i.fa.fa-long-arrow-right(aria-hidden='true')
+            //-         |  Flat Discounts
+            //-       ul
+            //-         li
+            //-           a(href='mens.html') Shirts
+            //-         li
+            //-           a(href='mens.html') Shoes
+            //-         li
+            //-           a(href='mens.html') Pants
+            //-         li
+            //-           a(href='mens.html') SunGlasses
+        //- .community-poll
+        //-   h4 Community Poll
+        //-   .swit.form
+        //-     form
+        //-       .check_box
+        //-         .radio
+        //-           label
+        //-             input(type='radio', name='radio', checked='')
+        //-             i
+        //-             | More convenient for shipping and delivery
+        //-       .check_box
+        //-         .radio
+        //-           label
+        //-             input(type='radio', name='radio')
+        //-             i
+        //-             | Lower Price
+        //-       .check_box
+        //-         .radio
+        //-           label
+        //-             input(type='radio', name='radio')
+        //-             i
+        //-             | Track your item
+        //-       .check_box
+        //-         .radio
+        //-           label
+        //-             input(type='radio', name='radio')
+        //-             i
+        //-             | Bigger Choice
+        //-       .check_box
+        //-         .radio
+        //-           label
+        //-             input(type='radio', name='radio')
+        //-             i
+        //-             | More colors to choose
+        //-       .check_box
+        //-         .radio
+        //-           label
+        //-             input(type='radio', name='radio')
+        //-             i
+        //-             | Secured Payment
+        //-       .check_box
+        //-         .radio
+        //-           label
+        //-             input(type='radio', name='radio')
+        //-             i
+        //-             | Money back guaranteed
+        //-       .check_box
+        //-         .radio
+        //-           label
+        //-             input(type='radio', name='radio')
+        //-             i
+        //-             | Others
+        //-       input(type='submit', value='SEND')
         .clearfix
       .col-md-8.products-right
         h5
@@ -244,11 +193,11 @@ block content
           #top.callbacks_container
             ul#slider3.rslides
               li
-                img.img-responsive(src='images/banner2.jpg', alt=' ')
-              li
-                img.img-responsive(src='images/banner5.jpg', alt=' ')
+                img.img-responsive(src='images/banner1.jpg', alt=' ')
               li
                 img.img-responsive(src='images/banner2.jpg', alt=' ')
+              li
+                img.img-responsive(src='images/banner3.jpg', alt=' ')
           .clearfix
         .men-wear-bottom
           .col-sm-4.men-wear-left
@@ -264,94 +213,94 @@ block content
               | explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
               | odit aut fugit.
           .clearfix
-        .col-md-4.product-men
-          .men-pro-item.simpleCart_shelfItem
-            .men-thumb-item
-              img.pro-image-front(src='images/m8.jpg', alt='')
-              img.pro-image-back(src='images/m8.jpg', alt='')
-              .men-cart-pro
-                .inner-men-cart-pro
-                  a.link-product-add-cart(href='single.html') Quick View
-              span.product-new-top New
-            .item-info-product
-              h4
-                a(href='single.html') Party Men's Blazer
-              .info-product-price
-                span.item_price $260.99
-                del $390.71
-              .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                form(action='#', method='post')
-                  fieldset
-                    input(type='hidden', name='cmd', value='_cart')
-                    input(type='hidden', name='add', value='1')
-                    input(type='hidden', name='business', value=' ')
-                    input(type='hidden', name='item_name', value="Party Men's Blazer")
-                    input(type='hidden', name='amount', value='30.99')
-                    input(type='hidden', name='discount_amount', value='1.00')
-                    input(type='hidden', name='currency_code', value='USD')
-                    input(type='hidden', name='return', value=' ')
-                    input(type='hidden', name='cancel_return', value=' ')
-                    input.button(type='submit', name='submit', value='Add to cart')
-        .col-md-4.product-men
-          .men-pro-item.simpleCart_shelfItem
-            .men-thumb-item
-              img.pro-image-front(src='images/m7.jpg', alt='')
-              img.pro-image-back(src='images/m7.jpg', alt='')
-              .men-cart-pro
-                .inner-men-cart-pro
-                  a.link-product-add-cart(href='single.html') Quick View
-              span.product-new-top New
-            .item-info-product
-              h4
-                a(href='single.html') Analog Watch
-              .info-product-price
-                span.item_price $160.99
-                del $290.71
-              .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                form(action='#', method='post')
-                  fieldset
-                    input(type='hidden', name='cmd', value='_cart')
-                    input(type='hidden', name='add', value='1')
-                    input(type='hidden', name='business', value=' ')
-                    input(type='hidden', name='item_name', value='Analog Watch')
-                    input(type='hidden', name='amount', value='30.99')
-                    input(type='hidden', name='discount_amount', value='1.00')
-                    input(type='hidden', name='currency_code', value='USD')
-                    input(type='hidden', name='return', value=' ')
-                    input(type='hidden', name='cancel_return', value=' ')
-                    input.button(type='submit', name='submit', value='Add to cart')
-        .col-md-4.product-men
-          .men-pro-item.simpleCart_shelfItem
-            .men-thumb-item
-              img.pro-image-front(src='images/s1.jpg', alt='')
-              img.pro-image-back(src='images/s1.jpg', alt='')
-              .men-cart-pro
-                .inner-men-cart-pro
-                  a.link-product-add-cart(href='single.html') 
-                    | Quick View
-              span.product-new-top 
-                | New
-            .item-info-product
-              h4
-                a(href='single.html') 
-                  | Running Shoes
-              .info-product-price
-                span.item_price $80.99
-                del $89.71
-              .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                form(action='#', method='post')
-                  fieldset
-                    input(type='hidden', name='cmd', value='_cart')
-                    input(type='hidden', name='add', value='1')
-                    input(type='hidden', name='business', value=' ')
-                    input(type='hidden', name='item_name', value='Running Shoes')
-                    input(type='hidden', name='amount', value='30.99')
-                    input(type='hidden', name='discount_amount', value='1.00')
-                    input(type='hidden', name='currency_code', value='USD')
-                    input(type='hidden', name='return', value=' ')
-                    input(type='hidden', name='cancel_return', value=' ')
-                    input.button(type='submit', name='submit', value='Add to cart')
-        .clearfix
+        //- .col-md-4.product-men
+        //-   .men-pro-item.simpleCart_shelfItem
+        //-     .men-thumb-item
+        //-       img.pro-image-front(src='images/m8.jpg', alt='')
+        //-       img.pro-image-back(src='images/m8.jpg', alt='')
+        //-       .men-cart-pro
+        //-         .inner-men-cart-pro
+        //-           a.link-product-add-cart(href='single.html') Quick View
+        //-       span.product-new-top New
+        //-     .item-info-product
+        //-       h4
+        //-         a(href='single.html') Party Men's Blazer
+        //-       .info-product-price
+        //-         span.item_price $260.99
+        //-         del $390.71
+        //-       .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+        //-         form(action='#', method='post')
+        //-           fieldset
+        //-             input(type='hidden', name='cmd', value='_cart')
+        //-             input(type='hidden', name='add', value='1')
+        //-             input(type='hidden', name='business', value=' ')
+        //-             input(type='hidden', name='item_name', value="Party Men's Blazer")
+        //-             input(type='hidden', name='amount', value='30.99')
+        //-             input(type='hidden', name='discount_amount', value='1.00')
+        //-             input(type='hidden', name='currency_code', value='USD')
+        //-             input(type='hidden', name='return', value=' ')
+        //-             input(type='hidden', name='cancel_return', value=' ')
+        //-             input.button(type='submit', name='submit', value='Add to cart')
+        //- .col-md-4.product-men
+        //-   .men-pro-item.simpleCart_shelfItem
+        //-     .men-thumb-item
+        //-       img.pro-image-front(src='images/m7.jpg', alt='')
+        //-       img.pro-image-back(src='images/m7.jpg', alt='')
+        //-       .men-cart-pro
+        //-         .inner-men-cart-pro
+        //-           a.link-product-add-cart(href='single.html') Quick View
+        //-       span.product-new-top New
+        //-     .item-info-product
+        //-       h4
+        //-         a(href='single.html') Analog Watch
+        //-       .info-product-price
+        //-         span.item_price $160.99
+        //-         del $290.71
+        //-       .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+        //-         form(action='#', method='post')
+        //-           fieldset
+        //-             input(type='hidden', name='cmd', value='_cart')
+        //-             input(type='hidden', name='add', value='1')
+        //-             input(type='hidden', name='business', value=' ')
+        //-             input(type='hidden', name='item_name', value='Analog Watch')
+        //-             input(type='hidden', name='amount', value='30.99')
+        //-             input(type='hidden', name='discount_amount', value='1.00')
+        //-             input(type='hidden', name='currency_code', value='USD')
+        //-             input(type='hidden', name='return', value=' ')
+        //-             input(type='hidden', name='cancel_return', value=' ')
+        //-             input.button(type='submit', name='submit', value='Add to cart')
+        //- .col-md-4.product-men
+        //-   .men-pro-item.simpleCart_shelfItem
+        //-     .men-thumb-item
+        //-       img.pro-image-front(src='images/s1.jpg', alt='')
+        //-       img.pro-image-back(src='images/s1.jpg', alt='')
+        //-       .men-cart-pro
+        //-         .inner-men-cart-pro
+        //-           a.link-product-add-cart(href='single.html') 
+        //-             | Quick View
+        //-       span.product-new-top 
+        //-         | New
+        //-     .item-info-product
+        //-       h4
+        //-         a(href='single.html') 
+        //-           | Running Shoes
+        //-       .info-product-price
+        //-         span.item_price $80.99
+        //-         del $89.71
+        //-       .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
+        //-         form(action='#', method='post')
+        //-           fieldset
+        //-             input(type='hidden', name='cmd', value='_cart')
+        //-             input(type='hidden', name='add', value='1')
+        //-             input(type='hidden', name='business', value=' ')
+        //-             input(type='hidden', name='item_name', value='Running Shoes')
+        //-             input(type='hidden', name='amount', value='30.99')
+        //-             input(type='hidden', name='discount_amount', value='1.00')
+        //-             input(type='hidden', name='currency_code', value='USD')
+        //-             input(type='hidden', name='return', value=' ')
+        //-             input(type='hidden', name='cancel_return', value=' ')
+        //-             input.button(type='submit', name='submit', value='Add to cart')
+        //- .clearfix
       .clearfix
       .single-pro
         each product in products
@@ -363,7 +312,7 @@ block content
                   img.image-back(src=product.image_paths[1], alt=product.title+' back_image')
                 .men-cart-pro
                   .inner-men-cart-pro
-                    a.link-product-add-cart(href='single.html') Quick View
+                    a.link-product-add-cart(href='/product?id=#{product._id}') Xem chi tiết
                 span.product-new-top New
               .item-info-product
                 h4
@@ -384,230 +333,6 @@ block content
                       input(type='hidden', name='return', value=' ')
                       input(type='hidden', name='cancel_return', value=' ')
                       input.button(type='submit', name='submit', value='Add to cart')
-        .col-md-3.product-men
-          .men-pro-item.simpleCart_shelfItem
-            .men-thumb-item
-              img.pro-image-front(src='images/m1.jpg', alt='')
-              img.pro-image-back(src='images/m1.jpg', alt='')
-              .men-cart-pro
-                .inner-men-cart-pro
-                  a.link-product-add-cart(href='single.html') Quick View
-              span.product-new-top New
-            .item-info-product
-              h4
-                a(href='single.html') Formal Blue Shirt
-              .info-product-price
-                span.item_price $45.99
-                del $69.71
-              .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                form(action='#', method='post')
-                  fieldset
-                    input(type='hidden', name='cmd', value='_cart')
-                    input(type='hidden', name='add', value='1')
-                    input(type='hidden', name='business', value=' ')
-                    input(type='hidden', name='item_name', value='Formal Blue Shirt')
-                    input(type='hidden', name='amount', value='30.99')
-                    input(type='hidden', name='discount_amount', value='1.00')
-                    input(type='hidden', name='currency_code', value='USD')
-                    input(type='hidden', name='return', value=' ')
-                    input(type='hidden', name='cancel_return', value=' ')
-                    input.button(type='submit', name='submit', value='Add to cart')
-        .col-md-3.product-men
-          .men-pro-item.simpleCart_shelfItem
-            .men-thumb-item
-              img.pro-image-front(src='images/m2.jpg', alt='')
-              img.pro-image-back(src='images/m2.jpg', alt='')
-              .men-cart-pro
-                .inner-men-cart-pro
-                  a.link-product-add-cart(href='single.html') Quick View
-              span.product-new-top New
-            .item-info-product
-              h4
-                a(href='single.html') Gabi Full Sleeve Sweatshirt
-              .info-product-price
-                span.item_price $45.99
-                del $69.71
-              .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                form(action='#', method='post')
-                  fieldset
-                    input(type='hidden', name='cmd', value='_cart')
-                    input(type='hidden', name='add', value='1')
-                    input(type='hidden', name='business', value=' ')
-                    input(type='hidden', name='item_name', value='Sweatshirt')
-                    input(type='hidden', name='amount', value='30.99')
-                    input(type='hidden', name='discount_amount', value='1.00')
-                    input(type='hidden', name='currency_code', value='USD')
-                    input(type='hidden', name='return', value=' ')
-                    input(type='hidden', name='cancel_return', value=' ')
-                    input.button(type='submit', name='submit', value='Add to cart')
-        .col-md-3.product-men
-          .men-pro-item.simpleCart_shelfItem
-            .men-thumb-item
-              img.pro-image-front(src='images/m3.jpg', alt='')
-              img.pro-image-back(src='images/m3.jpg', alt='')
-              .men-cart-pro
-                .inner-men-cart-pro
-                  a.link-product-add-cart(href='single.html') Quick View
-              span.product-new-top New
-            .item-info-product
-              h4
-                a(href='single.html') Dark Blue Track Pants
-              .info-product-price
-                span.item_price $80.99
-                del $89.71
-              .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                form(action='#', method='post')
-                  fieldset
-                    input(type='hidden', name='cmd', value='_cart')
-                    input(type='hidden', name='add', value='1')
-                    input(type='hidden', name='business', value=' ')
-                    input(type='hidden', name='item_name', value='Dark Blue Track Pants')
-                    input(type='hidden', name='amount', value='30.99')
-                    input(type='hidden', name='discount_amount', value='1.00')
-                    input(type='hidden', name='currency_code', value='USD')
-                    input(type='hidden', name='return', value=' ')
-                    input(type='hidden', name='cancel_return', value=' ')
-                    input.button(type='submit', name='submit', value='Add to cart')
-        .col-md-3.product-men
-          .men-pro-item.simpleCart_shelfItem
-            .men-thumb-item
-              img.pro-image-front(src='images/m4.jpg', alt='')
-              img.pro-image-back(src='images/m4.jpg', alt='')
-              .men-cart-pro
-                .inner-men-cart-pro
-                  a.link-product-add-cart(href='single.html') Quick View
-              span.product-new-top New
-            .item-info-product
-              h4
-                a(href='single.html') Round Neck Black T-Shirt
-              .info-product-price
-                span.item_price $190.99
-                del $159.71
-              .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                form(action='#', method='post')
-                  fieldset
-                    input(type='hidden', name='cmd', value='_cart')
-                    input(type='hidden', name='add', value='1')
-                    input(type='hidden', name='business', value=' ')
-                    input(type='hidden', name='item_name', value='Black T-Shirt')
-                    input(type='hidden', name='amount', value='30.99')
-                    input(type='hidden', name='discount_amount', value='1.00')
-                    input(type='hidden', name='currency_code', value='USD')
-                    input(type='hidden', name='return', value=' ')
-                    input(type='hidden', name='cancel_return', value=' ')
-                    input.button(type='submit', name='submit', value='Add to cart')
-        .col-md-3.product-men
-          .men-pro-item.simpleCart_shelfItem
-            .men-thumb-item
-              img.pro-image-front(src='images/m5.jpg', alt='')
-              img.pro-image-back(src='images/m5.jpg', alt='')
-              .men-cart-pro
-                .inner-men-cart-pro
-                  a.link-product-add-cart(href='single.html') Quick View
-              span.product-new-top New
-            .item-info-product
-              h4
-                a(href='single.html') Men's Black Jeans
-              .info-product-price
-                span.item_price $60.99
-                del $90.71
-              .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                form(action='#', method='post')
-                  fieldset
-                    input(type='hidden', name='cmd', value='_cart')
-                    input(type='hidden', name='add', value='1')
-                    input(type='hidden', name='business', value=' ')
-                    input(type='hidden', name='item_name', value="Men's Black Jeans")
-                    input(type='hidden', name='amount', value='30.99')
-                    input(type='hidden', name='discount_amount', value='1.00')
-                    input(type='hidden', name='currency_code', value='USD')
-                    input(type='hidden', name='return', value=' ')
-                    input(type='hidden', name='cancel_return', value=' ')
-                    input.button(type='submit', name='submit', value='Add to cart')
-        .col-md-3.product-men
-          .men-pro-item.simpleCart_shelfItem
-            .men-thumb-item
-              img.pro-image-front(src='images/m7.jpg', alt='')
-              img.pro-image-back(src='images/m7.jpg', alt='')
-              .men-cart-pro
-                .inner-men-cart-pro
-                  a.link-product-add-cart(href='single.html') Quick View
-              span.product-new-top New
-            .item-info-product
-              h4
-                a(href='single.html') Analog Watch
-              .info-product-price
-                span.item_price $160.99
-                del $290.71
-              .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                form(action='#', method='post')
-                  fieldset
-                    input(type='hidden', name='cmd', value='_cart')
-                    input(type='hidden', name='add', value='1')
-                    input(type='hidden', name='business', value=' ')
-                    input(type='hidden', name='item_name', value='Analog Watch')
-                    input(type='hidden', name='amount', value='30.99')
-                    input(type='hidden', name='discount_amount', value='1.00')
-                    input(type='hidden', name='currency_code', value='USD')
-                    input(type='hidden', name='return', value=' ')
-                    input(type='hidden', name='cancel_return', value=' ')
-                    input.button(type='submit', name='submit', value='Add to cart')
-        .col-md-3.product-men
-          .men-pro-item.simpleCart_shelfItem
-            .men-thumb-item
-              img.pro-image-front(src='images/m6.jpg', alt='')
-              img.pro-image-back(src='images/m6.jpg', alt='')
-              .men-cart-pro
-                .inner-men-cart-pro
-                  a.link-product-add-cart(href='single.html') Quick View
-              span.product-new-top New
-            .item-info-product
-              h4
-                a(href='single.html') Reversible Belt
-              .info-product-price
-                span.item_price $30.99
-                del $50.71
-              .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                form(action='#', method='post')
-                  fieldset
-                    input(type='hidden', name='cmd', value='_cart')
-                    input(type='hidden', name='add', value='1')
-                    input(type='hidden', name='business', value=' ')
-                    input(type='hidden', name='item_name', value='Reversible Belt')
-                    input(type='hidden', name='amount', value='30.99')
-                    input(type='hidden', name='discount_amount', value='1.00')
-                    input(type='hidden', name='currency_code', value='USD')
-                    input(type='hidden', name='return', value=' ')
-                    input(type='hidden', name='cancel_return', value=' ')
-                    input.button(type='submit', name='submit', value='Add to cart')
-        .col-md-3.product-men
-          .men-pro-item.simpleCart_shelfItem
-            .men-thumb-item
-              img.pro-image-front(src='images/m8.jpg', alt='')
-              img.pro-image-back(src='images/m8.jpg', alt='')
-              .men-cart-pro
-                .inner-men-cart-pro
-                  a.link-product-add-cart(href='single.html') Quick View
-              span.product-new-top New
-            .item-info-product
-              h4
-                a(href='single.html') Party Men's Blazer
-              .info-product-price
-                span.item_price $260.99
-                del $390.71
-              .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                form(action='#', method='post')
-                  fieldset
-                    input(type='hidden', name='cmd', value='_cart')
-                    input(type='hidden', name='add', value='1')
-                    input(type='hidden', name='business', value=' ')
-                    input(type='hidden', name='item_name', value="Party Men's Blazer")
-                    input(type='hidden', name='amount', value='30.99')
-                    input(type='hidden', name='discount_amount', value='1.00')
-                    input(type='hidden', name='currency_code', value='USD')
-                    input(type='hidden', name='return', value=' ')
-                    input(type='hidden', name='cancel_return', value=' ')
-                    input.button(type='submit', name='submit', value='Add to cart')
         .clearfix
   // //mens
 

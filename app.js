@@ -6,30 +6,56 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 
 var Navbar_tab = require('./models/navbar_tab');
+var Manufacturer = require('./models/manufacturer');
+var Accessories_type = require('./models/accessories_type');
 
 var indexRouter = require('./routes/index');
 var aboutRouter = require('./routes/about');
 var mobileTabletRouter = require('./routes/mobile&tablet')
 var laptopRouter = require('./routes/laptop');
+var accessoriesRouter = require('./routes/accessories');
+var productRouter = require('./routes/product');
 var usersRouter = require('./routes/users');
 
 var app = express();
 
 mongoose.connect('mongodb://localhost:27017/e-store');
 
-//Restart server after each change in navbar_tab collection
-console.log("Server starting.... ");
-Navbar_tab.find({},function(err, tabs) {
+//Restart server after each change in those table collection
+console.log("Navbar is loading....");
+Navbar_tab.find()
+.sort('order')
+.exec(function(err, tabs) {
   if (err) {
     console.error('Get navbar error:', err);
     return;
   }
-  tabs.sort('order');
-  app.locals.navbar_tabs = tabs; 
-  
-  console.log("Server started ! ");
+  app.locals.navbar_tabs = tabs;
+    
+  console.log("Navbar loaded ! ");
 });
-
+console.log("Manufacturer list is loading....");
+Manufacturer.find()
+.sort('name')
+.exec(function(err, manufacturers) {
+  if (err) {
+    console.error('Get manufacturers list error:', err);
+    return;
+  }
+  app.locals.manufacturer_list = manufacturers;
+  console.log("Manufacturer list loaded !");
+});
+console.log("Accessories type list is loading....");
+Accessories_type.find()
+.sort('name')
+.exec(function(err, accessories_types) {
+  if (err) {
+    console.error('Get accessories types error:', err);
+    return;
+  }
+  app.locals.accessories_type_list = accessories_types;
+  console.log("Accessories type list loaded !");
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -49,6 +75,8 @@ app.use('/index', indexRouter);
 app.use('/about', aboutRouter);
 app.use('/mobile&tablet', mobileTabletRouter);
 app.use('/laptop', laptopRouter);
+app.use('/accessories', accessoriesRouter);
+app.use('/product', productRouter);
 app.use('/users', usersRouter);
 
 
