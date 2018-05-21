@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
     .exec(function (err, products) {
         products = products.filter(function(product) {
             // return only products with product_type and manufacturer != undefined
-            return product.product_type && product.manufacturer; 
+            return product.product_type && product.manufacturer && !product.deleted; 
         });
         res.render('laptop', { title: 'Express', products: products});
     });

@@ -122,7 +122,7 @@ Specifications.on('index', err => {
 
     var loop4 = function(i) {
         var specifications = new Specifications ({
-            model: "Accessory test No."+ i +"'s model",
+            model: "Accessory (keyboard) test No."+ i +"'s model",
             dimensions: '153.6 x 76.5 x 9.2 mm (6.05 x 3.01 x 0.36 inches)',
             weight: '158 g (5.57 oz)',
             cpu: 'Octa-core 1.3 GHz Cortex-A53',

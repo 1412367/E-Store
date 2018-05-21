@@ -16,19 +16,22 @@ html
     // js
     script(type='text/javascript', src='/js/jquery.min.js')
     // //js
+    // for bootstrap working
+    script(type='text/javascript', src='/js/bootstrap.js')  
+
+    
 
     // single
-    script(src='/js/imagezoom.js')
     script(src='/js/jquery.flexslider.js')
     // single
 
     // tags
+    link(href="/stylesheets/dataTables.bootstrap.css" rel="stylesheet")
     link(href='/stylesheets/bootstrap.css', rel='stylesheet', type='text/css', media='all')
     link(rel='stylesheet', type='text/css', href='/stylesheets/jquery-ui.css')
-    link(rel='stylesheet', href='/stylesheets/flexslider.css', type='text/css', media='screen')
-    link(href='/stylesheets/style.css', rel='stylesheet', type='text/css', media='all')
     link(href='/stylesheets/font-awesome.css', rel='stylesheet')
-    link(href='/stylesheets/easy-responsive-tabs.css', rel='stylesheet', type='text/css')
+    link(href='/stylesheets/style.css', rel='stylesheet', type='text/css', media='all')
+    //link(href="/stylesheets/custom.css" rel="stylesheet")
     // for bootstrap working
     //- link(href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800', rel='stylesheet')
     //- link(href='https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic', rel='stylesheet', type='text/css')
@@ -122,10 +125,18 @@ html
               // Collect the nav links, forms, and other content for toggling
               #bs-example-navbar-collapse-1.collapse.navbar-collapse.menu--shylock
                 ul.nav.navbar-nav.menu__list
-                  each tab in navbar_tabs
-                    li.menu__item
-                      a.menu__link(href=tab.link)
-                        | #{tab.name}
+                  li.menu__item
+                    a.menu__link(href='admin/product')
+                      | Sản phẩm
+                  li.menu__item
+                    a.menu__link(href='admin/abc')
+                      | Thông số kỹ thuật
+                  li.menu__item
+                    a.menu__link(href='#')
+                      | Danh mục phụ kiện
+                  li.menu__item
+                    a.menu__link(href='#')
+                      | Tài khoản
 
                   //- li.dropdown.menu__item
                   //-     a.dropdown-toggle.menu__link(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
@@ -304,35 +315,34 @@ html
     block content
 
 
-
-    // /grids
-    .coupons
-      .coupons-grids.text-center
-        .w3layouts_mail_grid
-          .col-md-3.w3layouts_mail_grid_left
-            .w3layouts_mail_grid_left1.hvr-radial-out
-              i.fa.fa-truck(aria-hidden='true')
-            .w3layouts_mail_grid_left2
-              h3 FREE SHIPPING
-              p Lorem ipsum dolor sit amet, consectetur
-          .col-md-3.w3layouts_mail_grid_left
-            .w3layouts_mail_grid_left1.hvr-radial-out
-              i.fa.fa-headphones(aria-hidden='true')
-            .w3layouts_mail_grid_left2
-              h3 24/7 SUPPORT
-              p Lorem ipsum dolor sit amet, consectetur
-          .col-md-3.w3layouts_mail_grid_left
-            .w3layouts_mail_grid_left1.hvr-radial-out
-              i.fa.fa-shopping-bag(aria-hidden='true')
-            .w3layouts_mail_grid_left2
-              h3 MONEY BACK GUARANTEE
-              p Lorem ipsum dolor sit amet, consectetur
-          .col-md-3.w3layouts_mail_grid_left
-            .w3layouts_mail_grid_left1.hvr-radial-out
-              i.fa.fa-gift(aria-hidden='true')
-            .w3layouts_mail_grid_left2
-              h3 FREE GIFT COUPONS
-              p Lorem ipsum dolor sit amet, consectetur
+    //- // /grids
+    //- .coupons
+    //-   .coupons-grids.text-center
+    //-     .w3layouts_mail_grid
+    //-       .col-md-3.w3layouts_mail_grid_left
+    //-         .w3layouts_mail_grid_left1.hvr-radial-out
+    //-           i.fa.fa-truck(aria-hidden='true')
+    //-         .w3layouts_mail_grid_left2
+    //-           h3 FREE SHIPPING
+    //-           p Lorem ipsum dolor sit amet, consectetur
+    //-       .col-md-3.w3layouts_mail_grid_left
+    //-         .w3layouts_mail_grid_left1.hvr-radial-out
+    //-           i.fa.fa-headphones(aria-hidden='true')
+    //-         .w3layouts_mail_grid_left2
+    //-           h3 24/7 SUPPORT
+    //-           p Lorem ipsum dolor sit amet, consectetur
+    //-       .col-md-3.w3layouts_mail_grid_left
+    //-         .w3layouts_mail_grid_left1.hvr-radial-out
+    //-           i.fa.fa-shopping-bag(aria-hidden='true')
+    //-         .w3layouts_mail_grid_left2
+    //-           h3 MONEY BACK GUARANTEE
+    //-           p Lorem ipsum dolor sit amet, consectetur
+    //-       .col-md-3.w3layouts_mail_grid_left
+    //-         .w3layouts_mail_grid_left1.hvr-radial-out
+    //-           i.fa.fa-gift(aria-hidden='true')
+    //-         .w3layouts_mail_grid_left2
+    //-           h3 FREE GIFT COUPONS
+    //-           p Lorem ipsum dolor sit amet, consectetur
           .clearfix  
     // grids
     // footer
@@ -476,51 +486,7 @@ html
     a#toTop.scroll(href='#home', style='display: block;')
       span#toTopHover(style='opacity: 1;')  
 
-
-    script(src='/js/modernizr.custom.js')
-    // Custom-JavaScript-File-Links
-    // cart-js
-    script(src='/js/minicart.min.js')
-    script.
-      // Mini Cart
-      paypal.minicart.render({
-      action: '#'
-      });
-      if (~window.location.search.indexOf('reset=true')) {
-      paypal.minicart.reset();
-      }
-    // //cart-js
-
-    // script for responsive tabs
-    script(src='/js/easy-responsive-tabs.js')
-    script.
-      $(document).ready(function () {
-      $('#horizontalTab').easyResponsiveTabs({
-      type: 'default', //Types: default, vertical, accordion
-      width: 'auto', //auto or any width like 600px
-      fit: true,   // 100% fit in a container
-      closed: 'accordion', // Start closed if in accordion view
-      activate: function(event) { // Callback function if tab is switched
-      var $tab = $(this);
-      var $info = $('#tabInfo');
-      var $name = $('span', $info);
-      $name.text($tab.text());
-      $info.show();
-      }
-      });
-      $('#verticalTab').easyResponsiveTabs({
-      type: 'vertical',
-      width: 'auto',
-      fit: true
-      });
-      });
-    // //script for responsive tabs
-    // stats
-    script(src='/js/jquery.waypoints.min.js')
-    script(src='/js/jquery.countup.js')
-    script.
-      $('.counter').countUp();
-    // //stats
+    
     // start-smoth-scrolling
     script(type='text/javascript', src='/js/move-top.js')
     script(type='text/javascript', src='/js/jquery.easing.min.js')
@@ -556,6 +522,23 @@ html
         $('.nav > li > a[href="'+pathname+'"]').parent().addClass('menu__item--current');
       })
 
-    // for bootstrap working
-    script(type='text/javascript', src='/js/bootstrap.js')
+
+    //- <!-- NProgress -->
+    script(src="/js/nprogress.js")
+    
+    script(src='/js/jquery.dataTables.js')
+    script(src='/js/dataTables.bootstrap.js')
+    script(src='/js/dataTables.buttons.js')
+    script(src='/js/buttons.bootstrap.js')
+    script(src='/js/buttons.flash.js')
+    script(src='/js/buttons.html5.js')
+    script(src='/js/buttons.print.js')
+    script(src="/js/dataTables.responsive.js")
+    script(src="/js/responsive.bootstrap.js")
+      
+    //- <!-- Custom Theme Scripts -->
+    script(src="/js/custom.js")
+
+
+
 

@@ -1,0 +1,62 @@
+extends layout
+
+block content
+  .banner-bootom-w3-agileits
+    .container(style="width:95%;")
+      table#datatable-responsive.table.table-striped.table-bordered
+        thead
+          tr
+            th Loại sản phẩm
+            th Tiêu đề
+            th Nhà SX
+            th Model
+            th Giá
+            th Trạng thái
+            th Thao tác
+        tbody
+          each product in products
+            tr
+              td 
+                | #{product.product_type.name}
+                if (product.accessories_type)
+                  | : #{product.accessories_type.name}
+              td #{product.title}
+              td 
+                if (product.manufacturer)
+                  | #{product.manufacturer.name}
+                else
+                  | null
+              td
+                if (product.specifications)
+                  | #{product.specifications.model}
+                else
+                  | null
+              td #{product.price}
+              td 
+                h4
+                  if (product.deleted)
+                    a
+                      span.label.label-danger
+                        i.fa.fa-ban  Đã xóa
+                  else
+                    a
+                      span.label.label-success
+                        i.fa.fa-check-circle-o  Đang bán
+              td
+                h4
+                  a(href='#')
+                    span.btn.btn-default Chi tiết
+                  |  
+                  a(href='#')
+                    span.label.label-primary Chỉnh sửa
+                  |  
+                  if (!product.deleted)
+                      a
+                        span.label.label-danger
+                          i.fa.fa-ban  Xóa
+                    else
+                      a
+                        span.label.label-success
+                          i.fa.fa-check-circle-o  Bán
+
+        .clearfix

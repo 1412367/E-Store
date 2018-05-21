@@ -35,7 +35,7 @@ block content
           h4 Categories
           ul.tree-list-pad
             li
-              input#item-0(type='checkbox', checked='checked')
+              input#item-0(type='radio', name='category', checked=true)
               label(for='item-0')
                 i.fa.fa-long-arrow-right(aria-hidden='true')
                 |  Thương hiệu
@@ -170,7 +170,7 @@ block content
           | Product 
           span Compare(0)
         .sort-grid
-          .sorting
+          .sorting-StyleCss
             h6 Sort By
             select#country1.frm-field.required.sect(onchange='change_country(this.value)')
               option(value='null') Default
@@ -181,7 +181,7 @@ block content
               option(value='null') Model(A - Z)
               option(value='null') Model(Z - A)
             .clearfix
-          .sorting
+          .sorting-StyleCss
             h6 Showing
             select#country2.frm-field.required.sect(onchange='change_country(this.value)')
               option(value='null') 7

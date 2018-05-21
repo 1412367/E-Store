@@ -112,7 +112,7 @@ Product.on('index', err => {
         Product_Type.findOne({'name': 'Phụ kiện'}, function (err, product_type) {
             Accessories_type.findOne({'name': 'Bàn phím'}, function (err, accessories_type) {
                 Manufacturer.findOne({'name': 'Xiaomi'}, function (err, manufacturer) {
-                    Specifications.findOne({'model': "Accessory test No."+ i +"'s model"}, function (err, specifications) {
+                    Specifications.findOne({'model': "Accessory (keyboard) test No."+ i +"'s model"}, function (err, specifications) {
                         var product = new Product ({
                             product_type: product_type._id,
                             accessories_type: accessories_type._id,

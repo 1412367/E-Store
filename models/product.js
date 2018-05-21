@@ -19,7 +19,7 @@ var schema = new Schema ({
     price: {type: Number, required: [true, 'Price Is Required !']},
     created_date: {type: Date, default: Date.now},
     update_date: {type: [Date], default: Date.now},
-    is_deleted: {type: Boolean, default: false}
+    deleted: {type: Boolean, default: false}
 })
 
 module.exports = mongoose.model('Product', schema);

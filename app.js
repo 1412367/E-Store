@@ -10,6 +10,7 @@ var Manufacturer = require('./models/manufacturer');
 var Accessories_type = require('./models/accessories_type');
 
 var indexRouter = require('./routes/index');
+var adminRouter = require('./routes/admin');
 var aboutRouter = require('./routes/about');
 var mobileTabletRouter = require('./routes/mobile&tablet')
 var laptopRouter = require('./routes/laptop');
@@ -30,7 +31,9 @@ Navbar_tab.find()
     console.error('Get navbar error:', err);
     return;
   }
-  app.locals.navbar_tabs = tabs;
+  app.locals.navbar_tabs = tabs.filter(function(tab) {
+    return !tab.deleted;
+  });
     
   console.log("Navbar loaded ! ");
 });
@@ -42,7 +45,9 @@ Manufacturer.find()
     console.error('Get manufacturers list error:', err);
     return;
   }
-  app.locals.manufacturer_list = manufacturers;
+  app.locals.manufacturer_list = manufacturers.filter(function(manufacturer) {
+    return !manufacturer.deleted;
+  });
   console.log("Manufacturer list loaded !");
 });
 console.log("Accessories type list is loading....");
@@ -68,15 +73,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.get('/', function (req, res) {
-  res.redirect('/index');
-});
-app.use('/index', indexRouter);
+
+app.use('/', indexRouter);adminRouter
 app.use('/about', aboutRouter);
 app.use('/mobile&tablet', mobileTabletRouter);
 app.use('/laptop', laptopRouter);
 app.use('/accessories', accessoriesRouter);
 app.use('/product', productRouter);
+
+app.use('/admin', adminRouter);
+
 app.use('/users', usersRouter);
 
 

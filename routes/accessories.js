@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
     .exec(function (err, products) {
         products = products.filter(function(product) {
             // return only products with product_type, accessories_type and manufacturer != undefined
-            return product.product_type && product.accessories_type && product.manufacturer; 
+            return product.product_type && product.accessories_type && product.manufacturer && !product.deleted; 
         });
         res.render('accessories', { title: 'Express', products: products});
     });

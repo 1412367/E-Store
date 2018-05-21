@@ -28,6 +28,9 @@ var schema = new Schema ({
     wifi: {type: String},
     usb: {type: String},
     bluetooth: {type: String},
+    created_date: {type: Date, default: Date.now},
+    update_date: {type: [Date], default: Date.now},
+    deleted: {type: Boolean, default: false}
 })
 
 module.exports = mongoose.model('Specifications', schema);
