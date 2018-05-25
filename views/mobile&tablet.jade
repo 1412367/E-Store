@@ -194,15 +194,15 @@ block content
           #top.callbacks_container
             ul#slider3.rslides
               li
-                img.img-responsive(src='images/banner1.jpg', alt=' ')
+                img.img-responsive(src='/images/banner1.jpg', alt=' ')
               li
-                img.img-responsive(src='images/banner2.jpg', alt=' ')
+                img.img-responsive(src='/images/banner2.jpg', alt=' ')
               li
-                img.img-responsive(src='images/banner3.jpg', alt=' ')
+                img.img-responsive(src='/images/banner3.jpg', alt=' ')
           .clearfix
         .men-wear-bottom
           .col-sm-4.men-wear-left
-            img.img-responsive(src='images/bb1.jpg', alt=' ')
+            img.img-responsive(src='/images/bb1.jpg', alt=' ')
           .col-sm-8.men-wear-right
             h4
               | Exclusive Men's 
@@ -217,8 +217,8 @@ block content
         //- .col-md-4.product-men
         //-   .men-pro-item.simpleCart_shelfItem
         //-     .men-thumb-item
-        //-       img.pro-image-front(src='images/m8.jpg', alt='')
-        //-       img.pro-image-back(src='images/m8.jpg', alt='')
+        //-       img.pro-image-front(src='/images/m8.jpg', alt='')
+        //-       img.pro-image-back(src='/images/m8.jpg', alt='')
         //-       .men-cart-pro
         //-         .inner-men-cart-pro
         //-           a.link-product-add-cart(href='single.html') Quick View
@@ -245,8 +245,8 @@ block content
         //- .col-md-4.product-men
         //-   .men-pro-item.simpleCart_shelfItem
         //-     .men-thumb-item
-        //-       img.pro-image-front(src='images/m7.jpg', alt='')
-        //-       img.pro-image-back(src='images/m7.jpg', alt='')
+        //-       img.pro-image-front(src='/images/m7.jpg', alt='')
+        //-       img.pro-image-back(src='/images/m7.jpg', alt='')
         //-       .men-cart-pro
         //-         .inner-men-cart-pro
         //-           a.link-product-add-cart(href='single.html') Quick View
@@ -273,8 +273,8 @@ block content
         //- .col-md-4.product-men
         //-   .men-pro-item.simpleCart_shelfItem
         //-     .men-thumb-item
-        //-       img.pro-image-front(src='images/s1.jpg', alt='')
-        //-       img.pro-image-back(src='images/s1.jpg', alt='')
+        //-       img.pro-image-front(src='/images/s1.jpg', alt='')
+        //-       img.pro-image-back(src='/images/s1.jpg', alt='')
         //-       .men-cart-pro
         //-         .inner-men-cart-pro
         //-           a.link-product-add-cart(href='single.html') 
@@ -313,7 +313,7 @@ block content
                   img.image-back(src=product.image_paths[1], alt=product.title+' back_image')
                 .men-cart-pro
                   .inner-men-cart-pro
-                    a.link-product-add-cart(href='/product?id=#{product._id}') Xem chi tiết
+                    a.link-product-add-cart(href='/product/#{product._id}') Xem chi tiết
                 span.product-new-top New
               .item-info-product
                 h4

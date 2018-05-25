@@ -135,7 +135,7 @@ html
                   //-       .agile_inner_drop_nav_info
                   //-         .col-sm-6.multi-gd-img1.multi-gd-text(style='padding: 8px 0px 0px 0px')
                   //-           a(href='womens.html')
-                  //-             img(src='images/top1.jpg', alt=' ')
+                  //-             img(src='/images/top1.jpg', alt=' ')
                   //-         .col-sm-3.multi-gd-img(style='padding-left: 30px')
                   //-           ul.multi-column-dropdown
                   //-             li
@@ -185,7 +185,7 @@ html
       .modal-dialog
         // Modal content
         .modal-content
-          .modal-header
+          .modal-header(style='display: block; border-bottom: none;')
             button.close(type='button', data-dismiss='modal') ×
           .modal-body.modal-body-sub_agile
             .col-md-8.modal_body_left.modal_body_left1
@@ -231,7 +231,7 @@ html
               p
                 a(href='#', data-toggle='modal', data-target='#myModal2')  Don't have an account?
             .col-md-4.modal_body_right.modal_body_right1
-              img(src='images/log_pic.jpg', alt=' ')
+              img(src='/images/log_pic.jpg', alt=' ')
             .clearfix
         // //Modal content
     // //Modal1
@@ -240,7 +240,7 @@ html
       .modal-dialog
         // Modal content
         .modal-content
-          .modal-header
+          .modal-header(style='display: block; border-bottom: none;')
             button.close(type='button', data-dismiss='modal') ×
           .modal-body.modal-body-sub_agile
             .col-md-8.modal_body_left.modal_body_left1
@@ -294,7 +294,7 @@ html
               p
                 a(href='#') By clicking register, I agree to your terms
             .col-md-4.modal_body_right.modal_body_right1
-              img(src='images/log_pic.jpg', alt=' ')
+              img(src='/images/log_pic.jpg', alt=' ')
             .clearfix
         // //Modal content
     // //Modal2
@@ -423,39 +423,39 @@ html
               ul
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t1.jpg', alt=' ')
+                    img.img-responsive(src='/images/t1.jpg', alt=' ')
                 | &#32
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t2.jpg', alt=' ')
+                    img.img-responsive(src='/images/t2.jpg', alt=' ')
                 | &#32
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t3.jpg', alt=' ')
+                    img.img-responsive(src='/images/t3.jpg', alt=' ')
                 | &#32
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t4.jpg', alt=' ')
+                    img.img-responsive(src='/images/t4.jpg', alt=' ')
                 | &#32
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t1.jpg', alt=' ')
+                    img.img-responsive(src='/images/t1.jpg', alt=' ')
                 | &#32
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t2.jpg', alt=' ')
+                    img.img-responsive(src='/images/t2.jpg', alt=' ')
                 | &#32
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t3.jpg', alt=' ')
+                    img.img-responsive(src='/images/t3.jpg', alt=' ')
                 | &#32
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t2.jpg', alt=' ')
+                    img.img-responsive(src='/images/t2.jpg', alt=' ')
                 | &#32
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t4.jpg', alt=' ')
+                    img.img-responsive(src='/images/t4.jpg', alt=' ')
                 | &#32
             .clearfix
         .clearfix
@@ -550,8 +550,8 @@ html
     // set active navbar
     script(type='text/javascript').
       $(document).ready(function() {
-        // get current URL path and cut pathname from '/about' to 'about' then assign 'active' class
-        var pathname = window.location.pathname.substring(1); 
+        // get current URL path and then assign 'active' class to navbar
+        var pathname = window.location.pathname; 
         console.log(pathname);
         $('.nav > li > a[href="'+pathname+'"]').parent().addClass('menu__item--current');
       })

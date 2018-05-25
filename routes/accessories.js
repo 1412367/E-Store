@@ -20,9 +20,20 @@ router.get('/', function(req, res, next) {
     .exec(function (err, products) {
         products = products.filter(function(product) {
             // return only products with product_type, accessories_type and manufacturer != undefined
-            return product.product_type && product.accessories_type && product.manufacturer && !product.deleted; 
+            return product.product_type && product.accessories_type && product.manufacturer && !product.deleted && !product.accessories_type.deleted; 
         });
-        res.render('accessories', { title: 'Express', products: products});
+        console.log("Accessories type list is loading....");
+        Accessories_type.find({deleted : false})
+        .sort('name')
+        .exec(function(err, accessories_types) {
+            if (err) {
+                console.error('Get accessories types error:', err);
+                return;
+            }
+            console.log("Accessories type list loaded !");
+            res.render('accessories', { title: 'Express', products: products, accessories_types:accessories_types });
+        });
+        
     });
 });
 

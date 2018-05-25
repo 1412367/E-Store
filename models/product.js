@@ -18,7 +18,7 @@ var schema = new Schema ({
     specifications: {type: Schema.ObjectId, ref: 'Specifications'},
     price: {type: Number, required: [true, 'Price Is Required !']},
     created_date: {type: Date, default: Date.now},
-    update_date: {type: [Date], default: Date.now},
+    update_date: {type: Date, default: Date.now},
     deleted: {type: Boolean, default: false}
 })
 

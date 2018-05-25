@@ -12,32 +12,32 @@ Navbar_tab.on('index', err => {
     var navbar_tabs = [
         new Navbar_tab ({
             name: 'Trang chủ',
-            link: 'index',
+            link: '/index',
             order: 0
         }),
         new Navbar_tab ({
             name: 'Về chúng tôi',
-            link: 'about',
+            link: '/about',
             order: 1
         }),
         new Navbar_tab ({
             name: 'Mobile & Tablet',
-            link: 'mobile&tablet',
+            link: '/mobile&tablet',
             order: 2
         }),
         new Navbar_tab ({
             name: 'Laptop',
-            link: 'laptop',
+            link: '/laptop',
             order: 3
         }),
         new Navbar_tab ({
             name: 'Phụ kiện',
-            link: 'accessories',
+            link: '/accessories',
             order: 4
         }),
         new Navbar_tab ({
             name: 'Liên hệ',
-            link: 'contact',
+            link: '/contact',
             order: 5
         })
     ]

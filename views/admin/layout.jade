@@ -20,10 +20,14 @@ html
     script(type='text/javascript', src='/js/bootstrap.js')  
 
     
-
-    // single
-    script(src='/js/jquery.flexslider.js')
-    // single
+    //- Switchery
+    link(href='/stylesheets/switchery.css', rel='stylesheet')
+    //- iCheck
+    link(href='/stylesheets/green.css', rel='stylesheet')
+    //- Toastr
+    link(href='/stylesheets/toastr.css', rel='stylesheet')
+    //- Bootstrap Tags Input
+    link(href='/stylesheets/bootstrap-tagsinput.css', rel='stylesheet')
 
     // tags
     link(href="/stylesheets/dataTables.bootstrap.css" rel="stylesheet")
@@ -31,10 +35,6 @@ html
     link(rel='stylesheet', type='text/css', href='/stylesheets/jquery-ui.css')
     link(href='/stylesheets/font-awesome.css', rel='stylesheet')
     link(href='/stylesheets/style.css', rel='stylesheet', type='text/css', media='all')
-    //link(href="/stylesheets/custom.css" rel="stylesheet")
-    // for bootstrap working
-    //- link(href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800', rel='stylesheet')
-    //- link(href='https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic', rel='stylesheet', type='text/css')
 
   body
     // header
@@ -126,13 +126,13 @@ html
               #bs-example-navbar-collapse-1.collapse.navbar-collapse.menu--shylock
                 ul.nav.navbar-nav.menu__list
                   li.menu__item
-                    a.menu__link(href='admin/product')
+                    a.menu__link(href='/admin/product')
                       | Sản phẩm
                   li.menu__item
-                    a.menu__link(href='admin/abc')
+                    a.menu__link(href='/admin/specifications')
                       | Thông số kỹ thuật
                   li.menu__item
-                    a.menu__link(href='#')
+                    a.menu__link(href='/admin/accessories_type')
                       | Danh mục phụ kiện
                   li.menu__item
                     a.menu__link(href='#')
@@ -146,7 +146,7 @@ html
                   //-       .agile_inner_drop_nav_info
                   //-         .col-sm-6.multi-gd-img1.multi-gd-text(style='padding: 8px 0px 0px 0px')
                   //-           a(href='womens.html')
-                  //-             img(src='images/top1.jpg', alt=' ')
+                  //-             img(src='/images/top1.jpg', alt=' ')
                   //-         .col-sm-3.multi-gd-img(style='padding-left: 30px')
                   //-           ul.multi-column-dropdown
                   //-             li
@@ -196,7 +196,7 @@ html
       .modal-dialog
         // Modal content
         .modal-content
-          .modal-header
+          .modal-header(style='display: block; border-bottom: none;')
             button.close(type='button', data-dismiss='modal') ×
           .modal-body.modal-body-sub_agile
             .col-md-8.modal_body_left.modal_body_left1
@@ -242,7 +242,7 @@ html
               p
                 a(href='#', data-toggle='modal', data-target='#myModal2')  Don't have an account?
             .col-md-4.modal_body_right.modal_body_right1
-              img(src='images/log_pic.jpg', alt=' ')
+              img(src='/images/log_pic.jpg', alt=' ')
             .clearfix
         // //Modal content
     // //Modal1
@@ -251,7 +251,7 @@ html
       .modal-dialog
         // Modal content
         .modal-content
-          .modal-header
+          .modal-header(style='display: block; border-bottom: none;')
             button.close(type='button', data-dismiss='modal') ×
           .modal-body.modal-body-sub_agile
             .col-md-8.modal_body_left.modal_body_left1
@@ -305,7 +305,7 @@ html
               p
                 a(href='#') By clicking register, I agree to your terms
             .col-md-4.modal_body_right.modal_body_right1
-              img(src='images/log_pic.jpg', alt=' ')
+              img(src='/images/log_pic.jpg', alt=' ')
             .clearfix
         // //Modal content
     // //Modal2
@@ -433,39 +433,39 @@ html
               ul
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t1.jpg', alt=' ')
+                    img.img-responsive(src='/images/t1.jpg', alt=' ')
                 | &#32
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t2.jpg', alt=' ')
+                    img.img-responsive(src='/images/t2.jpg', alt=' ')
                 | &#32
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t3.jpg', alt=' ')
+                    img.img-responsive(src='/images/t3.jpg', alt=' ')
                 | &#32
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t4.jpg', alt=' ')
+                    img.img-responsive(src='/images/t4.jpg', alt=' ')
                 | &#32
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t1.jpg', alt=' ')
+                    img.img-responsive(src='/images/t1.jpg', alt=' ')
                 | &#32
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t2.jpg', alt=' ')
+                    img.img-responsive(src='/images/t2.jpg', alt=' ')
                 | &#32
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t3.jpg', alt=' ')
+                    img.img-responsive(src='/images/t3.jpg', alt=' ')
                 | &#32
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t2.jpg', alt=' ')
+                    img.img-responsive(src='/images/t2.jpg', alt=' ')
                 | &#32
                 li
                   a(href='single.html')
-                    img.img-responsive(src='images/t4.jpg', alt=' ')
+                    img.img-responsive(src='/images/t4.jpg', alt=' ')
                 | &#32
             .clearfix
         .clearfix
@@ -520,24 +520,58 @@ html
         var pathname = window.location.pathname.substring(1); 
         console.log(pathname);
         $('.nav > li > a[href="'+pathname+'"]').parent().addClass('menu__item--current');
-      })
-
-
-    //- <!-- NProgress -->
-    script(src="/js/nprogress.js")
+      });
     
+    // Switchery
+    script.
+      $(document).ready(function() {
+          if ($(".js-switch")[0]) {
+              var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+              elems.forEach(function (html) {
+                  var switchery = new Switchery(html, {
+                      color: '#26B99A'
+                  });
+              });
+          }
+      });
+    //- Switchery
+    script(src='/js/switchery.js')
+    
+    // iCheck
+    script.
+      $(document).ready(function() {
+        if ($("input.flat")[0]) {
+          $(document).ready(function () {
+            $('input.flat').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+          });
+        }
+      });
+    //- iCheck
+    script(src='/js/icheck.js')
+    
+    // Toastr
+    script.
+      $(document).ready(function() {
+        if(localStorage.getItem("Status"))
+        {
+          toastr.success(localStorage.getItem("Status"), "", {"positionClass": "toast-bottom-center"});
+          localStorage.clear();
+        }
+      });
+    //- Toastr
+    script(src='/js/toastr.min.js')
+
+    //- Bootstrap Tags Input
+    script(src='/js/bootstrap-tagsinput.js')
+
+
     script(src='/js/jquery.dataTables.js')
     script(src='/js/dataTables.bootstrap.js')
-    script(src='/js/dataTables.buttons.js')
-    script(src='/js/buttons.bootstrap.js')
-    script(src='/js/buttons.flash.js')
-    script(src='/js/buttons.html5.js')
-    script(src='/js/buttons.print.js')
-    script(src="/js/dataTables.responsive.js")
-    script(src="/js/responsive.bootstrap.js")
       
-    //- <!-- Custom Theme Scripts -->
-    script(src="/js/custom.js")
+    
 
 
 

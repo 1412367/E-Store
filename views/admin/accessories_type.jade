@@ -1,0 +1,186 @@
+extends layout
+
+block content
+  .banner-bootom-w3-agileits
+    .container(style="width:50%;")
+      button.btn.btn-default.btn-create.center-block Thêm loại phụ kiện mới
+      table#danhsach.table.table-striped.table-bordered
+        thead
+          tr
+            th Tên mục phụ kiện
+            th Trạng thái
+            th Thao tác
+        tbody
+          each accessories_type in accessories_types
+            tr
+              td 
+                | #{accessories_type.name}
+              td 
+                h4
+                  if (accessories_type.deleted)
+                    a
+                      span.label.label-danger
+                        i.fa.fa-ban  Đã ẩn
+                  else
+                    a
+                      span.label.label-success
+                        i.fa.fa-check-circle-o  Bình thường
+              td
+                button.btn.btn-default.btn-edit(value=accessories_type._id)
+                  | Chỉnh sửa
+                | 
+                if (!accessories_type.deleted)
+                  button.delete.btn.btn-default(value=accessories_type._id)
+                    | Ẩn
+                else
+                  button.restore.btn.btn-default(value=accessories_type._id)
+                    | Hiện
+        .clearfix
+
+  //- Modal Delete product confirm
+  #delConfirm.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+    .modal-dialog.modal-dialog-centered(role='document')
+      .modal-content
+        .modal-header
+          h5.modal-title Xác nhận
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+        .modal-body
+          p
+            | Ẩn danh mục này ?
+        .modal-footer
+          button.btn.btn-secondary(type='button', data-dismiss='modal') 
+            | Hủy
+          button#btn-confirm-delete.btn.btn-primary(type='button', data-dismiss='modal') 
+            | Xác nhận
+  //- Modal Delete product confirm
+  #restoreConfirm.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+    .modal-dialog.modal-dialog-centered(role='document')
+      .modal-content
+        .modal-header
+          h5.modal-title Xác nhận
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+        .modal-body
+          p
+            | Hiện danh mục này ?
+        .modal-footer
+          button.btn.btn-secondary(type='button', data-dismiss='modal') 
+            | Hủy
+          button#btn-confirm-restore.btn.btn-primary(type='button', data-dismiss='modal') 
+            | Xác nhận
+
+
+  //- Modal edit accessories_type
+  #accessories_type_edit.table-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        form.form-horizontal.form-label-left(action='/admin/accessories_type/edit', method='post')
+          .modal-header
+            h5#edit-modal-title.modal-title
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            .x_panel
+              .x_title
+                input.id(type='hidden', name='id')
+                h2.maDanhMuc.text-center
+                  | 
+                .clearfix
+              .x_content
+                br              
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Loại phụ kiện
+                    span.required  *
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.accessories_type_name.form-control(type='text', name='name' required)
+              .clearfix
+          .modal-footer
+            button.btn.btn-secondary(type='button', data-dismiss='modal') Đóng
+            button#update.btn.btn-primary(type='submit') Cập nhật
+    
+
+  //- Init pluggin
+  script.
+    $(document).ready(function() {
+      var table = $('#danhsach').DataTable();
+    });
+
+  //- Chức năng cho button
+  script.
+    // Hiện modal xác nhận xóa sp
+    $('.delete').click(function() {
+      var id = this.value; 
+      $("#btn-confirm-delete").val(id);
+      $('#delConfirm').modal('show')
+    });
+    // Xác nhận xóa SP
+    $("#btn-confirm-delete").click(function() {
+      var id = this.value; 
+      $.ajax({
+        url: '/admin/delete',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          item_type: "accessories_type",
+          id: id,
+        }
+      }).done(function(status) {
+        localStorage.setItem("Status", status)
+        window.location.reload(); 
+      });
+    });
+
+    // Hiện modal xác nhận khôi phục sp
+    $('.restore').click(function() {
+      var id = this.value; 
+      $("#btn-confirm-restore").val(id);
+      $('#restoreConfirm').modal('show')
+    });
+    // Xác nhận khôi phục SP
+    $("#btn-confirm-restore").click(function() {
+      var id = this.value; 
+      $.ajax({
+        url: '/admin/restore',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          item_type: "accessories_type",
+          id: id,
+        }
+      }).done(function(status) {
+        localStorage.setItem("Status", status)
+        window.location.reload(); 
+      });
+    });
+
+    //- // Button tạo sản phẩm mới
+    $('.btn-create').click(function(e) {
+      $(".id").val('null');
+      $(".maDanhMuc").text(null);
+      $('#edit-modal-title').text('Thêm loại phụ kiện mới');
+      $(".accessories_type_name").attr('placeholder', 'Tên loại phụ kiện').val(null);
+      $('#accessories_type_edit').modal('show');
+    });
+
+    // Button sửa thông tin sản phẩm
+    $('.btn-edit').click(function(e) {
+      e.preventDefault();
+      var id = this.value;
+      $(".id").val(id);
+      $(".maDanhMuc").text("Mã loại: " + id);
+      $.ajax({
+        url: '/admin/accessories_type',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          id: id,
+        }
+      }).done(function(accessories_type) {
+        $('#edit-modal-title').text('Chỉnh sửa danh mục phụ kiện');
+        $(".accessories_type_name").attr('placeholder', accessories_type.name).val(accessories_type.name);
+        $('#accessories_type_edit').modal('show');
+      });
+    });
+
+                                    

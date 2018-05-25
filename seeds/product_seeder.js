@@ -21,7 +21,7 @@ Product.on('index', err => {
                 Specifications.findOne({'model': "Laptop test No."+ i +"'s model"}, function (err, specifications) {
                     var product = new Product ({
                         product_type: product_type._id,
-                        image_paths: ['product_img/'+specifications.model+'_1.jpg', 'product_img/'+specifications.model+'_2.jpg'],
+                        image_paths: ['/product_img/'+specifications.model+'_1.jpg', '/product_img/'+specifications.model+'_2.jpg'],
                         title: 'Laptop test No.' + i,
                         manufacturer: manufacturer._id,
                         colors: ['Black', 'White'],
@@ -52,7 +52,7 @@ Product.on('index', err => {
                 Specifications.findOne({'model': "Phone test No."+ i +"'s model"}, function (err, specifications) {
                     var product = new Product ({
                         product_type: product_type._id,
-                        image_paths: ['product_img/'+specifications.model+'_1.jpg', 'product_img/'+specifications.model+'_2.jpg'],
+                        image_paths: ['/product_img/'+specifications.model+'_1.jpg', '/product_img/'+specifications.model+'_2.jpg'],
                         title: 'Phone test No.' + i,
                         manufacturer: manufacturer._id,
                         colors: ['Black', 'White', 'Rose gold'],
@@ -83,7 +83,7 @@ Product.on('index', err => {
                 Specifications.findOne({'model': "Tablet test No."+ i +"'s model"}, function (err, specifications) {
                     var product = new Product ({
                         product_type: product_type._id,
-                        image_paths: ['product_img/'+specifications.model+'_1.jpg', 'product_img/'+specifications.model+'_2.jpg'],
+                        image_paths: ['/product_img/'+specifications.model+'_1.jpg', '/product_img/'+specifications.model+'_2.jpg'],
                         title: 'Tablet test No.' + i,
                         manufacturer: manufacturer._id,
                         colors: ['Black', 'White', 'Rose gold'],
@@ -116,7 +116,7 @@ Product.on('index', err => {
                         var product = new Product ({
                             product_type: product_type._id,
                             accessories_type: accessories_type._id,
-                            image_paths: ['product_img/'+specifications.model+'_1.jpg', 'product_img/'+specifications.model+'_2.jpg'],
+                            image_paths: ['/product_img/'+specifications.model+'_1.jpg', '/product_img/'+specifications.model+'_2.jpg'],
                             title: 'Accessory test No.' + i,
                             manufacturer: manufacturer._id,
                             colors: ['Black', 'White', 'Rose gold'],

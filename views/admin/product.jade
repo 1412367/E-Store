@@ -3,11 +3,12 @@ extends layout
 block content
   .banner-bootom-w3-agileits
     .container(style="width:95%;")
-      table#datatable-responsive.table.table-striped.table-bordered
+      button.btn.btn-default.btn-create.center-block Thêm sản phẩm mới
+      table#danhsach.table.table-striped.table-bordered
         thead
           tr
             th Loại sản phẩm
-            th Tiêu đề
+            th Tên sản phẩm
             th Nhà SX
             th Model
             th Giá
@@ -34,29 +35,290 @@ block content
               td #{product.price}
               td 
                 h4
-                  if (product.deleted)
+                  if (product.accessories_type && product.accessories_type.deleted)
                     a
                       span.label.label-danger
-                        i.fa.fa-ban  Đã xóa
+                        i.fa.fa-ban  Loại phụ kiện đang ẩn
                   else
-                    a
-                      span.label.label-success
-                        i.fa.fa-check-circle-o  Đang bán
-              td
-                h4
-                  a(href='#')
-                    span.btn.btn-default Chi tiết
-                  |  
-                  a(href='#')
-                    span.label.label-primary Chỉnh sửa
-                  |  
-                  if (!product.deleted)
+                    if (product.deleted)
                       a
                         span.label.label-danger
-                          i.fa.fa-ban  Xóa
+                          i.fa.fa-ban  Đã xóa
                     else
                       a
                         span.label.label-success
-                          i.fa.fa-check-circle-o  Bán
-
+                          i.fa.fa-check-circle-o  Đang bán
+                  
+              td.thaotac
+                a.btn.btn-default(href='/product/#{product._id}')
+                  | Chi tiết
+                | 
+                button.btn.btn-default.btn-edit(value=product._id)
+                  | Chỉnh sửa
+                | 
+                if (!product.deleted)
+                  button.delete.btn.btn-default(value=product._id)
+                    | Xóa
+                else
+                  button.restore.btn.btn-default(value=product._id)
+                    | Phục hồi
         .clearfix
+
+  //- Modal Delete product confirm
+  #delConfirm.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+    .modal-dialog.modal-dialog-centered(role='document')
+      .modal-content
+        .modal-header
+          h5.modal-title Xác nhận
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+        .modal-body
+          p
+            | Xóa sản phẩm ?
+        .modal-footer
+          button.btn.btn-secondary(type='button', data-dismiss='modal') 
+            | Hủy
+          button#btn-confirm-delete.btn.btn-primary(type='button', data-dismiss='modal') 
+            | Xác nhận
+  //- Modal Delete product confirm
+  #restoreConfirm.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+    .modal-dialog.modal-dialog-centered(role='document')
+      .modal-content
+        .modal-header
+          h5.modal-title Xác nhận
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+        .modal-body
+          p
+            | Bày bán lại sản phẩm ?
+        .modal-footer
+          button.btn.btn-secondary(type='button', data-dismiss='modal') 
+            | Hủy
+          button#btn-confirm-restore.btn.btn-primary(type='button', data-dismiss='modal') 
+            | Xác nhận
+
+  
+  //- Modal edit product
+  #productEdit.table-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+    .modal-dialog.modal-lg(role='document')
+      .modal-content
+        form.form-horizontal.form-label-left(action='/admin/product/edit', method='post')
+          .modal-header
+            h5#edit-modal-title.modal-title
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            .x_panel
+              .x_title
+                input.id(type='hidden', name='id')
+                h2.maSP.text-center
+                  | 
+                .clearfix
+              .x_content
+                br              
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Loại sản phẩm
+                  .col-md-9.col-sm-9.col-xs-12
+                    select.product_type.select2_group.form-control(name='product_type')
+                      option(value='Mobile') Mobile
+                      option(value='Tablet') Tablet
+                      option(value='Laptop') Laptop
+                      option(value='Phụ kiện') Phụ kiện
+                .form-group#accessories(style='display: none;')
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Loại phụ kiện
+                  .col-md-9.col-sm-9.col-xs-12
+                    select.accessories_types.select2_group.form-control(name='accessories_type')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Tên sản phẩm
+                    span.required  *
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.product_title.form-control(type='text', name='title' required)
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Model (thông số kỹ thuật)
+                  .col-md-9.col-sm-9.col-xs-12
+                    select.specifications.select2_group.form-control(name='specifications')
+                      option(value='null', selected) [null]
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Nhà sản xuất
+                  .col-md-9.col-sm-9.col-xs-12
+                    select.manufacturer.select2_group.form-control(name='manufacturer')
+                      option(value='null', selected) [null]
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Các màu hiện có
+                    span.required  *
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.product_colors(type='text', data-role='tagsinput', name='colors')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12
+                    | Mô tả sản phẩm
+                    span.required  *
+                  .col-md-9.col-sm-9.col-xs-12
+                    textarea.product_description.form-control(rows='3', placeholder='Mô tả sản phẩm', name='description')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Giá sản phẩm
+                    span.required  *
+                  .col-md-3.col-sm-9.col-xs-12
+                    input.product_price.form-control(type='number', required, name='price')
+                  .col-md-3
+                    | VNĐ
+                
+              .clearfix
+          .modal-footer
+            button.btn.btn-secondary(type='button', data-dismiss='modal') Đóng
+            button#update.btn.btn-primary(type='submit') Cập nhật
+    
+
+  //- Init pluggin và lấy các list phục vụ chỉnh sửa/thêm mới sản phẩm
+  script.
+    $(document).ready(function() {
+      var table = $('#danhsach').DataTable();
+
+      $.ajax({
+        url: '/admin/accessories_type',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+        }
+      }).done(function(accessories_types) {
+        accessories_types.forEach(function(accessories_type){
+          $(".accessories_types").append("<option value='"+accessories_type._id+"'>"+accessories_type.name+"</option>");
+        });
+      });
+
+      $.ajax({
+        url: '/admin/specifications',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+        }
+      }).done(function(specifications_list) {
+        specifications_list.forEach(function(specifications){
+          $(".specifications").append("<option value='"+specifications._id+"'>"+specifications.model+"</option>");
+        });
+      });
+
+      $.ajax({
+        url: '/admin/manufacturers',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+        }
+      }).done(function(manufacturers) {
+        manufacturers.forEach(function(manufacturer){
+          $(".manufacturer").append("<option value='"+manufacturer._id+"'>"+manufacturer.name+"</option>");
+        });
+      });
+
+      $(".product_type").change(function	(){ 
+        if (this.value == "Phụ kiện") {
+          document.getElementById('accessories').style.display = 'block';
+        }
+        else {
+          document.getElementById('accessories').style.display = 'none';
+        }
+      });
+    });
+
+  //- Chức năng cho button
+  script.
+    // Hiện modal xác nhận xóa sp
+    $('.delete').click(function() {
+      var id = this.value; 
+      $("#btn-confirm-delete").val(id);
+      $('#delConfirm').modal('show')
+    });
+    // Xác nhận xóa SP
+    $("#btn-confirm-delete").click(function() {
+      var id = this.value; 
+      $.ajax({
+        url: '/admin/delete',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          item_type: "product",
+          id: id,
+        }
+      }).done(function(status) {
+        localStorage.setItem("Status", status)
+        window.location.reload(); 
+      });
+    });
+
+    // Hiện modal xác nhận khôi phục sp
+    $('.restore').click(function() {
+      var id = this.value; 
+      $("#btn-confirm-restore").val(id);
+      $('#restoreConfirm').modal('show')
+    });
+    // Xác nhận khôi phục SP
+    $("#btn-confirm-restore").click(function() {
+      var id = this.value; 
+      $.ajax({
+        url: '/admin/restore',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          item_type: "product",
+          id: id,
+        }
+      }).done(function(status) {
+        localStorage.setItem("Status", status)
+        window.location.reload(); 
+      });
+    });
+
+    //- // Button tạo sản phẩm mới
+    $('.btn-create').click(function(e) {
+      $(".id").val('null');
+      $(".maSP").text(null);
+      $('#edit-modal-title').text('Thêm sản phẩm mới');
+      $(".product_title").attr('placeholder', 'Tên sản phẩm').val(null);
+      $(".specifications").val('null');
+      $(".manufacturer").val('null');
+      $('.product_colors').tagsinput('removeAll');
+      $('#productEdit').modal('show');
+    });
+
+    // Button sửa thông tin sản phẩm
+    $('.btn-edit').click(function(e) {
+      e.preventDefault();
+      var id = this.value;
+      $(".id").val(id);
+      $(".maSP").text("Mã sản phẩm: " + id);
+      $.ajax({
+        url: '/admin/product',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          id: id,
+        }
+      }).done(function(product) {
+        $('#edit-modal-title').text('Chỉnh sửa sản phẩm');
+        $("option[value='"+product.product_type.name+"']").prop('selected', true);
+        $(".product_type").change();
+        if (product.product_type.name == "Phụ kiện") {
+          $(".accessories_types").val(product.accessories_type._id);
+          $(".accessories_types").change();
+        }
+        if (typeof product.specifications !== 'undefined' && product.specifications.model) {
+          $(".specifications").val(product.specifications._id);
+          $(".specifications").change();
+        };
+        if (typeof product.manufacturer !== 'undefined' && product.manufacturer.name) {
+          $(".manufacturer").val(product.manufacturer._id);
+          $(".manufacturer").change();
+        };
+        $(".product_title").attr('placeholder', product.title).val(product.title);
+        
+        $('.product_colors').tagsinput('removeAll');
+        product.colors.forEach(function(color) {
+          $('.product_colors').tagsinput('add', color);
+        })
+        $(".product_description").val(product.description);
+        $(".product_price").val(product.price);
+
+        $('#productEdit').modal('show');
+      });
+    });
+
+                                    

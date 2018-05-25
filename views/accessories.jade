@@ -49,7 +49,7 @@ block content
                 i.fa.fa-long-arrow-right(aria-hidden='true')
                 |  Danh mục phụ kiện
               ul
-                each accessories_type in accessories_type_list
+                each accessories_type in accessories_types
                   li
                     a(href='?accessories_type=#{accessories_type._id}') #{accessories_type.name}
         .clearfix
@@ -82,15 +82,15 @@ block content
           #top.callbacks_container
             ul#slider3.rslides
               li
-                img.img-responsive(src='images/banner7.jpg', alt=' ')
+                img.img-responsive(src='/images/banner7.jpg', alt=' ')
               li
-                img.img-responsive(src='images/banner8.jpg', alt=' ')
+                img.img-responsive(src='/images/banner8.jpg', alt=' ')
               li
-                img.img-responsive(src='images/banner9.jpg', alt=' ')
+                img.img-responsive(src='/images/banner9.jpg', alt=' ')
           .clearfix
         .men-wear-bottom
           .col-sm-4.men-wear-left
-            img.img-responsive(src='images/bb3.jpg', alt=' ')
+            img.img-responsive(src='/images/bb3.jpg', alt=' ')
           .col-sm-8.men-wear-right
             h4
               | Exclusive Men's 

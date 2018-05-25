@@ -50,17 +50,6 @@ Manufacturer.find()
   });
   console.log("Manufacturer list loaded !");
 });
-console.log("Accessories type list is loading....");
-Accessories_type.find()
-.sort('name')
-.exec(function(err, accessories_types) {
-  if (err) {
-    console.error('Get accessories types error:', err);
-    return;
-  }
-  app.locals.accessories_type_list = accessories_types;
-  console.log("Accessories type list loaded !");
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

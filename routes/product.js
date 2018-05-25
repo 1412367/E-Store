@@ -3,8 +3,8 @@ var router = express.Router();
 
 var Product = require('../models/product');
 
-router.get('/', function(req, res, next) {
-    var id = req.query.id;
+router.get('/:id', function(req, res, next) {
+    var id = req.params.id;
     console.log(id)
     Product.findOne({_id: id})
     .populate('product_type')
