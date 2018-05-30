@@ -18,7 +18,18 @@ router.get('/', function(req, res, next) {
             // return only products with product_type and manufacturer != undefined
             return product.product_type && product.manufacturer && !product.deleted;
         });
-        res.render('mobile&tablet', { title: 'Express', products: products});
+
+        console.log("Manufacturer list is loading....");
+        Manufacturer.find({deleted : false})
+        .sort('name')
+        .exec(function(err, manufacturers) {
+            if (err) {
+                console.error('Get manufacturers error:', err);
+                return;
+            }
+            console.log("Manufacturer list loaded !");
+            res.render('mobile&tablet', { title: 'Express', products: products, manufacturers:manufacturers});
+        });
     });
 });
 

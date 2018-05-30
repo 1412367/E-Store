@@ -23,6 +23,13 @@ router.get('/product', function(req, res, next) {
     });
 });
 
+router.get('/manufacturer', function(req, res, next) {
+    Manufacturer.find()
+    .exec(function (err, manufacturers) {
+        res.render('admin/manufacturer', { title: 'Express', manufacturers: manufacturers});
+    });
+});
+
 router.get('/accessories_type', function(req, res, next) {
     Accessories_type.find()
     .exec(function (err, accessories_types) {
@@ -58,9 +65,6 @@ router.post('/product/edit', function(req, res, next) {
         if (obj.specifications == 'null') {
             obj.specifications = undefined;
         }
-        if (obj.manufacturer == 'null') {
-            obj.manufacturer = undefined;
-        }
         obj.colors = req.body.colors.split(",");
         obj.update_date = Date(Date.now);
         setTimeout(function() {Product.update({_id: id}, obj, 
@@ -72,57 +76,48 @@ router.post('/product/edit', function(req, res, next) {
                     res.redirect('/admin/product');
             })},500)
     });
-    // if(req.body.id) {
-    //     Product.findOne({_id: req.body.id},function (err, product) {
-    //         if (err)
-    //             console.log(err+" 1");
-    //         else {
-    //             Product_type.findOne({name: req.body.product_type}, function(err, product_type) {
-    //                 if (err)
-    //                     console.log(err+" 2");
-    //                 else {
-    //                     product.product_type = product_type._id;
-    //                     if (product_type.name == 'Phụ kiện') {
-    //                         product.accessories_type = req.body.accessories_type;
-    //                     }
-    //                     else {
-    //                         product.accessories_type = undefined;
-    //                     }
-    //                     product.title = req.body.title;
-    //                     if (req.body.specifications != 'null') {
-    //                         product.specifications = req.body.specifications;
-    //                     }
-    //                     else {
-    //                         product.specifications = undefined;
-    //                     }
-    //                     if (req.body.manufacturer != 'null') {
-    //                         product.manufacturer = req.body.manufacturer;
-    //                     }
-    //                     else {
-    //                         product.manufacturer = undefined;
-    //                     }
-    //                     product.colors = req.body.colors.split(",");
-    //                     product.description = req.body.description;
-    //                     product.price = req.body.price;
-    //                     product.update_date.push(Date(Date.now));
-    //                     product.save(function (err, updatedProduct) {
-    //                         if (err) 
-    //                             console.log(err+" 2");
-    //                         else
-    //                             res.redirect('/admin/product');
-    //                     });
-    //                 }
-    //             });
-    //         }
-    //     });
-    // }
+});
+
+router.post('/manufacturer', function(req, res, next) {
+    if (req.body.id) {
+        Manufacturer.findOne({_id:req.body.id})
+        .exec(function (err, manufacturer) {
+            res.json(manufacturer);
+        });
+    }
+    else {
+        Manufacturer.find()
+        .sort('name')
+        .exec(function (err, manufacturers) {
+            res.json(manufacturers);
+        });
+    }
+});
+
+router.post('/manufacturer/edit', function(req, res, next) {
+    var obj = req.body;
+    if (req.body.id != 'null')
+        var id = mongoose.Types.ObjectId(obj.id);
+    else
+        var id = mongoose.Types.ObjectId();
+    delete obj.id;
+    obj.update_date = Date(Date.now);
+    setTimeout(function() { Manufacturer.update({_id: id}, obj, 
+        {upsert: true, setDefaultsOnInsert: true}, 
+        function (err, updated_manufacturer) {
+            if (err) 
+                console.log(err);
+            else
+                res.redirect('/admin/manufacturer');
+        }
+    )},500);
 });
 
 router.post('/accessories_type', function(req, res, next) {
     if (req.body.id) {
         Accessories_type.findOne({_id:req.body.id})
         .exec(function (err, accessories_type) {
-        res.json(accessories_type);
+            res.json(accessories_type);
         });
     }
     else {
@@ -154,20 +149,21 @@ router.post('/accessories_type/edit', function(req, res, next) {
 });
 
 router.post('/specifications', function(req, res, next) {
-    Specifications.find({}, '_id model')
-    .sort('model')
-    .exec(function (err, specifications) {
-        res.json(specifications);
-    });
+    if (req.body.id) {
+        Specifications.findOne({_id:req.body.id})
+        .exec(function (err, specifications) {
+            res.json(specifications);
+        });
+    }
+    else {
+        Specifications.find()
+        .sort('model')
+        .exec(function (err, specifications_list) {
+            res.json(specifications_list);
+        });
+    }
 });
 
-router.post('/manufacturers', function(req, res, next) {
-    Manufacturer.find()
-    .sort('name')
-    .exec(function (err, manufacturers) {
-        res.json(manufacturers);
-    });
-});
 
 router.post('/delete', function(req, res, next) {
     var id = req.body.id;
@@ -205,9 +201,22 @@ router.post('/delete', function(req, res, next) {
                 }
             });
             break;
-        // case n:
-        //     code block
-        //     break;
+        case "manufacturer":
+            Manufacturer.findOne({_id: id}, function (err, manufacturer) {
+                if (err)
+                    console.log(err+" 1");
+                else {
+                    manufacturer.update_date = Date(Date.now);
+                    manufacturer.deleted = true;
+                    manufacturer.save(function (err, updatedManufacturer) {
+                        if (err) 
+                            console.log(err+" 2");
+                        else
+                            res.json("Ẩn thành công");
+                    });
+                }
+            });
+            break;
         default:
             res.send("404 - Item type not found");
     };
@@ -244,14 +253,27 @@ router.post('/restore', function(req, res, next) {
                         if (err) 
                             console.log(err+" 2");
                         else
-                            res.json("Ẩn thành công");
+                            res.json("Hiện thành công");
                     });
                 }
             });
             break;
-        // case n:
-        //     code block
-        //     break;
+        case "manufacturer":
+            Manufacturer.findOne({_id: id}, function (err, manufacturer) {
+                if (err)
+                    console.log(err+" 1");
+                else {
+                    manufacturer.update_date = Date(Date.now);
+                    manufacturer.deleted = false;
+                    manufacturer.save(function (err, updatedManufacturer) {
+                        if (err) 
+                            console.log(err+" 2");
+                        else
+                            res.json("Hiện thành công");
+                    });
+                }
+            });
+            break;
         default:
             res.send("404 - Item type not found");
     };

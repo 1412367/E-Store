@@ -9,11 +9,11 @@ block content
           tr
             th Loại sản phẩm
             th Tên sản phẩm
-            th Nhà SX
+            th Thương hiệu
             th Model
-            th Giá
+            th Giá (vnd) 
             th Trạng thái
-            th Thao tác
+            th.thaotac Thao tác
         tbody
           each product in products
             tr
@@ -21,35 +21,42 @@ block content
                 | #{product.product_type.name}
                 if (product.accessories_type)
                   | : #{product.accessories_type.name}
+                  if (product.accessories_type.deleted)
+                    a(style="float: right;")
+                      span.label.label-danger
+                        i.fa.fa-ban  Đã ẩn
               td #{product.title}
               td 
                 if (product.manufacturer)
                   | #{product.manufacturer.name}
+                  if (product.manufacturer.deleted)
+                    a(style="float: right;")
+                      span.label.label-danger
+                        i.fa.fa-ban  Đã ẩn
                 else
-                  | null
+                  | [null]
               td
                 if (product.specifications)
                   | #{product.specifications.model}
+                  if (product.specifications.deleted)
+                    a(style="float: right;")
+                      span.label.label-danger
+                        i.fa.fa-ban  Đã ẩn
                 else
-                  | null
+                  | [null]
               td #{product.price}
               td 
                 h4
-                  if (product.accessories_type && product.accessories_type.deleted)
+                  if ((product.manufacturer && product.manufacturer.deleted) || (product.accessories_type && product.accessories_type.deleted) || (product.deleted))
                     a
                       span.label.label-danger
-                        i.fa.fa-ban  Loại phụ kiện đang ẩn
+                        i.fa.fa-ban  Đã ẩn
                   else
-                    if (product.deleted)
-                      a
-                        span.label.label-danger
-                          i.fa.fa-ban  Đã xóa
-                    else
-                      a
-                        span.label.label-success
-                          i.fa.fa-check-circle-o  Đang bán
+                    a
+                      span.label.label-success
+                        i.fa.fa-check-circle-o  Đang bày bán
                   
-              td.thaotac
+              td
                 a.btn.btn-default(href='/product/#{product._id}')
                   | Chi tiết
                 | 
@@ -118,42 +125,47 @@ block content
                 br              
                 .form-group
                   label.control-label.col-md-3.col-sm-3.col-xs-12 Loại sản phẩm
+                    span.required  *
                   .col-md-9.col-sm-9.col-xs-12
-                    select.product_type.select2_group.form-control(name='product_type')
+                    select.product_type.select2_group.form-control(name='product_type', required)
+                      option(value='' disabled selected hidden) Chọn loại sản phẩm. . .
                       option(value='Mobile') Mobile
                       option(value='Tablet') Tablet
                       option(value='Laptop') Laptop
                       option(value='Phụ kiện') Phụ kiện
                 .form-group#accessories(style='display: none;')
                   label.control-label.col-md-3.col-sm-3.col-xs-12 Loại phụ kiện
+                    span.required  *
                   .col-md-9.col-sm-9.col-xs-12
-                    select.accessories_types.select2_group.form-control(name='accessories_type')
+                    select.accessories_types.select2_group.form-control(name='accessories_type', required)
+                      option(value='' disabled selected hidden) Chọn loại phụ kiện. . .
                 .form-group
                   label.control-label.col-md-3.col-sm-3.col-xs-12 Tên sản phẩm
                     span.required  *
                   .col-md-9.col-sm-9.col-xs-12
-                    input.product_title.form-control(type='text', name='title' required)
+                    input.product_title.form-control(type='text', name='title', required)
                 .form-group
                   label.control-label.col-md-3.col-sm-3.col-xs-12 Model (thông số kỹ thuật)
+                    span.required  *
                   .col-md-9.col-sm-9.col-xs-12
-                    select.specifications.select2_group.form-control(name='specifications')
-                      option(value='null', selected) [null]
+                    select.specifications.select2_group.form-control(name='specifications', required)
+                      option(value='' disabled selected hidden) Chọn model sản phẩm. . .
                 .form-group
-                  label.control-label.col-md-3.col-sm-3.col-xs-12 Nhà sản xuất
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Thương hiệu
                   .col-md-9.col-sm-9.col-xs-12
-                    select.manufacturer.select2_group.form-control(name='manufacturer')
-                      option(value='null', selected) [null]
+                    select.manufacturer.select2_group.form-control(name='manufacturer', required)
+                      option(value='' disabled selected hidden) Chọn thương hiệu sản phẩm. . .
                 .form-group
                   label.control-label.col-md-3.col-sm-3.col-xs-12 Các màu hiện có
                     span.required  *
                   .col-md-9.col-sm-9.col-xs-12
-                    input.product_colors(type='text', data-role='tagsinput', name='colors')
+                    input.product_colors(type='text', data-role='tagsinput', multiple, name='colors', required)
                 .form-group
                   label.control-label.col-md-3.col-sm-3.col-xs-12
                     | Mô tả sản phẩm
                     span.required  *
                   .col-md-9.col-sm-9.col-xs-12
-                    textarea.product_description.form-control(rows='3', placeholder='Mô tả sản phẩm', name='description')
+                    textarea.product_description.form-control(rows='3', placeholder='Mô tả sản phẩm', name='description', required)
                 .form-group
                   label.control-label.col-md-3.col-sm-3.col-xs-12 Giá sản phẩm
                     span.required  *
@@ -198,7 +210,7 @@ block content
       });
 
       $.ajax({
-        url: '/admin/manufacturers',
+        url: '/admin/manufacturer',
         type: 'POST',
         dataType: 'json',
         data: {
@@ -211,10 +223,12 @@ block content
 
       $(".product_type").change(function	(){ 
         if (this.value == "Phụ kiện") {
+          $(".accessories_types").val('');
           document.getElementById('accessories').style.display = 'block';
         }
         else {
           document.getElementById('accessories').style.display = 'none';
+          $('.accessories_types option:eq(1)').prop('selected', true)
         }
       });
     });
@@ -269,13 +283,18 @@ block content
 
     //- // Button tạo sản phẩm mới
     $('.btn-create').click(function(e) {
-      $(".id").val('null');
-      $(".maSP").text(null);
       $('#edit-modal-title').text('Thêm sản phẩm mới');
-      $(".product_title").attr('placeholder', 'Tên sản phẩm').val(null);
-      $(".specifications").val('null');
-      $(".manufacturer").val('null');
+
+      $(".id").val('new product');
+      $(".maSP").text('');
+
+      $(".product_type").val('');
+      $(".product_title").attr('placeholder', 'Tên sản phẩm').val('');
+      $(".specifications").val('');
+      $(".manufacturer").val('');
       $('.product_colors').tagsinput('removeAll');
+      $(".product_description").val('');
+      $(".product_price").val('')
       $('#productEdit').modal('show');
     });
 
@@ -294,21 +313,22 @@ block content
         }
       }).done(function(product) {
         $('#edit-modal-title').text('Chỉnh sửa sản phẩm');
+
         $("option[value='"+product.product_type.name+"']").prop('selected', true);
         $(".product_type").change();
+        $(".product_title").attr('placeholder', product.title).val(product.title);
+
+        $(".accessories_types").selectedIndex = "0";
         if (product.product_type.name == "Phụ kiện") {
           $(".accessories_types").val(product.accessories_type._id);
-          $(".accessories_types").change();
         }
-        if (typeof product.specifications !== 'undefined' && product.specifications.model) {
-          $(".specifications").val(product.specifications._id);
-          $(".specifications").change();
-        };
-        if (typeof product.manufacturer !== 'undefined' && product.manufacturer.name) {
-          $(".manufacturer").val(product.manufacturer._id);
-          $(".manufacturer").change();
-        };
-        $(".product_title").attr('placeholder', product.title).val(product.title);
+
+        $(".specifications").val(product.specifications._id);
+        $(".manufacturer").val(product.manufacturer._id);
+        
+        $(".accessories_types").change();
+        $(".specifications").change();
+        $(".manufacturer").change();
         
         $('.product_colors').tagsinput('removeAll');
         product.colors.forEach(function(color) {

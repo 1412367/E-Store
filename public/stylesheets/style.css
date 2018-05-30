@@ -4,6 +4,8 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
+
+ /* my custom */
 .switchery {
     width: 32px;
     height: 20px
@@ -67,13 +69,36 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     float: left
 }
 .thaotac {
-	width: 200px;
+	width: 182px;
 }
 th {
 	width: 10px;
 }
+.item-info-product button {
+	width: 77%;
+    font-size: 13px;
+    color: #fff;
+    background: #2fdab8;
+    text-decoration: none;
+    position: relative;
+    border: none;
+    border-radius: 0;
+    text-transform: uppercase;
+    padding: .5em 0;
+    outline: none;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+	background-color: #1ABB9C;
+	color: white;
+	border: none;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+	color: white;
+}
 
-
+/* end of my custom */
 
 
 html, body{
@@ -1441,6 +1466,7 @@ position:relative;
 .btn-danger.my-cart-btn:focus {
     outline: none;
 }
+
 .snipcart-details input.button {
     font-size: 13px;
     color: #fff;
@@ -1449,13 +1475,13 @@ position:relative;
     position: relative;
     border: none;
     border-radius: 0;
-    width: 100%;
     text-transform: uppercase;
     padding: .5em 0;
     outline: none;
     letter-spacing: 1px;
     font-weight: 600;
 }
+
 .agile_top_brand_left_grid:hover .snipcart-details input.button,.snipcart-details input.button:hover{
     background:#2fdab8;
 }
@@ -3491,7 +3517,9 @@ color: #000;
 }
 .single_page_agile_its_w3ls {
     padding: 2em;
-    border: 1px solid #ddd;
+	border: 1px solid #ddd;
+	
+	overflow:auto; 
 }
 .single_page_agile_its_w3ls h6 {
     font-size: 1.2em;

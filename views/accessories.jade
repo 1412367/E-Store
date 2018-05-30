@@ -40,7 +40,7 @@ block content
                 i.fa.fa-long-arrow-right(aria-hidden='true')
                 |  Thương hiệu
               ul
-                each manufacturer in manufacturer_list
+                each manufacturer in manufacturers
                   li
                     a(href='?manufacturer=#{manufacturer.id}') #{manufacturer.name}
             li
@@ -108,33 +108,22 @@ block content
         each product in products
           .col-md-3.product-men
             .men-pro-item.simpleCart_shelfItem
-              .men-thumb-item
-                img.pro-image-front(src=product.image_paths[0], alt=product.title+' front_image')
-                .div-image-back
-                  img.image-back(src=product.image_paths[1], alt=product.title+' back_image')
-                .men-cart-pro
-                  .inner-men-cart-pro
-                    a.link-product-add-cart(href='/product?id=#{product._id}') Xem chi tiết
-                span.product-new-top New
+              a(href='/product/#{product._id}')
+                .men-thumb-item
+                  img.pro-image-front(src=product.image_paths[0], alt=product.title+' front_image')
+                  .div-image-back
+                    img.image-back(src=product.image_paths[1], alt=product.title+' back_image')
+
+                  span.product-new-top New
               .item-info-product
                 h4
-                  a(href='single.html') #{product.title}
+                  a(href='/product/#{product._id}') #{product.title}
                 .info-product-price
-                  span.item_price $#{product.price}
+                  span.item_price #{product.price}&#8363
                   //- del $69.71
-                .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                  form(action='#', method='post')
-                    fieldset
-                      input(type='hidden', name='cmd', value='_cart')
-                      input(type='hidden', name='add', value='1')
-                      input(type='hidden', name='business', value=' ')
-                      input(type='hidden', name='item_name', value=product.title)
-                      input(type='hidden', name='amount', value=product.price)
-                      input(type='hidden', name='discount_amount', value='0.00')
-                      input(type='hidden', name='currency_code', value='USD')
-                      input(type='hidden', name='return', value=' ')
-                      input(type='hidden', name='cancel_return', value=' ')
-                      input.button(type='submit', name='submit', value='Add to cart')
+                a(href='/product/#{product._id}')
+                  button Xem chi tiết
+
         .clearfix
   // //mens
 

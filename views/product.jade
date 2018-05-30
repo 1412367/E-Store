@@ -16,7 +16,7 @@ block content
             .col-md-8.single-right-left.simpleCart_shelfItem
                 h3 #{product.title}
                 p
-                    span.item_price $#{product.price}
+                    span.item_price #{product.price}&#8363
                     //- del - $900
                 //- .rating1
                 //-     span.starRating
@@ -38,14 +38,14 @@ block content
                         input(type='submit', value='Check')
                 .color-quality
                     .color-quality-right
-                        h5 Quality :
-                        input(type='number', value='1', style='padding: 5px 0px 5px 40px; width: 100px')
+                        h5 Số lượng :
+                        input.text-center(type='number', value='1', min="1", oninput="validity.valid||(value='');", style='width: 100px')
                 .occasional
-                    h5 Color :
+                    h5 Màu sắc :
                     each color in product.colors
                         .colr
                             label.radio
-                                input(type='radio', name='color', checked='')
+                                input(type='radio', name='color', checked)
                                 i
                                 | #{color}
                     //- .colr
@@ -74,7 +74,7 @@ block content
                                 input(type='hidden', name='cancel_return', value=' ')
                                 input.button(type='submit', name='submit', value='Add to cart')
                 ul.social-nav.model-3d-0.footer-social.w3_agile_social.single_page_w3ls
-                    li.share Share On : 
+                    li.share Chia sẻ : 
                     | &#32
                     li
                         a.facebook(href='#')
@@ -109,10 +109,10 @@ block content
             .responsive_tabs_agileits
                 #horizontalTab
                     ul.resp-tabs-list
-                        li Description
+                        li Mô tả
                         if (product.specifications)
-                            li Specifications
-                        li Reviews
+                            li Thông số kỹ thuật
+                        li Bình luận & Đánh giá
                     .resp-tabs-container
                         // /tab_one
                         .tab1
@@ -123,45 +123,126 @@ block content
                         if (product.specifications)
                             .tab2
                                 .single_page_agile_its_w3ls
-                                    h6 Model: #{product.specifications.model}
+                                    h6
+                                        .col-md-4.text-right
+                                            | Model: 
+                                        .col-md-8
+                                            | #{product.specifications.model}
+                                    br
                                     if (product.specifications.dimensions)
-                                        p Dimensions: #{product.specifications.dimensions}
+                                        .col-md-4.text-right
+                                            b
+                                                | Dimensions:
+                                        .col-md-8
+                                            | #{product.specifications.dimensions}
                                     if (product.specifications.weight)
-                                        p Weight: #{product.specifications.weight}
+                                        .col-md-4.text-right
+                                            b
+                                                | Weight:
+                                        .col-md-8
+                                            | #{product.specifications.weight}
                                     if (product.specifications.cpu)
-                                        p CPU: #{product.specifications.cpu}
+                                        .col-md-4.text-right
+                                            b
+                                                | CPU:
+                                        .col-md-8
+                                            | #{product.specifications.cpu}
                                     if (product.specifications.gpu)
-                                        p GPU: #{product.specifications.gpu}
+                                        .col-md-4.text-right
+                                            b
+                                                | GPU:
+                                        .col-md-8
+                                            | #{product.specifications.gpu}
                                     if (product.specifications.ram_type)
-                                        p Ram type: #{product.specifications.ram_type}
+                                        .col-md-4.text-right
+                                            b
+                                                | Ram type:
+                                        .col-md-8
+                                            | #{product.specifications.ram_type}
                                     if (product.specifications.ram_size_GB)
-                                        p Ram size: #{product.specifications.ram_size_GB} GB
+                                        .col-md-4.text-right
+                                            b
+                                                | Ram size:
+                                        .col-md-8
+                                            | #{product.specifications.ram_size_GB} GB
                                     if (product.specifications.storage_type)
-                                        p Storage type: #{product.specifications.storage_type}
+                                        .col-md-4.text-right
+                                            b
+                                                | Storage type:
+                                        .col-md-8
+                                            | #{product.specifications.storage_type}
                                     if (product.specifications.storage_size)
-                                        p Storage size: #{product.specifications.storage_size} #{product.specifications.storage_uom}
+                                        .col-md-4.text-right
+                                            b
+                                                | Storage size:
+                                        .col-md-8
+                                            | #{product.specifications.storage_size} #{product.specifications.storage_uom}
                                     if (product.specifications.memory_cards)
-                                        p Memory cards: #{product.specifications.memory_cards}
+                                        .col-md-4.text-right
+                                            b
+                                                | Memory cards:
+                                        .col-md-8
+                                            | #{product.specifications.memory_cards}
                                     if (product.specifications.scr_type)
-                                        p Screen type: #{product.specifications.scr_type}
+                                        .col-md-4.text-right
+                                            b
+                                                | Screen type:
+                                        .col-md-8
+                                            | #{product.specifications.scr_type}
                                     if (product.specifications.scr_size_INCH)
-                                        p Screen size: #{product.specifications.scr_size_INCH} inch
+                                        .col-md-4.text-right
+                                            b
+                                                | Screen size:
+                                        .col-md-8
+                                            | #{product.specifications.scr_size_INCH} inch
                                     if (product.specifications.battery)
-                                        p Battery: #{product.specifications.battery}
+                                        .col-md-4.text-right
+                                            b
+                                                | Battery:
+                                        .col-md-8
+                                            | #{product.specifications.battery}
                                     if (product.specifications.os)
-                                        p OS: #{product.specifications.os}
+                                        .col-md-4.text-right
+                                            b
+                                                | OS:
+                                        .col-md-8
+                                            | #{product.specifications.os}
                                     if (product.specifications.front_camera)
-                                        p Front camera: #{product.specifications.front_camera}
+                                        .col-md-4.text-right
+                                            b
+                                                | Front camera:
+                                        .col-md-8
+                                            | #{product.specifications.front_camera}
                                     if (product.specifications.back_camera)
-                                        p Back camera: #{product.specifications.back_camera}
+                                        .col-md-4.text-right
+                                            b
+                                                | Back camera:
+                                        .col-md-8
+                                            | #{product.specifications.back_camera}
                                     if (product.specifications.sim)
-                                        p Sim: #{product.specifications.sim}
+                                        .col-md-4.text-right
+                                            b
+                                                | Sim:
+                                        .col-md-8
+                                            | #{product.specifications.sim}
                                     if (product.specifications.wifi)
-                                        p Wifi: #{product.specifications.wifi}
+                                        .col-md-4.text-right
+                                            b
+                                                | Wifi:
+                                        .col-md-8
+                                            | #{product.specifications.wifi}
                                     if (product.specifications.usb)
-                                        p USB: #{product.specifications.usb}
+                                        .col-md-4.text-right
+                                            b
+                                                | USB:
+                                        .col-md-8
+                                            | #{product.specifications.usb}
                                     if (product.specifications.bluetooth)
-                                        p Bluetooth: #{product.specifications.bluetooth}
+                                        .col-md-4.text-right
+                                            b
+                                                | Bluetooth:
+                                        .col-md-8
+                                            | #{product.specifications.bluetooth}
                                     
                                     //- p.w3ls_para Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor.
 

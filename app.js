@@ -37,19 +37,6 @@ Navbar_tab.find()
     
   console.log("Navbar loaded ! ");
 });
-console.log("Manufacturer list is loading....");
-Manufacturer.find()
-.sort('name')
-.exec(function(err, manufacturers) {
-  if (err) {
-    console.error('Get manufacturers list error:', err);
-    return;
-  }
-  app.locals.manufacturer_list = manufacturers.filter(function(manufacturer) {
-    return !manufacturer.deleted;
-  });
-  console.log("Manufacturer list loaded !");
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

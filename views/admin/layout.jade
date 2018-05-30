@@ -28,9 +28,11 @@ html
     link(href='/stylesheets/toastr.css', rel='stylesheet')
     //- Bootstrap Tags Input
     link(href='/stylesheets/bootstrap-tagsinput.css', rel='stylesheet')
-
-    // tags
+    //- Datatable
     link(href="/stylesheets/dataTables.bootstrap.css" rel="stylesheet")
+    //- Select2
+    //--link(href="/stylesheets/select2.css" rel="stylesheet")
+
     link(href='/stylesheets/bootstrap.css', rel='stylesheet', type='text/css', media='all')
     link(rel='stylesheet', type='text/css', href='/stylesheets/jquery-ui.css')
     link(href='/stylesheets/font-awesome.css', rel='stylesheet')
@@ -128,6 +130,9 @@ html
                   li.menu__item
                     a.menu__link(href='/admin/product')
                       | Sản phẩm
+                  li.menu__item
+                    a.menu__link(href='/admin/manufacturer')
+                      | Thương hiệu
                   li.menu__item
                     a.menu__link(href='/admin/specifications')
                       | Thông số kỹ thuật
@@ -567,7 +572,10 @@ html
     //- Bootstrap Tags Input
     script(src='/js/bootstrap-tagsinput.js')
 
+    //- Select2
+    //--<script src="/js/select2.js"></script>
 
+    
     script(src='/js/jquery.dataTables.js')
     script(src='/js/dataTables.bootstrap.js')
       

@@ -3,21 +3,21 @@ extends layout
 block content
   .banner-bootom-w3-agileits
     .container(style="width:50%;")
-      button.btn.btn-default.btn-create.center-block Thêm loại phụ kiện mới
+      button.btn.btn-default.btn-create.center-block Thêm thương hiệu mới
       table#danhsach.table.table-striped.table-bordered
         thead
           tr
-            th Loại phụ kiện
+            th Tên thương hiệu
             th Trạng thái
             th Thao tác
         tbody
-          each accessories_type in accessories_types
+          each manufacturer in manufacturers
             tr
               td 
-                | #{accessories_type.name}
+                | #{manufacturer.name}
               td 
                 h4
-                  if (accessories_type.deleted)
+                  if (manufacturer.deleted)
                     a
                       span.label.label-danger
                         i.fa.fa-ban  Đã ẩn
@@ -26,18 +26,18 @@ block content
                       span.label.label-success
                         i.fa.fa-check-circle-o  Bình thường
               td
-                button.btn.btn-default.btn-edit(value=accessories_type._id)
+                button.btn.btn-default.btn-edit(value=manufacturer._id)
                   | Chỉnh sửa
                 | 
-                if (!accessories_type.deleted)
-                  button.delete.btn.btn-default(value=accessories_type._id)
+                if (!manufacturer.deleted)
+                  button.delete.btn.btn-default(value=manufacturer._id)
                     | Ẩn
                 else
-                  button.restore.btn.btn-default(value=accessories_type._id)
+                  button.restore.btn.btn-default(value=manufacturer._id)
                     | Hiện
         .clearfix
 
-  //- Modal Delete loại phụ kiện confirm
+  //- Modal hide manufacturer confirm
   #delConfirm.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
     .modal-dialog.modal-dialog-centered(role='document')
       .modal-content
@@ -47,13 +47,13 @@ block content
             span(aria-hidden='true') ×
         .modal-body
           p
-            | Ẩn tất cả sản phẩm thuộc danh mục này ?
+            | Ẩn tất cả sản phẩm thuộc thương hiệu này ?
         .modal-footer
           button.btn.btn-secondary(type='button', data-dismiss='modal') 
             | Hủy
           button#btn-confirm-delete.btn.btn-primary(type='button', data-dismiss='modal') 
             | Xác nhận
-  //- Modal restore loại phụ kiện confirm
+  //- Modal restore manufacturer confirm
   #restoreConfirm.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
     .modal-dialog.modal-dialog-centered(role='document')
       .modal-content
@@ -63,7 +63,7 @@ block content
             span(aria-hidden='true') ×
         .modal-body
           p
-            | Hiện danh mục này ?
+            | Hiện thương hiệu này ?
         .modal-footer
           button.btn.btn-secondary(type='button', data-dismiss='modal') 
             | Hủy
@@ -71,11 +71,11 @@ block content
             | Xác nhận
 
 
-  //- Modal edit accessories_type
-  #accessories_type_edit.table-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+  //- Modal edit manufacturer
+  #manufacturer_edit.table-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
     .modal-dialog(role='document')
       .modal-content
-        form.form-horizontal.form-label-left(action='/admin/accessories_type/edit', method='post')
+        form.form-horizontal.form-label-left(action='/admin/manufacturer/edit', method='post')
           .modal-header
             h5#edit-modal-title.modal-title
             button.close(type='button', data-dismiss='modal', aria-label='Close')
@@ -84,16 +84,16 @@ block content
             .x_panel
               .x_title
                 input.id(type='hidden', name='id')
-                h2.maDanhMuc.text-center
+                h2.maThuongHieu.text-center
                   | 
                 .clearfix
               .x_content
                 br              
                 .form-group
-                  label.control-label.col-md-3.col-sm-3.col-xs-12 Loại phụ kiện
+                  label.control-label.col-md-4.col-sm-3.col-xs-12 Tên thương hiệu
                     span.required  *
-                  .col-md-9.col-sm-9.col-xs-12
-                    input.accessories_type_name.form-control(type='text', name='name' required)
+                  .col-md-8.col-sm-9.col-xs-12
+                    input.manufacturer_name.form-control(type='text', name='name' required)
               .clearfix
           .modal-footer
             button.btn.btn-secondary(type='button', data-dismiss='modal') Đóng
@@ -108,13 +108,13 @@ block content
 
   //- Chức năng cho button
   script.
-    // Hiện modal xác nhận xóa loại phụ kiện
+    // Hiện modal xác nhận xóa manufacturer
     $('.delete').click(function() {
       var id = this.value; 
       $("#btn-confirm-delete").val(id);
       $('#delConfirm').modal('show')
     });
-    // Xác nhận xóa loại phụ kiện
+    // Xác nhận xóa manufacturer
     $("#btn-confirm-delete").click(function() {
       var id = this.value; 
       $.ajax({
@@ -122,7 +122,7 @@ block content
         type: 'POST',
         dataType: 'json',
         data: {
-          item_type: "accessories_type",
+          item_type: "manufacturer",
           id: id,
         }
       }).done(function(status) {
@@ -131,13 +131,13 @@ block content
       });
     });
 
-    // Hiện modal xác nhận khôi phục loại phụ kiện
+    // Hiện modal xác nhận khôi phục manufacturer
     $('.restore').click(function() {
       var id = this.value; 
       $("#btn-confirm-restore").val(id);
       $('#restoreConfirm').modal('show')
     });
-    // Xác nhận khôi phục loại phụ kiện
+    // Xác nhận khôi phục manufacturer
     $("#btn-confirm-restore").click(function() {
       var id = this.value; 
       $.ajax({
@@ -145,7 +145,7 @@ block content
         type: 'POST',
         dataType: 'json',
         data: {
-          item_type: "accessories_type",
+          item_type: "manufacturer",
           id: id,
         }
       }).done(function(status) {
@@ -154,32 +154,32 @@ block content
       });
     });
 
-    //- // Button tạo loại phụ kiện mới
+    //- // Button tạo manufacturer mới
     $('.btn-create').click(function(e) {
       $(".id").val('null');
-      $(".maDanhMuc").text(null);
-      $('#edit-modal-title').text('Thêm loại phụ kiện mới');
-      $(".accessories_type_name").attr('placeholder', 'Tên loại phụ kiện').val(null);
-      $('#accessories_type_edit').modal('show');
+      $(".maThuongHieu").text(null);
+      $('#edit-modal-title').text('Thêm thương hiệu mới');
+      $(".manufacturer_name").attr('placeholder', 'Tên thương hiệu').val(null);
+      $('#manufacturer_edit').modal('show');
     });
 
-    // Button sửa thông tin loại phụ kiện
+    // Button sửa thông tin manufacturer
     $('.btn-edit').click(function(e) {
       e.preventDefault();
       var id = this.value;
       $(".id").val(id);
-      $(".maDanhMuc").text("Mã loại: " + id);
+      $(".maThươngHieu").text("Mã thương hiệu: " + id);
       $.ajax({
-        url: '/admin/accessories_type',
+        url: '/admin/manufacturer',
         type: 'POST',
         dataType: 'json',
         data: {
           id: id,
         }
-      }).done(function(accessories_type) {
-        $('#edit-modal-title').text('Chỉnh sửa danh mục phụ kiện');
-        $(".accessories_type_name").attr('placeholder', accessories_type.name).val(accessories_type.name);
-        $('#accessories_type_edit').modal('show');
+      }).done(function(manufacturer) {
+        $('#edit-modal-title').text('Chỉnh sửa thương hiệu');
+        $(".manufacturer_name").attr('placeholder', manufacturer.name).val(manufacturer.name);
+        $('#manufacturer_edit').modal('show');
       });
     });
 
