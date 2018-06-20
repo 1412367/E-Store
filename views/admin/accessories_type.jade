@@ -160,6 +160,7 @@ block content
       $(".maDanhMuc").text(null);
       $('#edit-modal-title').text('Thêm loại phụ kiện mới');
       $(".accessories_type_name").attr('placeholder', 'Tên loại phụ kiện').val(null);
+      $("#update").html('Thêm mới');
       $('#accessories_type_edit').modal('show');
     });
 
@@ -179,6 +180,7 @@ block content
       }).done(function(accessories_type) {
         $('#edit-modal-title').text('Chỉnh sửa danh mục phụ kiện');
         $(".accessories_type_name").attr('placeholder', accessories_type.name).val(accessories_type.name);
+        $("#update").html('Cập nhật');
         $('#accessories_type_edit').modal('show');
       });
     });

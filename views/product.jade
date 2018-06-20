@@ -110,7 +110,7 @@ block content
                 #horizontalTab
                     ul.resp-tabs-list
                         li Mô tả
-                        if (product.specifications)
+                        if (product.specifications.model)
                             li Thông số kỹ thuật
                         li Bình luận & Đánh giá
                     .resp-tabs-container
@@ -120,7 +120,7 @@ block content
                                 h6 #{product.title}
                                 p #{product.description}
                         // //tab_one
-                        if (product.specifications)
+                        if (product.specifications.model)
                             .tab2
                                 .single_page_agile_its_w3ls
                                     h6

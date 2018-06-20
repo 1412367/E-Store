@@ -30,6 +30,13 @@ router.get('/manufacturer', function(req, res, next) {
     });
 });
 
+router.get('/specifications', function(req, res, next) {
+    Specifications.find()
+    .exec(function (err, specifications_list) {
+        res.render('admin/specifications', { title: 'Express', specifications_list: specifications_list});
+    });
+});
+
 router.get('/accessories_type', function(req, res, next) {
     Accessories_type.find()
     .exec(function (err, accessories_types) {
@@ -50,6 +57,7 @@ router.post('/product', function(req, res, next) {
 });
 
 router.post('/product/edit', function(req, res, next) {
+    console.log(req.body);
     var obj = req.body;
     if (req.body.id != 'null')
         var id = mongoose.Types.ObjectId(obj.id);
@@ -180,7 +188,7 @@ router.post('/delete', function(req, res, next) {
                         if (err) 
                             console.log(err+" 2");
                         else
-                            res.json("Xóa thành công");
+                            res.json("Ẩn thành công");
                     });
                 }
             });

@@ -1,0 +1,259 @@
+extends layout
+
+block content
+  .banner-bootom-w3-agileits
+    .container(style="width:50%;")
+      button.btn.btn-default.btn-create.center-block Thêm thông số kỹ thuật mới
+      table#danhsach.table.table-striped.table-bordered
+        thead
+          tr
+            th Model sản phẩm
+            th Thao tác
+        tbody
+          each specifications in specifications_list
+            tr
+              td 
+                | #{specifications.model}
+              td
+                button.btn.btn-default.btn-edit(value=specifications._id)
+                  | Chỉnh sửa
+                | 
+                if (!specifications.deleted)
+                  button.delete.btn.btn-default(value=specifications._id)
+                    | Ẩn
+                else
+                  button.restore.btn.btn-default(value=specifications._id)
+                    | Hiện
+        .clearfix
+
+  //- Modal confirm Delete specifications
+  #delConfirm.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+    .modal-dialog.modal-dialog-centered(role='document')
+      .modal-content
+        .modal-header
+          h5.modal-title Xác nhận
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+        .modal-body
+          p
+            | Xóa bộ thông số kỹ thuật này ?
+            br
+            | Thao tác này không thể hoàn tác !
+        .modal-footer
+          button.btn.btn-secondary(type='button', data-dismiss='modal') 
+            | Hủy
+          button#btn-confirm-delete.btn.btn-primary(type='button', data-dismiss='modal') 
+            | Xác nhận
+  //- Modal restore loại phụ kiện confirm
+  #restoreConfirm.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+    .modal-dialog.modal-dialog-centered(role='document')
+      .modal-content
+        .modal-header
+          h5.modal-title Xác nhận
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+        .modal-body
+          p
+            | Hiện danh mục này ?
+        .modal-footer
+          button.btn.btn-secondary(type='button', data-dismiss='modal') 
+            | Hủy
+          button#btn-confirm-restore.btn.btn-primary(type='button', data-dismiss='modal') 
+            | Xác nhận
+
+
+  //- Modal edit specifications
+  #specifications_edit.table-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+    .modal-dialog.modal-lg(role='document')
+      .modal-content
+        form.form-horizontal.form-label-left(action='/admin/specifications/edit', method='post')
+          .modal-header
+            h5#edit-modal-title.modal-title
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            .x_panel
+              .x_title
+                input.id(type='hidden', name='id')
+                h2.maTSKT.text-center
+                  | 
+                .clearfix
+              .x_content
+                br              
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Model sản phẩm
+                    span.required  *
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.model.form-control(type='text', name='model' required)
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Kích thước
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.dimensions.form-control(type='text', name='dimensions')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Cân nặng
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.weight.form-control(type='text', name='weight')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Thông tin CPU
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.cpu.form-control(type='text', name='cpu')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Thông tin GPU
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.gpu.form-control(type='text', name='gpu')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Loại RAM
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.ram_type.form-control(type='text', name='ram_type')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Kích thước RAM
+                  .col-md-2
+                    input.ram_size_GB.form-control(type='number', name='ram_size_GB', value='', min="1", oninput="validity.valid||(value='');")
+                  p(style='padding-top: 7px') GB
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Loại bộ nhớ trong
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.storage_type.form-control(type='text', name='storage_type')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Kích thước bộ nhớ trong
+                  .col-md-2
+                    input.storage_size.form-control(type='number', name='storage_size', value='', min="1", oninput="validity.valid||(value='');")
+                  select.storage_uom.select2_group.form-control(name='storage_uom', required, style='width: 70px')
+                    option(value='GB' selected) GB
+                    option(value='TB') TB
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Thông tin khe thẻ nhớ
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.memory_cards.form-control(type='text', name='memory_cards')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Loại màn hình
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.scr_type.form-control(type='text', name='scr_type')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Kích thước màn hình
+                  .col-md-2
+                    input.scr_size_INCH.form-control(type='number', name='scr_size_INCH', value='', min="1", oninput="validity.valid||(value='');")
+                  p(style='padding-top: 7px') INCH
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Thông tin pin
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.battery.form-control(type='text', name='battery')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Hệ điều hành
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.os.form-control(type='text', name='os')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Camera trước
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.front_camera.form-control(type='text', name='front_camera')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Camera sau
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.back_camera.form-control(type='text', name='back_camera')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Thông tin khe sim
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.sim.form-control(type='text', name='sim')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Cổng USB
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.usb.form-control(type='text', name='usb')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Công nghệ Wifi
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.wifi.form-control(type='text', name='wifi')
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Công nghệ Bluetooth
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.bluetooth.form-control(type='text', name='bluetooth')
+              .clearfix
+          .modal-footer
+            button.btn.btn-secondary(type='button', data-dismiss='modal') Đóng
+            button#update.btn.btn-primary(type='submit') Cập nhật
+    
+
+  //- Init pluggin
+  script.
+    $(document).ready(function() {
+      var table = $('#danhsach').DataTable();
+    });
+
+  //- Chức năng cho button
+  script.
+    // Hiện modal xác nhận xóa bộ thông số kỹ thuật
+    $('.delete').click(function() {
+      var id = this.value; 
+      $("#btn-confirm-delete").val(id);
+      $('#delConfirm').modal('show')
+    });
+    // Xác nhận xóa bộ thông số kỹ thuật
+    $("#btn-confirm-delete").click(function() {
+      var id = this.value; 
+      $.ajax({
+        url: '/admin/delete',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          item_type: "specifications",
+          id: id,
+        }
+      }).done(function(status) {
+        localStorage.setItem("Status", status)
+        window.location.reload(); 
+      });
+    });
+
+    // Hiện modal xác nhận khôi phục bộ thông số kỹ thuật
+    $('.restore').click(function() {
+      var id = this.value; 
+      $("#btn-confirm-restore").val(id);
+      $('#restoreConfirm').modal('show')
+    });
+    // Xác nhận khôi phục bộ thông số kỹ thuật
+    $("#btn-confirm-restore").click(function() {
+      var id = this.value; 
+      $.ajax({
+        url: '/admin/restore',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          item_type: "specifications",
+          id: id,
+        }
+      }).done(function(status) {
+        localStorage.setItem("Status", status)
+        window.location.reload(); 
+      });
+    });
+
+    //- // Button tạo bộ thông số kỹ thuật mới
+    $('.btn-create').click(function(e) {
+      $(".id").val('null');
+      $(".maTSKT").text(null);
+      $('#edit-modal-title').text('Thêm bộ thông số kỹ thuật mới');
+      //- $(".accessories_type_name").attr('placeholder', 'Tên loại phụ kiện').val(null);
+      $("#update").html('Thêm mới');
+      $('#specifications_edit').modal('show');
+    });
+
+    // Button sửa thông tin loại phụ kiện
+    $('.btn-edit').click(function(e) {
+      e.preventDefault();
+      var id = this.value;
+      $(".id").val(id);
+      $(".maDanhMuc").text("Mã loại: " + id);
+      $.ajax({
+        url: '/admin/accessories_type',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          id: id,
+        }
+      }).done(function(accessories_type) {
+        $('#edit-modal-title').text('Chỉnh sửa danh mục phụ kiện');
+        $(".accessories_type_name").attr('placeholder', accessories_type.name).val(accessories_type.name);
+        $('#accessories_type_edit').modal('show');
+      });
+    });
+
+                                    

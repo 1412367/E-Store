@@ -160,6 +160,7 @@ block content
       $(".maThuongHieu").text(null);
       $('#edit-modal-title').text('Thêm thương hiệu mới');
       $(".manufacturer_name").attr('placeholder', 'Tên thương hiệu').val(null);
+      $("#update").html('Thêm mới');
       $('#manufacturer_edit').modal('show');
     });
 
@@ -179,6 +180,7 @@ block content
       }).done(function(manufacturer) {
         $('#edit-modal-title').text('Chỉnh sửa thương hiệu');
         $(".manufacturer_name").attr('placeholder', manufacturer.name).val(manufacturer.name);
+        $("#update").html('Cập nhật');
         $('#manufacturer_edit').modal('show');
       });
     });

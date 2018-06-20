@@ -44,7 +44,7 @@ block content
                         i.fa.fa-ban  Đã ẩn
                 else
                   | [null]
-              td #{product.price}
+              td.list-price #{product.price}
               td 
                 h4
                   if ((product.manufacturer && product.manufacturer.deleted) || (product.accessories_type && product.accessories_type.deleted) || (product.deleted))
@@ -65,10 +65,10 @@ block content
                 | 
                 if (!product.deleted)
                   button.delete.btn.btn-default(value=product._id)
-                    | Xóa
+                    | Ẩn
                 else
                   button.restore.btn.btn-default(value=product._id)
-                    | Phục hồi
+                    | Hiện
         .clearfix
 
   //- Modal Delete product confirm
@@ -81,7 +81,7 @@ block content
             span(aria-hidden='true') ×
         .modal-body
           p
-            | Xóa sản phẩm ?
+            | Ẩn sản phẩm ?
         .modal-footer
           button.btn.btn-secondary(type='button', data-dismiss='modal') 
             | Hủy
@@ -170,9 +170,8 @@ block content
                   label.control-label.col-md-3.col-sm-3.col-xs-12 Giá sản phẩm
                     span.required  *
                   .col-md-3.col-sm-9.col-xs-12
-                    input.product_price.form-control(type='number', required, name='price')
-                  .col-md-3
-                    | VNĐ
+                    input.text-right.product_price.form-control(type='text', name='price', required)
+                  | VNĐ
                 
               .clearfix
           .modal-footer
@@ -183,6 +182,10 @@ block content
   //- Init pluggin và lấy các list phục vụ chỉnh sửa/thêm mới sản phẩm
   script.
     $(document).ready(function() {
+      $('.list-price').each(function() {
+        $(this).text(format($(this).text()));
+      });
+
       var table = $('#danhsach').DataTable();
 
       $.ajax({
@@ -233,7 +236,37 @@ block content
       });
     });
 
-  //- Chức năng cho button
+    // Định dạng giá sản phẩm
+    function format(number) {
+      number = number ? parseInt( number, 10 ) : 0;
+      return ( number === 0 ) ? "" : number.toLocaleString( "en-US" );
+    };
+    function unformat(number) {
+      return number.replace(/,/g, "");
+    };
+    // Định dạng khi nhập vào ô giá
+    $(".product_price").keyup(function() {
+      // When user select text in the document, abort.
+      var selection = window.getSelection().toString();
+      if ( selection !== '' ) {
+        return;
+      }
+      // When the arrow keys are pressed, abort.
+      if ( $.inArray( event.keyCode, [38,40,37,39] ) !== -1 ) {
+        return;
+      }
+      var price = $(".product_price").val()
+      price = price.replace(/[\D\s\._\-]+/g, "");
+      $(".product_price").val(format(price));
+    });
+    // Hủy định dạng giá trước khi submit
+    $("form").submit(function(){
+      var price = $(".product_price").val()
+      $(".product_price").val(unformat(price));
+    });
+    //-------
+
+  //- Chức năng cho các button
   script.
     // Hiện modal xác nhận xóa sp
     $('.delete').click(function() {
@@ -281,7 +314,7 @@ block content
       });
     });
 
-    //- // Button tạo sản phẩm mới
+    //- // Button bật modal tạo sản phẩm mới
     $('.btn-create').click(function(e) {
       $('#edit-modal-title').text('Thêm sản phẩm mới');
 
@@ -294,7 +327,8 @@ block content
       $(".manufacturer").val('');
       $('.product_colors').tagsinput('removeAll');
       $(".product_description").val('');
-      $(".product_price").val('')
+      $(".product_price").val('');
+      $("#update").html('Thêm mới');
       $('#productEdit').modal('show');
     });
 
@@ -335,7 +369,9 @@ block content
           $('.product_colors').tagsinput('add', color);
         })
         $(".product_description").val(product.description);
-        $(".product_price").val(product.price);
+        $(".product_price").val(format(product.price));
+
+        $("#update").html('Cập nhật');
 
         $('#productEdit').modal('show');
       });
