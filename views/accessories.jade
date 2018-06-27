@@ -6,13 +6,13 @@ block content
       .container
         h3
           |  
-          span Phụ kiện 
+          span Phụ kiện #{filter}
         // /w3_short
         .services-breadcrumb
           .agile_inner_breadcrumb
             ul.w3_short
               li
-                a(href='index.html') Trang chủ
+                a(href='/index') Trang chủ
                 i |
               li Phụ kiện
         // //w3_short
@@ -116,7 +116,8 @@ block content
                 h4
                   a(href='/product/#{product._id}') #{product.title}
                 .info-product-price
-                  span.item_price #{product.price}&#8363
+                  span.item_price #{product.price}
+                  span &#8363
                   //- del $69.71
                 a(href='/product/#{product._id}')
                   button Xem chi tiết

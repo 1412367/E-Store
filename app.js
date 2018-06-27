@@ -4,10 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+var session = require('express-session');
+var passport = require('passport');
+var flash = require('connect-flash');
+var validator = require('express-validator');
 
 var Navbar_tab = require('./models/navbar_tab');
-var Manufacturer = require('./models/manufacturer');
-var Accessories_type = require('./models/accessories_type');
 
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
@@ -16,11 +18,12 @@ var mobileTabletRouter = require('./routes/mobile&tablet')
 var laptopRouter = require('./routes/laptop');
 var accessoriesRouter = require('./routes/accessories');
 var productRouter = require('./routes/product');
-var usersRouter = require('./routes/users');
+var userRouter = require('./routes/user');
 
 var app = express();
 
 mongoose.connect('mongodb://localhost:27017/e-store');
+require('./config/passport');
 
 //Restart server after each change in those table collection
 console.log("Navbar is loading....");
@@ -45,10 +48,19 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(validator());
 app.use(cookieParser());
+app.use(session({secret: 'mysupersecret', resave: false, saveUninitialized: false}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/public', express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+app.use(function(req, res, next) {
+  res.locals.signin = req.isAuthenticated();
+  next();
+})
 
 app.use('/', indexRouter);adminRouter
 app.use('/about', aboutRouter);
@@ -59,12 +71,13 @@ app.use('/product', productRouter);
 
 app.use('/admin', adminRouter);
 
-app.use('/users', usersRouter);
+app.use('/user', userRouter);
 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  //next(createError(404));
+  res.render('404');
 });
 
 // error handler

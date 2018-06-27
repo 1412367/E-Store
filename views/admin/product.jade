@@ -34,7 +34,7 @@ block content
                       span.label.label-danger
                         i.fa.fa-ban  Đã ẩn
                 else
-                  | [null]
+                  | [Đang cập nhật]
               td
                 if (product.specifications)
                   | #{product.specifications.model}
@@ -43,7 +43,7 @@ block content
                       span.label.label-danger
                         i.fa.fa-ban  Đã ẩn
                 else
-                  | [null]
+                  | [Đang cập nhật]
               td.list-price #{product.price}
               td 
                 h4
@@ -57,17 +57,17 @@ block content
                         i.fa.fa-check-circle-o  Đang bày bán
                   
               td
-                a.btn.btn-default(href='/product/#{product._id}')
+                a.btn.btn-default(href='/product/#{product._id}', target="_blank")
                   | Chi tiết
                 | 
                 button.btn.btn-default.btn-edit(value=product._id)
                   | Chỉnh sửa
                 | 
                 if (!product.deleted)
-                  button.delete.btn.btn-default(value=product._id)
+                  button.delete.btn.btn-default(value=product._id, style="width: 55px")
                     | Ẩn
                 else
-                  button.restore.btn.btn-default(value=product._id)
+                  button.restore.btn.btn-default(value=product._id, style="width: 55px")
                     | Hiện
         .clearfix
 
@@ -109,7 +109,7 @@ block content
   #productEdit.table-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
     .modal-dialog.modal-lg(role='document')
       .modal-content
-        form.form-horizontal.form-label-left(action='/admin/product/edit', method='post')
+        form.form-horizontal.form-label-left(action='/admin/product/edit', method='post', enctype="multipart/form-data")
           .modal-header
             h5#edit-modal-title.modal-title
             button.close(type='button', data-dismiss='modal', aria-label='Close')
@@ -150,11 +150,19 @@ block content
                   .col-md-9.col-sm-9.col-xs-12
                     select.specifications.select2_group.form-control(name='specifications', required)
                       option(value='' disabled selected hidden) Chọn model sản phẩm. . .
+                      option(value='null' ) [Đang cập nhật]
                 .form-group
                   label.control-label.col-md-3.col-sm-3.col-xs-12 Thương hiệu
+                    span.required  *
                   .col-md-9.col-sm-9.col-xs-12
                     select.manufacturer.select2_group.form-control(name='manufacturer', required)
                       option(value='' disabled selected hidden) Chọn thương hiệu sản phẩm. . .
+                      option(value='null' ) [Đang cập nhật]
+                .form-group
+                  label.control-label.col-md-3.col-sm-3.col-xs-12 Thêm ảnh sản phẩm
+                    span.required  *
+                  .col-md-9.col-sm-9.col-xs-12
+                    input.form-control(type='file', name='image_paths')
                 .form-group
                   label.control-label.col-md-3.col-sm-3.col-xs-12 Các màu hiện có
                     span.required  *
@@ -171,7 +179,7 @@ block content
                     span.required  *
                   .col-md-3.col-sm-9.col-xs-12
                     input.text-right.product_price.form-control(type='text', name='price', required)
-                  | VNĐ
+                  p(style='padding-top: 7px; margin-bottom: 0px;') VNĐ
                 
               .clearfix
           .modal-footer
@@ -182,10 +190,12 @@ block content
   //- Init pluggin và lấy các list phục vụ chỉnh sửa/thêm mới sản phẩm
   script.
     $(document).ready(function() {
+      // Định dạng cho cột giá dễ nhìn
       $('.list-price').each(function() {
         $(this).text(format($(this).text()));
       });
 
+      //build datatable
       var table = $('#danhsach').DataTable();
 
       $.ajax({
@@ -244,6 +254,7 @@ block content
     function unformat(number) {
       return number.replace(/,/g, "");
     };
+
     // Định dạng khi nhập vào ô giá
     $(".product_price").keyup(function() {
       // When user select text in the document, abort.
@@ -259,12 +270,20 @@ block content
       price = price.replace(/[\D\s\._\-]+/g, "");
       $(".product_price").val(format(price));
     });
+
     // Hủy định dạng giá trước khi submit
     $("form").submit(function(){
+      console.log('sss');
       var price = $(".product_price").val()
       $(".product_price").val(unformat(price));
     });
     //-------
+    
+    //Cảnh báo chưa nhập màu sản phẩm
+    $('#update').click(function() {
+      if (!$('.product_colors').val())
+        toastr.error("Vui lòng nhập các màu hiện có", "", {"positionClass": "toast-bottom-center"}); 
+    });
 
   //- Chức năng cho các button
   script.
@@ -318,7 +337,7 @@ block content
     $('.btn-create').click(function(e) {
       $('#edit-modal-title').text('Thêm sản phẩm mới');
 
-      $(".id").val('new product');
+      $(".id").val('null');
       $(".maSP").text('');
 
       $(".product_type").val('');
@@ -348,7 +367,7 @@ block content
       }).done(function(product) {
         $('#edit-modal-title').text('Chỉnh sửa sản phẩm');
 
-        $("option[value='"+product.product_type.name+"']").prop('selected', true);
+        $(".product_type").val(product.product_type.name);
         $(".product_type").change();
         $(".product_title").attr('placeholder', product.title).val(product.title);
 
@@ -357,9 +376,16 @@ block content
           $(".accessories_types").val(product.accessories_type._id);
         }
 
-        $(".specifications").val(product.specifications._id);
-        $(".manufacturer").val(product.manufacturer._id);
+        if (product.specifications)
+          $(".specifications").val(product.specifications._id);
+        else
+          $(".specifications").val('null');
         
+        if (product.manufacturer)
+          $(".manufacturer").val(product.manufacturer._id);
+        else
+          $(".manufacturer").val('null');
+
         $(".accessories_types").change();
         $(".specifications").change();
         $(".manufacturer").change();

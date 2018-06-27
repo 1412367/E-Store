@@ -2,7 +2,7 @@ extends layout
 
 block content
   .banner-bootom-w3-agileits
-    .container(style="width:50%;")
+    .container(style="width:53%;")
       button.btn.btn-default.btn-create.center-block Thêm thương hiệu mới
       table#danhsach.table.table-striped.table-bordered
         thead
@@ -27,13 +27,13 @@ block content
                         i.fa.fa-check-circle-o  Bình thường
               td
                 button.btn.btn-default.btn-edit(value=manufacturer._id)
-                  | Chỉnh sửa
+                  | Xem và chỉnh sửa
                 | 
                 if (!manufacturer.deleted)
-                  button.delete.btn.btn-default(value=manufacturer._id)
+                  button.delete.btn.btn-default(value=manufacturer._id, style="width: 55px")
                     | Ẩn
                 else
-                  button.restore.btn.btn-default(value=manufacturer._id)
+                  button.restore.btn.btn-default(value=manufacturer._id, style="width: 55px")
                     | Hiện
         .clearfix
 
@@ -63,7 +63,7 @@ block content
             span(aria-hidden='true') ×
         .modal-body
           p
-            | Hiện thương hiệu này ?
+            | Hiện tất cả sản phẩm thuộc thương hiệu này ?
         .modal-footer
           button.btn.btn-secondary(type='button', data-dismiss='modal') 
             | Hủy

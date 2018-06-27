@@ -29,6 +29,8 @@ html
     link(href='/stylesheets/style.css', rel='stylesheet', type='text/css', media='all')
     link(href='/stylesheets/font-awesome.css', rel='stylesheet')
     link(href='/stylesheets/easy-responsive-tabs.css', rel='stylesheet', type='text/css')
+    //- Toastr
+    link(href='/stylesheets/toastr.css', rel='stylesheet')
     // for bootstrap working
     //- link(href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800', rel='stylesheet')
     //- link(href='https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic', rel='stylesheet', type='text/css')
@@ -37,25 +39,37 @@ html
     // header
     #home.header
       .container
-        ul
-          li
-            a(href='#', data-toggle='modal', data-target='#myModal')
-              i.fa.fa-unlock-alt(aria-hidden='true')
-              |  Đăng Nhập
-          | &#32
-          li
-            a(href='#', data-toggle='modal', data-target='#myModal2')
-              i.fa.fa-pencil-square-o(aria-hidden='true')
-              |  Đăng Ký
-          | &#32
-          li
-            i.fa.fa-phone(aria-hidden='true')
-            |  SĐT : 01695042165
-          | &#32
-          li
-            i.fa.fa-envelope-o(aria-hidden='true')
-            a(href='mailto:1412367@student.hcmus.edu.vn') 1412367@student.hcmus.edu.vn
-          | &#32
+        ul(style='text-align: center;')
+          if(signin)
+            li
+              a(href='/user/profile')
+                i.fa.fa-user(aria-hidden='true')
+                |  Quản lý tài khoản
+            | &#32
+            li
+              a(href='/user/logout')
+                i.glyphicon.glyphicon-off(aria-hidden='true')
+                |  Đăng xuất
+            | &#32
+          else
+            li
+              a#signin(href='#', data-toggle='modal', data-target='#myModal')
+                i.fa.fa-user(aria-hidden='true')
+                |  Đăng Nhập
+            | &#32
+            li
+              a#signup(href='#', data-toggle='modal', data-target='#myModal2')
+                i.fa.fa-pencil-square-o(aria-hidden='true')
+                |  Đăng Ký
+            | &#32
+            li
+              i.fa.fa-phone(aria-hidden='true')
+              |  SĐT : 01695042165
+            | &#32
+            li
+              i.fa.fa-envelope-o(aria-hidden='true')
+              a(href='mailto:1412367@student.hcmus.edu.vn') 1412367@student.hcmus.edu.vn
+            | &#32
     // //header
     // header-bot
     .header-bot
@@ -190,43 +204,18 @@ html
           .modal-body.modal-body-sub_agile
             .col-md-8.modal_body_left.modal_body_left1
               h3.agileinfo_sign
-                | Sign In 
-                span Now
-              form(action='#', method='post')
+                | Đăng nhập
+              form(action='/user/signin', method='post')
                 .styled-input.agile-styled-input-top
-                  input(type='text', name='Name', required='')
-                  label Name
-                  span
-                .styled-input
-                  input(type='email', name='Email', required='')
+                  input(type='email', name='email', required='', placeholder=' ')
                   label Email
                   span
+                .styled-input
+                  input(type='password', name='password', required='', placeholder=' ')
+                  label Mật khẩu
+                  span
+                input.token(type='hidden', name='_csrf')
                 input(type='submit', value='Sign In')
-              ul.social-nav.model-3d-0.footer-social.w3_agile_social.top_agile_third
-                li
-                  a.facebook(href='#')
-                    .front
-                      i.fa.fa-facebook(aria-hidden='true')
-                    .back
-                      i.fa.fa-facebook(aria-hidden='true')
-                li
-                  a.twitter(href='#')
-                    .front
-                      i.fa.fa-twitter(aria-hidden='true')
-                    .back
-                      i.fa.fa-twitter(aria-hidden='true')
-                li
-                  a.instagram(href='#')
-                    .front
-                      i.fa.fa-instagram(aria-hidden='true')
-                    .back
-                      i.fa.fa-instagram(aria-hidden='true')
-                li
-                  a.pinterest(href='#')
-                    .front
-                      i.fa.fa-linkedin(aria-hidden='true')
-                    .back
-                      i.fa.fa-linkedin(aria-hidden='true')
               .clearfix
               p
                 a(href='#', data-toggle='modal', data-target='#myModal2')  Don't have an account?
@@ -245,51 +234,26 @@ html
           .modal-body.modal-body-sub_agile
             .col-md-8.modal_body_left.modal_body_left1
               h3.agileinfo_sign
-                | Sign Up 
-                span Now
-              form(action='#', method='post')
+                | Đăng Ký
+              form(action='/user/signup', method='post')
                 .styled-input.agile-styled-input-top
-                  input(type='text', name='Name', required='')
-                  label Name
+                  input.name(type='text', name='name', required='', placeholder=' ', text-transform: capitalize)
+                  label Họ Tên
                   span
                 .styled-input
-                  input(type='email', name='Email', required='')
+                  input.email(type='email', name='email', required='', placeholder=' ')
                   label Email
                   span
                 .styled-input
-                  input(type='password', name='password', required='')
-                  label Password
+                  input.password(type='password', name='password', required='', placeholder=' ')
+                  label Mật khẩu (tối thiểu 4 ký tự)
                   span
                 .styled-input
-                  input(type='password', name='Confirm Password', required='')
-                  label Confirm Password
+                  input.confirmpassword(type='password', name='confirm password', required='', placeholder=' ')
+                  label Nhập lại mật khẩu
                   span
-                input(type='submit', value='Sign Up')
-              ul.social-nav.model-3d-0.footer-social.w3_agile_social.top_agile_third
-                li
-                  a.facebook(href='#')
-                    .front
-                      i.fa.fa-facebook(aria-hidden='true')
-                    .back
-                      i.fa.fa-facebook(aria-hidden='true')
-                li
-                  a.twitter(href='#')
-                    .front
-                      i.fa.fa-twitter(aria-hidden='true')
-                    .back
-                      i.fa.fa-twitter(aria-hidden='true')
-                li
-                  a.instagram(href='#')
-                    .front
-                      i.fa.fa-instagram(aria-hidden='true')
-                    .back
-                      i.fa.fa-instagram(aria-hidden='true')
-                li
-                  a.pinterest(href='#')
-                    .front
-                      i.fa.fa-linkedin(aria-hidden='true')
-                    .back
-                      i.fa.fa-linkedin(aria-hidden='true')
+                input.token(type='hidden', name='_csrf')
+                input.submit(type='submit', value='Sign Up')                
               .clearfix
               p
                 a(href='#') By clicking register, I agree to your terms
@@ -298,7 +262,6 @@ html
             .clearfix
         // //Modal content
     // //Modal2
-
     
 
     block content
@@ -342,41 +305,18 @@ html
       .footer_agile_inner_info_w3l
         .col-md-3.footer-left
           h2
-            a(href='index.html')
+            a(href='/index')
               span E
               |  Store
           p
-            | Lorem ipsum quia dolor
-            | sit amet, consectetur, adipisci velit, sed quia non
-            | numquam eius modi tempora.
+            | Cửa hàng điện tử, viễn thông
           ul.social-nav.model-3d-0.footer-social.w3_agile_social.two
             li
-              a.facebook(href='#')
+              a.facebook(href='http://fb.com/dinhnhan1102' target="_blank")
                 .front
                   i.fa.fa-facebook(aria-hidden='true')
                 .back
                   i.fa.fa-facebook(aria-hidden='true')
-            | &#32
-            li
-              a.twitter(href='#')
-                .front
-                  i.fa.fa-twitter(aria-hidden='true')
-                .back
-                  i.fa.fa-twitter(aria-hidden='true')
-            | &#32
-            li
-              a.instagram(href='#')
-                .front
-                  i.fa.fa-instagram(aria-hidden='true')
-                .back
-                  i.fa.fa-instagram(aria-hidden='true')
-            | &#32
-            li
-              a.pinterest(href='#')
-                .front
-                  i.fa.fa-linkedin(aria-hidden='true')
-                .back
-                  i.fa.fa-linkedin(aria-hidden='true')
             | &#32
         .col-md-9.footer-right
           .sign-grds
@@ -424,39 +364,39 @@ html
                 span Posts
               ul
                 li
-                  a(href='single.html')
+                  a(href='#')
                     img.img-responsive(src='/images/t1.jpg', alt=' ')
                 | &#32
                 li
-                  a(href='single.html')
+                  a(href='#')
                     img.img-responsive(src='/images/t2.jpg', alt=' ')
                 | &#32
                 li
-                  a(href='single.html')
+                  a(href='#')
                     img.img-responsive(src='/images/t3.jpg', alt=' ')
                 | &#32
                 li
-                  a(href='single.html')
+                  a(href='#')
                     img.img-responsive(src='/images/t4.jpg', alt=' ')
                 | &#32
                 li
-                  a(href='single.html')
+                  a(href='#')
                     img.img-responsive(src='/images/t1.jpg', alt=' ')
                 | &#32
                 li
-                  a(href='single.html')
+                  a(href='#')
                     img.img-responsive(src='/images/t2.jpg', alt=' ')
                 | &#32
                 li
-                  a(href='single.html')
+                  a(href='#')
                     img.img-responsive(src='/images/t3.jpg', alt=' ')
                 | &#32
                 li
-                  a(href='single.html')
+                  a(href='#')
                     img.img-responsive(src='/images/t2.jpg', alt=' ')
                 | &#32
                 li
-                  a(href='single.html')
+                  a(href='#')
                     img.img-responsive(src='/images/t4.jpg', alt=' ')
                 | &#32
             .clearfix
@@ -486,10 +426,10 @@ html
     script.
       // Mini Cart
       paypal.minicart.render({
-      action: '#'
-      });
-      if (~window.location.search.indexOf('reset=true')) {
-      paypal.minicart.reset();
+        action: '#'
+        });
+        if (~window.location.search.indexOf('reset=true')) {
+        paypal.minicart.reset();
       }
     // //cart-js
 
@@ -552,12 +492,74 @@ html
     // set active navbar
     script(type='text/javascript').
       $(document).ready(function() {
+        //open modal from link
+        if(window.location.href.indexOf('#myModal') != -1) {
+          $('#myModal').modal('show');
+        }
+        if(window.location.href.indexOf('#myModal2') != -1) {
+          $('#myModal2').modal('show');
+        }
+
         // get current URL path and then assign 'active' class to navbar
         var pathname = window.location.pathname; 
         console.log(pathname);
         $('.nav > li > a[href="'+pathname+'"]').parent().addClass('menu__item--current');
       })
+      
+    script.
+      // Định dạng giá sản phẩm
+      function format(number) {
+        number = number ? parseInt( number, 10 ) : 0;
+        return ( number === 0 ) ? "" : number.toLocaleString( "en-US" );
+      };
+      $(document).ready(function() {
+        $('.item_price').each(function() {
+          $(this).text(format($(this).text()));
+        });
+      });
 
+      //lấy Token signin signup
+      $('#myModal, #myModal2').on('show.bs.modal', function () {
+        $.ajax({
+          url: '/user/csrfToken',
+          type: 'GET',
+          dataType: 'json'
+        }).done(function(csrfToken) {
+            $(".token").val(csrfToken);
+          });
+      });
+
+
+      //Signup check
+      $('#myModal2').submit(function(event) {
+        if ($('.password').val() != $('.confirmpassword').val()) {
+          toastr.error("Password không khớp.", "", {"positionClass": "toast-bottom-center"});
+          return event.preventDefault();
+        }
+      });
+
+    //- Hiện cảnh báo
+    script.
+      $(document).ready (function() {
+        var errors = '#{errors}';
+        if (errors != '') {
+          errors = errors.split(',');
+          for (var i = 0; i < errors.length; i++) {
+            toastr.error(errors[i], "", {"positionClass": "toast-bottom-center"});
+          }
+        }
+
+        var successes = '#{successes}';
+        if (successes != '') {
+          successes = successes.split(',');
+          for (var i = 0; i < successes.length; i++) {
+            toastr.success(successes[i], "", {"positionClass": "toast-bottom-center"});
+          }
+        }
+      });
+  
+    //- Toastr
+    script(src='/js/toastr.min.js')
     // for bootstrap working
     script(type='text/javascript', src='/js/bootstrap.js')
 

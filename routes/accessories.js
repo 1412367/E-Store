@@ -2,11 +2,23 @@ var express = require('express');
 var router = express.Router();
 
 var Product = require('../models/product');
-var Product_Type = require('../models/product_type')
 
 router.get('/', function(req, res, next) {
     var manufacturer = req.query.manufacturer;
     var accessories_type = req.query.accessories_type;
+    var find='';
+
+    Manufacturer.findOne({_id: manufacturer})
+    .exec(function (err, filter1) {
+        if (filter1)
+            find += filter1.name;
+    });
+    Accessories_type.findOne({_id: accessories_type})
+    .exec(function (err, filter2) {
+        if (filter2)
+            find += filter2.name;
+    });
+
     console.log('accessories_type: ' + accessories_type);
     console.log('manufacturer: ' + manufacturer);
     Product.find()
@@ -41,7 +53,7 @@ router.get('/', function(req, res, next) {
                     return;
                 }
                 console.log("Accessories type list loaded !");
-                res.render('accessories', { title: 'Express', products: products, manufacturers: manufacturers, accessories_types:accessories_types });
+                res.render('accessories', { title: 'Express', products: products, manufacturers: manufacturers, accessories_types:accessories_types, filter:find });
             });
         });
     });

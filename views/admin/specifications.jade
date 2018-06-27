@@ -16,14 +16,10 @@ block content
                 | #{specifications.model}
               td
                 button.btn.btn-default.btn-edit(value=specifications._id)
-                  | Chỉnh sửa
+                  | Xem và chỉnh sửa
                 | 
-                if (!specifications.deleted)
-                  button.delete.btn.btn-default(value=specifications._id)
-                    | Ẩn
-                else
-                  button.restore.btn.btn-default(value=specifications._id)
-                    | Hiện
+                button.delete.btn.btn-default(value=specifications._id)
+                  | Xóa
         .clearfix
 
   //- Modal confirm Delete specifications
@@ -44,23 +40,6 @@ block content
             | Hủy
           button#btn-confirm-delete.btn.btn-primary(type='button', data-dismiss='modal') 
             | Xác nhận
-  //- Modal restore loại phụ kiện confirm
-  #restoreConfirm.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
-    .modal-dialog.modal-dialog-centered(role='document')
-      .modal-content
-        .modal-header
-          h5.modal-title Xác nhận
-          button.close(type='button', data-dismiss='modal', aria-label='Close')
-            span(aria-hidden='true') ×
-        .modal-body
-          p
-            | Hiện danh mục này ?
-        .modal-footer
-          button.btn.btn-secondary(type='button', data-dismiss='modal') 
-            | Hủy
-          button#btn-confirm-restore.btn.btn-primary(type='button', data-dismiss='modal') 
-            | Xác nhận
-
 
   //- Modal edit specifications
   #specifications_edit.table-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
@@ -108,8 +87,8 @@ block content
                 .form-group
                   label.control-label.col-md-3.col-sm-3.col-xs-12 Kích thước RAM
                   .col-md-2
-                    input.ram_size_GB.form-control(type='number', name='ram_size_GB', value='', min="1", oninput="validity.valid||(value='');")
-                  p(style='padding-top: 7px') GB
+                    input.ram_size_GB.form-control(type='number', name='ram_size_GB', value='', min="0", oninput="validity.valid||(value='');", style="text-align: center;")
+                  p(style='padding-top: 7px; margin-bottom: 0px;') GB
                 .form-group
                   label.control-label.col-md-3.col-sm-3.col-xs-12 Loại bộ nhớ trong
                   .col-md-9.col-sm-9.col-xs-12
@@ -117,7 +96,7 @@ block content
                 .form-group
                   label.control-label.col-md-3.col-sm-3.col-xs-12 Kích thước bộ nhớ trong
                   .col-md-2
-                    input.storage_size.form-control(type='number', name='storage_size', value='', min="1", oninput="validity.valid||(value='');")
+                    input.storage_size.form-control(type='number', name='storage_size', value='', min="0", oninput="validity.valid||(value='');", style="text-align: center;")
                   select.storage_uom.select2_group.form-control(name='storage_uom', required, style='width: 70px')
                     option(value='GB' selected) GB
                     option(value='TB') TB
@@ -132,8 +111,8 @@ block content
                 .form-group
                   label.control-label.col-md-3.col-sm-3.col-xs-12 Kích thước màn hình
                   .col-md-2
-                    input.scr_size_INCH.form-control(type='number', name='scr_size_INCH', value='', min="1", oninput="validity.valid||(value='');")
-                  p(style='padding-top: 7px') INCH
+                    input.scr_size_INCH.form-control(type='number', step="0.5", name='scr_size_INCH', value='', min="0", oninput="validity.valid||(value='');", style="text-align: center;")
+                  p(style='padding-top: 7px; margin-bottom: 0px;') INCH
                 .form-group
                   label.control-label.col-md-3.col-sm-3.col-xs-12 Thông tin pin
                   .col-md-9.col-sm-9.col-xs-12
@@ -203,56 +182,156 @@ block content
       });
     });
 
-    // Hiện modal xác nhận khôi phục bộ thông số kỹ thuật
-    $('.restore').click(function() {
-      var id = this.value; 
-      $("#btn-confirm-restore").val(id);
-      $('#restoreConfirm').modal('show')
-    });
-    // Xác nhận khôi phục bộ thông số kỹ thuật
-    $("#btn-confirm-restore").click(function() {
-      var id = this.value; 
-      $.ajax({
-        url: '/admin/restore',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-          item_type: "specifications",
-          id: id,
-        }
-      }).done(function(status) {
-        localStorage.setItem("Status", status)
-        window.location.reload(); 
-      });
-    });
-
     //- // Button tạo bộ thông số kỹ thuật mới
     $('.btn-create').click(function(e) {
       $(".id").val('null');
       $(".maTSKT").text(null);
       $('#edit-modal-title').text('Thêm bộ thông số kỹ thuật mới');
-      //- $(".accessories_type_name").attr('placeholder', 'Tên loại phụ kiện').val(null);
+      $(".model").attr('placeholder', 'Mã model của sản phẩm').val(null);
+      $(".dimensions").attr('placeholder', 'Kích thước các chiều của sản phẩm').val(null);
+      $(".weight").attr('placeholder', 'Cân nặng sản phẩm').val(null);
+      $(".cpu").attr('placeholder', 'Thông tin CPU nếu có').val(null);
+      $(".gpu").attr('placeholder', 'Thông tin GPU nếu có').val(null);
+      $(".ram_type").attr('placeholder', 'Thông tin loại RAM nếu có').val(null);
+      $(".ram_size_GB").attr('placeholder', '').val(null);
+      $(".storage_type").attr('placeholder', 'Thông tin bộ nhớ trong nếu có').val(null);
+      $(".storage_size").attr('placeholder', '').val(null);
+      $(".storage_uom").val("GB");
+      $(".memory_cards").attr('placeholder', 'Thông tin khe thẻ nhớ nếu có').val(null);
+      $(".scr_type").attr('placeholder', 'Thông tin loại màn hình nếu có').val(null);
+      $(".scr_size_INCH").attr('placeholder', '').val(null);
+      $(".battery").attr('placeholder', 'Thông tin pin nếu có').val(null);
+      $(".os").attr('placeholder', 'Hệ điều hành của thiết bị').val(null);
+      $(".front_camera").attr('placeholder', 'Thông tin camera trước nếu có').val(null);
+      $(".back_camera").attr('placeholder', 'Thông tin camera sau nếu có').val(null);
+      $(".sim").attr('placeholder', 'Thông tin sim hỗ trợ nếu có').val(null);
+      $(".usb").attr('placeholder', 'Thông tin cổng USB nếu có').val(null);
+      $(".wifi").attr('placeholder', 'Thông tin card wifi nếu có').val(null);
+      $(".bluetooth").attr('placeholder', 'Thông tin card bluetooth nếu có').val(null);
+
       $("#update").html('Thêm mới');
       $('#specifications_edit').modal('show');
     });
 
-    // Button sửa thông tin loại phụ kiện
+    // Button sửa thông tin bộ thông số kỹ thuật
     $('.btn-edit').click(function(e) {
       e.preventDefault();
       var id = this.value;
       $(".id").val(id);
-      $(".maDanhMuc").text("Mã loại: " + id);
+      $(".maTSKT").text("Mã bộ thông số: " + id);
       $.ajax({
-        url: '/admin/accessories_type',
+        url: '/admin/specifications',
         type: 'POST',
         dataType: 'json',
         data: {
           id: id,
         }
-      }).done(function(accessories_type) {
+      }).done(function(specifications) {
         $('#edit-modal-title').text('Chỉnh sửa danh mục phụ kiện');
-        $(".accessories_type_name").attr('placeholder', accessories_type.name).val(accessories_type.name);
-        $('#accessories_type_edit').modal('show');
+        $(".model").attr('placeholder', specifications.model).val(specifications.model);
+
+        if (specifications.dimensions)
+          $(".dimensions").attr('placeholder', specifications.dimensions).val(specifications.dimensions);
+        else
+          $(".dimensions").attr('placeholder', '').val(null);
+
+        if (specifications.weight)
+          $(".weight").attr('placeholder', specifications.weight).val(specifications.weight);
+        else
+          $(".weight").attr('placeholder', '').val(null);
+
+        if (specifications.cpu)
+          $(".cpu").attr('placeholder', specifications.cpu).val(specifications.cpu);
+        else
+          $(".cpu").attr('placeholder', '').val(null);
+
+        if (specifications.gpu)
+          $(".gpu").attr('placeholder', specifications.gpu).val(specifications.gpu);
+        else
+          $(".gpu").attr('placeholder', '').val(null);
+
+        if (specifications.ram_type)
+          $(".ram_type").attr('placeholder', specifications.ram_type).val(specifications.ram_type);
+        else
+          $(".ram_type").attr('placeholder', '').val(null);
+
+        if (specifications.ram_size_GB)
+          $(".ram_size_GB").attr('placeholder', specifications.ram_size_GB).val(specifications.ram_size_GB);
+        else
+          $(".ram_size_GB").attr('placeholder', '').val(null);
+
+        if (specifications.storage_type)
+          $(".storage_type").attr('placeholder', specifications.storage_type).val(specifications.storage_type);
+        else
+          $(".storage_type").attr('placeholder', '').val(null);
+
+        if(specifications.storage_size) {
+          $(".storage_size").attr('placeholder', specifications.storage_size).val(specifications.storage_size);
+          $(".storage_uom").val(specifications.storage_uom);
+        }
+        else {
+          $(".storage_size").attr('placeholder', '').val(null);
+          $(".storage_uom").val("GB");
+        }
+
+        if (specifications.memory_cards)
+          $(".memory_cards").attr('placeholder', specifications.memory_cards).val(specifications.memory_cards);
+        else
+          $(".memory_cards").attr('placeholder', '').val(null);
+
+        if (specifications.scr_type)
+          $(".scr_type").attr('placeholder', specifications.scr_type).val(specifications.scr_type);
+        else
+          $(".scr_type").attr('placeholder', '').val(null);
+
+        if (specifications.scr_size_INCH)
+          $(".scr_size_INCH").attr('placeholder', specifications.scr_size_INCH).val(specifications.scr_size_INCH);
+        else
+          $(".scr_size_INCH").attr('placeholder', '').val(null);
+        
+        if (specifications.battery)
+          $(".battery").attr('placeholder', specifications.battery).val(specifications.battery);
+        else
+          $(".battery").attr('placeholder', '').val(null);
+        
+        if (specifications.os)
+          $(".os").attr('placeholder', specifications.os).val(specifications.os);
+        else
+          $(".os").attr('placeholder', '').val(null);
+
+        if (specifications.front_camera)
+          $(".front_camera").attr('placeholder', specifications.front_camera).val(specifications.front_camera);
+        else
+          $(".front_camera").attr('placeholder', '').val(null);
+
+        if (specifications.back_camera)
+          $(".back_camera").attr('placeholder', specifications.back_camera).val(specifications.back_camera);
+        else
+          $(".back_camera").attr('placeholder', '').val(null);
+
+        if (specifications.sim)
+          $(".sim").attr('placeholder', specifications.sim).val(specifications.sim);
+        else
+          $(".sim").attr('placeholder', '').val(null);
+
+        if (specifications.usb)
+          $(".usb").attr('placeholder', specifications.usb).val(specifications.usb);
+        else
+          $(".usb").attr('placeholder', '').val(null);
+
+        if (specifications.wifi)
+          $(".wifi").attr('placeholder', specifications.wifi).val(specifications.wifi);
+        else
+          $(".wifi").attr('placeholder', '').val(null);
+
+        if (specifications.bluetooth)
+          $(".bluetooth").attr('placeholder', specifications.bluetooth).val(specifications.bluetooth);
+        else
+          $(".bluetooth").attr('placeholder', '').val(null);
+
+                
+        $("#update").html('Cập nhật');
+        $('#specifications_edit').modal('show');
       });
     });
 

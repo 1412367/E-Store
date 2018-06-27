@@ -110,7 +110,50 @@ th {
 	width: 10px;
 	height: 10px;
 	margin: 1px 5px 1px 1px;
-  }
+}
+
+#d404 {
+    font-size: 100%;
+	background: url(../images/404.jpg) no-repeat 0px 0px;
+    background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-ms-background-size: cover;
+	font-family: 'Viga', sans-serif;
+	text-align:center;
+}
+#d404 h1{
+	font-size: 13em;
+    color: #fff;
+	padding: 50px 0 10px 0;
+    line-height: 1;
+}
+#d404 h2{
+	font-size: 1em;
+    color: #fff;
+    text-transform: capitalize;
+}
+.more_w3ls {
+    padding:3em 0 5em;
+}
+.more_w3ls a{
+	padding: 8px 70px;
+    background:#61DDF0;
+    text-decoration: none;
+    color: #212121;
+    font-size: 1em;
+    text-transform: uppercase;
+	transition:.5s ease-in;
+	-webkit-transition:.5s ease-in;
+	-moz-transition:.5s ease-in;
+	-o-transition:.5s ease-in;
+	-ms-transition:.5s ease-in;
+}
+.more_w3ls a:hover{
+	background:#fff;
+	color:#212121;
+}
 /* end of my custom */
 
 
@@ -481,7 +524,10 @@ i.fa.fa-shopping-bag.top_logo_agile_bag {
     margin: 0 15px 0 0;
 }
 .navbar-nav > li > a {
-    padding: 26px 16px;
+	padding: 26px 16px;
+	
+	/* width: 170px; */
+	text-align: center;
 }
 .navbar-collapse {
     padding-right: 0;
@@ -1093,7 +1139,7 @@ color: #2fdab8;
     resize: none;
 } 
 /*-- input-effect --*/
-.styled-input input:focus ~ label, .styled-input input:valid ~ label,.styled-input textarea:focus ~ label ,.styled-input textarea:valid ~ label{
+.styled-input input:focus ~ label, .styled-input input:valid ~ label, .styled-input textarea:focus ~ label, .styled-input textarea:valid ~ label, .styled-input input:not(:placeholder-shown) ~ label {
     font-size: .9em;
     color: #2fdab8;
     top: -1.3em;
@@ -1510,7 +1556,7 @@ position:relative;
 }
 #PPMiniCart form {
     width: 590px !important;
-	padding: 10px 20px 40px !important;
+	padding: 10px 20px 20px !important;
 	max-height:450px !important;
 }
 #PPMiniCart ul {
@@ -1536,7 +1582,8 @@ position:relative;
 	outline:none;
 }
 #PPMiniCart .minicart-submit {
-    display: none;
+	float: right;
+	margin-right: -80px;
 }
 #PPMiniCart .minicart-submit:hover{
 	background:#fe9126 !important;

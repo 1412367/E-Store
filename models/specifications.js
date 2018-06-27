@@ -5,6 +5,7 @@ var schema = new Schema ({
     model: {type: String, unique: true, required: [true, 'Model Is Required !']},
     dimensions: {type: String},
     weight: {type: String},
+    
     cpu: {type: String},
     gpu: {type: String},
 
@@ -22,15 +23,17 @@ var schema = new Schema ({
     
     battery: {type: String},
     os: {type: String},
+
     front_camera: {type: String},
     back_camera: {type: String},
+
     sim: {type: String},
     usb: {type: String},
     wifi: {type: String},
     bluetooth: {type: String},
+
     created_date: {type: Date, default: Date.now},
-    update_date: {type: Date, default: Date.now},
-    deleted: {type: Boolean, default: false}
+    update_date: {type: Date, default: Date.now}
 })
 
 module.exports = mongoose.model('Specifications', schema);

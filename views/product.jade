@@ -13,10 +13,11 @@ block content
                                     .thumb-image
                                         img.img-responsive(src=image_path, data-imagezoom='true')
                         .clearfix
-            .col-md-8.single-right-left.simpleCart_shelfItem
+            form(action='#', method='post').col-md-8.single-right-left.simpleCart_shelfItem
                 h3 #{product.title}
                 p
-                    span.item_price #{product.price}&#8363
+                    span.item_price #{product.price}
+                    span &#8363
                     //- del - $900
                 //- .rating1
                 //-     span.starRating
@@ -30,38 +31,32 @@ block content
                 //-         label(for='rating2') 2
                 //-         input#rating1(type='radio', name='rating', value='1')
                 //-         label(for='rating1') 1
-                .description
-                    h5 Check delivery, payment options and charges at your location
-                    form(action='#', method='post')
-                        input(type='text', value='Enter pincode', onfocus="this.value = '';", onblur="if (this.value == '') {this.value = 'Enter pincode';}", required='')
-                        | &#32
-                        input(type='submit', value='Check')
+                .description.color-quality-right
+                    if (product.manufacturer)
+                        h5 Thương hiệu:
+                        if (product.product_type.name=="Mobile" || product.product_type.name=="Tablet")
+                            a(href="/mobile&tablet?manufacturer=#{product.manufacturer._id}", style="text-transform: uppercase;") #{product.manufacturer.name}
+                        else
+                            if (product.product_type.name=="Phụ kiện")
+                                a(href="/accessories?manufacturer=#{product.manufacturer._id}", style="text-transform: uppercase;") #{product.manufacturer.name}
+                            else
+                                a(href="/laptop?manufacturer=#{product.manufacturer._id}", style="text-transform: uppercase;") #{product.manufacturer.name}
                 .color-quality
                     .color-quality-right
                         h5 Số lượng :
-                        input.text-center(type='number', value='1', min="1", oninput="validity.valid||(value='');", style='width: 100px')
+                        input.text-center(type='number', name='quatity', value='1', min="1", oninput="validity.valid||(value='');", style='width: 100px')
                 .occasional
                     h5 Màu sắc :
                     each color in product.colors
                         .colr
                             label.radio
-                                input(type='radio', name='color', checked)
+                                input(type='radio', name='item_number' required value=color)
                                 i
                                 | #{color}
-                    //- .colr
-                    //-     label.radio
-                    //-         input(type='radio', name='radio')
-                    //-         i
-                    //-         | Sneakers
-                    //- .colr
-                    //-     label.radio
-                    //-         input(type='radio', name='radio')
-                    //-         i
-                    //-         | Formal Shoes
                     .clearfix  
                 .occasion-cart
                     .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                        form(action='#', method='post')
+                        
                             fieldset
                                 input(type='hidden', name='cmd', value='_cart')
                                 input(type='hidden', name='add', value='1')
@@ -69,7 +64,7 @@ block content
                                 input(type='hidden', name='item_name', value=product.title)
                                 input(type='hidden', name='amount', value=product.price)
                                 input(type='hidden', name='discount_amount', value='0')
-                                input(type='hidden', name='currency_code', value='USD')
+                                input(type='hidden', name='currency_code', value='VND')
                                 input(type='hidden', name='return', value=' ')
                                 input(type='hidden', name='cancel_return', value=' ')
                                 input.button(type='submit', name='submit', value='Add to cart')
@@ -110,7 +105,7 @@ block content
                 #horizontalTab
                     ul.resp-tabs-list
                         li Mô tả
-                        if (product.specifications.model)
+                        if (product.specifications)
                             li Thông số kỹ thuật
                         li Bình luận & Đánh giá
                     .resp-tabs-container
@@ -120,7 +115,7 @@ block content
                                 h6 #{product.title}
                                 p #{product.description}
                         // //tab_one
-                        if (product.specifications.model)
+                        if (product.specifications)
                             .tab2
                                 .single_page_agile_its_w3ls
                                     h6
@@ -392,13 +387,17 @@ block content
                                         input.button(type='submit', name='submit', value='Add to cart')
                 .clearfix  
                 // //slider_owl
-    // FlexSlider
+
     script.
         // Can also be used with $(document).ready()
         $(window).load(function() {
+            //check one color default
+            $("input:radio[name=item_number]:first").attr('checked', true);
+
+            // FlexSlider
             $('.flexslider').flexslider({
                 animation: "slide",
                 controlNav: "thumbnails"
             });
+            // //FlexSlider
         });
-    // //FlexSlider

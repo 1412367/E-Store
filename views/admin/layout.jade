@@ -42,34 +42,26 @@ html
     // header
     #home.header
       .container
-        ul
+        ul(style='text-align: center;')
           li
-            a(href='#', data-toggle='modal', data-target='#myModal')
-              i.fa.fa-unlock-alt(aria-hidden='true')
-              |  Đăng Nhập
+            a(href='/user/profile')
+              i.fa.fa-user(aria-hidden='true')
+              |  Quản lý tài khoản
           | &#32
           li
-            a(href='#', data-toggle='modal', data-target='#myModal2')
-              i.fa.fa-pencil-square-o(aria-hidden='true')
-              |  Đăng Ký
-          | &#32
-          li
-            i.fa.fa-phone(aria-hidden='true')
-            |  SĐT : 01695042165
-          | &#32
-          li
-            i.fa.fa-envelope-o(aria-hidden='true')
-            a(href='mailto:1412367@student.hcmus.edu.vn') 1412367@student.hcmus.edu.vn
+            a(href='/user/logout')
+              i.glyphicon.glyphicon-off(aria-hidden='true')
+              |  Đăng xuất
           | &#32
     // //header
     // header-bot
     .header-bot
       .header-bot_inner_wthreeinfo_header_mid
         .col-md-4.header-middle
-          form(action='#', method='post')
-            input(type='search', name='search', placeholder='Tìm kiếm...', required='')
-            | &#32
-            input(type='submit', value=' ')
+          //- form(action='#', method='post')
+          //-   input(type='search', name='search', placeholder='Tìm kiếm...', required='')
+          //-   | &#32
+          //-   input(type='submit', value=' ')
             .clearfix
         // header-bot
         .col-md-4.logo_agile
@@ -79,43 +71,43 @@ html
               |  Store
         // header-bot
         .col-md-4.agileits-social.top_content
-          ul.social-nav.model-3d-0.footer-social.w3_agile_social
-            li.share Chia sẻ : 
-            | &#32
-            li
-              a.facebook(href='#')
-                .front
-                  i.fa.fa-facebook(aria-hidden='true')
-                .back
-                  i.fa.fa-facebook(aria-hidden='true')
-            | &#32
-            li
-              a.twitter(href='#')
-                .front
-                  i.fa.fa-twitter(aria-hidden='true')
-                .back
-                  i.fa.fa-twitter(aria-hidden='true')
-            | &#32
-            li
-              a.instagram(href='#')
-                .front
-                  i.fa.fa-instagram(aria-hidden='true')
-                .back
-                  i.fa.fa-instagram(aria-hidden='true')
-            | &#32
-            li
-              a.pinterest(href='#')
-                .front
-                  i.fa.fa-linkedin(aria-hidden='true')
-                .back
-                  i.fa.fa-linkedin(aria-hidden='true')
+          //- ul.social-nav.model-3d-0.footer-social.w3_agile_social
+          //-   li.share Chia sẻ : 
+          //-   | &#32
+          //-   li
+          //-     a.facebook(href='#')
+          //-       .front
+          //-         i.fa.fa-facebook(aria-hidden='true')
+          //-       .back
+          //-         i.fa.fa-facebook(aria-hidden='true')
+          //-   | &#32
+          //-   li
+          //-     a.twitter(href='#')
+          //-       .front
+          //-         i.fa.fa-twitter(aria-hidden='true')
+          //-       .back
+          //-         i.fa.fa-twitter(aria-hidden='true')
+          //-   | &#32
+          //-   li
+          //-     a.instagram(href='#')
+          //-       .front
+          //-         i.fa.fa-instagram(aria-hidden='true')
+          //-       .back
+          //-         i.fa.fa-instagram(aria-hidden='true')
+          //-   | &#32
+          //-   li
+          //-     a.pinterest(href='#')
+          //-       .front
+          //-         i.fa.fa-linkedin(aria-hidden='true')
+          //-       .back
+          //-         i.fa.fa-linkedin(aria-hidden='true')
         .clearfix
     // //header-bot
     // banner
     .ban-top
       .container
         .top_nav_left
-          nav.navbar.navbar-default
+          nav.navbar.navbar-default(style="margin-left: 150px;")
             .container-fluid
               // Brand and toggle get grouped for better mobile display
               .navbar-header
@@ -187,135 +179,16 @@ html
                   //-       a(href='icons.html') Web Icons
                   //-     li
                   //-       a(href='typography.html') Typography
-        .top_nav_right
-          .wthreecartaits.wthreecartaits2.cart.cart.box_1
-            form.last(action='#', method='post')
-              input(type='hidden', name='cmd', value='_cart')
-              input(type='hidden', name='display', value='1')
-              button.w3view-cart(type='submit', name='submit', value='')
-                i.fa.fa-cart-arrow-down(aria-hidden='true')
+        //- .top_nav_right
+        //-   .wthreecartaits.wthreecartaits2.cart.cart.box_1
+        //-     form.last(action='#', method='post')
+        //-       input(type='hidden', name='cmd', value='_cart')
+        //-       input(type='hidden', name='display', value='1')
+        //-       button.w3view-cart(type='submit', name='submit', value='')
+        //-         i.fa.fa-cart-arrow-down(aria-hidden='true')
         .clearfix
     // //banner-top
-    // Modal1
-    #myModal.modal.fade(tabindex='-1', role='dialog')
-      .modal-dialog
-        // Modal content
-        .modal-content
-          .modal-header(style='display: block; border-bottom: none;')
-            button.close(type='button', data-dismiss='modal') ×
-          .modal-body.modal-body-sub_agile
-            .col-md-8.modal_body_left.modal_body_left1
-              h3.agileinfo_sign
-                | Sign In 
-                span Now
-              form(action='#', method='post')
-                .styled-input.agile-styled-input-top
-                  input(type='text', name='Name', required='')
-                  label Name
-                  span
-                .styled-input
-                  input(type='email', name='Email', required='')
-                  label Email
-                  span
-                input(type='submit', value='Sign In')
-              ul.social-nav.model-3d-0.footer-social.w3_agile_social.top_agile_third
-                li
-                  a.facebook(href='#')
-                    .front
-                      i.fa.fa-facebook(aria-hidden='true')
-                    .back
-                      i.fa.fa-facebook(aria-hidden='true')
-                li
-                  a.twitter(href='#')
-                    .front
-                      i.fa.fa-twitter(aria-hidden='true')
-                    .back
-                      i.fa.fa-twitter(aria-hidden='true')
-                li
-                  a.instagram(href='#')
-                    .front
-                      i.fa.fa-instagram(aria-hidden='true')
-                    .back
-                      i.fa.fa-instagram(aria-hidden='true')
-                li
-                  a.pinterest(href='#')
-                    .front
-                      i.fa.fa-linkedin(aria-hidden='true')
-                    .back
-                      i.fa.fa-linkedin(aria-hidden='true')
-              .clearfix
-              p
-                a(href='#', data-toggle='modal', data-target='#myModal2')  Don't have an account?
-            .col-md-4.modal_body_right.modal_body_right1
-              img(src='/images/log_pic.jpg', alt=' ')
-            .clearfix
-        // //Modal content
-    // //Modal1
-    // Modal2
-    #myModal2.modal.fade(tabindex='-1', role='dialog')
-      .modal-dialog
-        // Modal content
-        .modal-content
-          .modal-header(style='display: block; border-bottom: none;')
-            button.close(type='button', data-dismiss='modal') ×
-          .modal-body.modal-body-sub_agile
-            .col-md-8.modal_body_left.modal_body_left1
-              h3.agileinfo_sign
-                | Sign Up 
-                span Now
-              form(action='#', method='post')
-                .styled-input.agile-styled-input-top
-                  input(type='text', name='Name', required='')
-                  label Name
-                  span
-                .styled-input
-                  input(type='email', name='Email', required='')
-                  label Email
-                  span
-                .styled-input
-                  input(type='password', name='password', required='')
-                  label Password
-                  span
-                .styled-input
-                  input(type='password', name='Confirm Password', required='')
-                  label Confirm Password
-                  span
-                input(type='submit', value='Sign Up')
-              ul.social-nav.model-3d-0.footer-social.w3_agile_social.top_agile_third
-                li
-                  a.facebook(href='#')
-                    .front
-                      i.fa.fa-facebook(aria-hidden='true')
-                    .back
-                      i.fa.fa-facebook(aria-hidden='true')
-                li
-                  a.twitter(href='#')
-                    .front
-                      i.fa.fa-twitter(aria-hidden='true')
-                    .back
-                      i.fa.fa-twitter(aria-hidden='true')
-                li
-                  a.instagram(href='#')
-                    .front
-                      i.fa.fa-instagram(aria-hidden='true')
-                    .back
-                      i.fa.fa-instagram(aria-hidden='true')
-                li
-                  a.pinterest(href='#')
-                    .front
-                      i.fa.fa-linkedin(aria-hidden='true')
-                    .back
-                      i.fa.fa-linkedin(aria-hidden='true')
-              .clearfix
-              p
-                a(href='#') By clicking register, I agree to your terms
-            .col-md-4.modal_body_right.modal_body_right1
-              img(src='/images/log_pic.jpg', alt=' ')
-            .clearfix
-        // //Modal content
-    // //Modal2
-
-    
+      
 
     block content
 
@@ -355,7 +228,7 @@ html
       .footer_agile_inner_info_w3l
         .col-md-3.footer-left
           h2
-            a(href='index.html')
+            a(href='/index')
               span E
               |  Store
           p
@@ -564,6 +437,26 @@ html
         {
           toastr.success(localStorage.getItem("Status"), "", {"positionClass": "toast-bottom-center"});
           localStorage.clear();
+        }
+      });
+
+    //- Hiện cảnh báo
+    script.
+      $(document).ready (function() {
+        var errors = '#{errors}';
+        if (errors != '') {
+          errors = errors.split(',');
+          for (var i = 0; i < errors.length; i++) {
+            toastr.error(errors[i], "", {"positionClass": "toast-bottom-center"});
+          }
+        }
+
+        var successes = '#{successes}';
+        if (successes != '') {
+          successes = successes.split(',');
+          for (var i = 0; i < successes.length; i++) {
+            toastr.success(successes[i], "", {"positionClass": "toast-bottom-center"});
+          }
         }
       });
     //- Toastr

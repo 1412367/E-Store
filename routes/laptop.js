@@ -2,11 +2,18 @@ var express = require('express');
 var router = express.Router();
 
 var Product = require('../models/product');
-var Product_Type = require('../models/product_type')
 
 router.get('/', function(req, res, next) {
     var manufacturer = req.query.manufacturer;
+    var find='';
+
+    Manufacturer.findOne({_id: manufacturer})
+    .exec(function (err, filter1) {
+        if (filter1)
+            find += filter1.name;
+    });
     console.log('manufacturer: ' + manufacturer);
+    
     Product.find()
     .populate({
         path: 'product_type',
@@ -16,8 +23,12 @@ router.get('/', function(req, res, next) {
     .populate('specifications')
     .exec(function (err, products) {
         products = products.filter(function(product) {
-            // return only products with product_type and manufacturer != undefined
-            return product.product_type && product.manufacturer && !product.deleted; 
+            // return only products with product_type != undefined and not hidden
+            result = product.product_type && !product.deleted;
+            if (product.manufacturer) {
+                result = result && !product.manufacturer.deleted;
+            }
+            return result;
         });
 
         console.log("Manufacturer list is loading....");
@@ -30,7 +41,7 @@ router.get('/', function(req, res, next) {
             }
             console.log("Manufacturer list loaded !");
 
-            res.render('laptop', { title: 'Express', products: products, manufacturers:manufacturers});
+            res.render('laptop', { title: 'Express', products: products, manufacturers:manufacturers, filter: find});
         });
     });
 });

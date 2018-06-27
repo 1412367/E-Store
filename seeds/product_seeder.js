@@ -78,7 +78,7 @@ Product.on('index', err => {
     };
 
     var loop3 = function(i) {
-        Product_Type.findOne({'name': 'Mobile'}, function (err, product_type) {
+        Product_Type.findOne({'name': 'Tablet'}, function (err, product_type) {
             Manufacturer.findOne({'name': 'Apple'}, function (err, manufacturer) {
                 Specifications.findOne({'model': "Tablet test No."+ i +"'s model"}, function (err, specifications) {
                     var product = new Product ({
