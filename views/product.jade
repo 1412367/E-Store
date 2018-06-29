@@ -273,118 +273,24 @@ block content
                 h3.wthree_text_info
                     | Featured 
                     span Arrivals
-                .col-md-3.product-men.single
-                    .men-pro-item.simpleCart_shelfItem
-                        .men-thumb-item
-                            img.pro-image-front(src='/images/w2.jpg', alt='')
-                            img.pro-image-back(src='/images/w2.jpg', alt='')
-                            .men-cart-pro
-                                .inner-men-cart-pro
-                                    a.link-product-add-cart(href='single.html') Quick View
-                            span.product-new-top New
-                        .item-info-product
-                            h4
-                                a(href='single.html') Sleeveless Solid Blue Top
-                            .info-product-price
-                                span.item_price $140.99
-                                del $189.71
-                            .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                                form(action='#', method='post')
-                                    fieldset
-                                        input(type='hidden', name='cmd', value='_cart')
-                                        input(type='hidden', name='add', value='1')
-                                        input(type='hidden', name='business', value=' ')
-                                        input(type='hidden', name='item_name', value='Sleeveless Solid Blue Top')
-                                        input(type='hidden', name='amount', value='30.99')
-                                        input(type='hidden', name='discount_amount', value='1.00')
-                                        input(type='hidden', name='currency_code', value='USD')
-                                        input(type='hidden', name='return', value=' ')
-                                        input(type='hidden', name='cancel_return', value=' ')
-                                        input.button(type='submit', name='submit', value='Add to cart')
-                .col-md-3.product-men.single
-                    .men-pro-item.simpleCart_shelfItem
-                        .men-thumb-item
-                            img.pro-image-front(src='/images/w4.jpg', alt='')
-                            img.pro-image-back(src='/images/w4.jpg', alt='')
-                            .men-cart-pro
-                                .inner-men-cart-pro
-                                    a.link-product-add-cart(href='single.html') Quick View
-                            span.product-new-top New
-                        .item-info-product
-                            h4
-                                a(href='single.html') Black Basic Shorts
-                            .info-product-price
-                                span.item_price $120.99
-                                del $189.71
-                            .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                                form(action='#', method='post')
-                                    fieldset
-                                        input(type='hidden', name='cmd', value='_cart')
-                                        input(type='hidden', name='add', value='1')
-                                        input(type='hidden', name='business', value=' ')
-                                        input(type='hidden', name='item_name', value='Black Basic Shorts')
-                                        input(type='hidden', name='amount', value='30.99')
-                                        input(type='hidden', name='discount_amount', value='1.00')
-                                        input(type='hidden', name='currency_code', value='USD')
-                                        input(type='hidden', name='return', value=' ')
-                                        input(type='hidden', name='cancel_return', value=' ')
-                                        input.button(type='submit', name='submit', value='Add to cart')
-                .col-md-3.product-men.single
-                    .men-pro-item.simpleCart_shelfItem
-                        .men-thumb-item
-                            img.pro-image-front(src='/images/s6.jpg', alt='')
-                            img.pro-image-back(src='/images/s6.jpg', alt='')
-                            .men-cart-pro
-                                .inner-men-cart-pro
-                                    a.link-product-add-cart(href='single.html') Quick View
-                            span.product-new-top New
-                        .item-info-product
-                            h4
-                                a(href='single.html') Aero Canvas Loafers  
-                            .info-product-price
-                                span.item_price $120.99
-                                del $199.71
-                            .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                                form(action='#', method='post')
-                                    fieldset
-                                        input(type='hidden', name='cmd', value='_cart')
-                                        input(type='hidden', name='add', value='1')
-                                        input(type='hidden', name='business', value=' ')
-                                        input(type='hidden', name='item_name', value='Aero Canvas Loafers')
-                                        input(type='hidden', name='amount', value='30.99')
-                                        input(type='hidden', name='discount_amount', value='1.00')
-                                        input(type='hidden', name='currency_code', value='USD')
-                                        input(type='hidden', name='return', value=' ')
-                                        input(type='hidden', name='cancel_return', value=' ')
-                                        input.button(type='submit', name='submit', value='Add to cart')
-                .col-md-3.product-men.single
-                    .men-pro-item.simpleCart_shelfItem
-                        .men-thumb-item
-                            img.pro-image-front(src='/images/w7.jpg', alt='')
-                            img.pro-image-back(src='/images/w7.jpg', alt='')
-                            .men-cart-pro
-                                .inner-men-cart-pro
-                                    a.link-product-add-cart(href='single.html') Quick View
-                            span.product-new-top New
-                        .item-info-product
-                            h4
-                                a(href='single.html') Ankle Length Socks
-                            .info-product-price
-                                span.item_price $100.99
-                                del $159.71
-                            .snipcart-details.top_brand_home_details.item_add.single-item.hvr-outline-out.button2
-                                form(action='#', method='post')
-                                    fieldset
-                                        input(type='hidden', name='cmd', value='_cart')
-                                        input(type='hidden', name='add', value='1')
-                                        input(type='hidden', name='business', value=' ')
-                                        input(type='hidden', name='item_name', value='Ankle Length Socks')
-                                        input(type='hidden', name='amount', value='30.99')
-                                        input(type='hidden', name='discount_amount', value='1.00')
-                                        input(type='hidden', name='currency_code', value='USD')
-                                        input(type='hidden', name='return', value=' ')
-                                        input(type='hidden', name='cancel_return', value=' ')
-                                        input.button(type='submit', name='submit', value='Add to cart')
+                each product in relevant_list
+                    .col-md-3.product-men
+                        .men-pro-item.simpleCart_shelfItem
+                            a(href='/product/#{product._id}')
+                                .men-thumb-item
+                                    img.pro-image-front(src=product.image_paths[0], alt=product.title+' front_image')
+                                    .div-image-back
+                                        img.image-back(src=product.image_paths[1], alt=product.title+' back_image')
+                                span.product-new-top New
+                            .item-info-product
+                                h4
+                                    a(href='/product/#{product._id}') #{product.title}
+                                .info-product-price
+                                    span.item_price #{product.price}
+                                    span &#8363
+                                a(href='/product/#{product._id}') 
+                                    button Xem chi tiết
+                
                 .clearfix  
                 // //slider_owl
 

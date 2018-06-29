@@ -1,0 +1,196 @@
+extends layout
+
+block content
+    .banner-bootom-w3-agileits
+        .container(style="width:95%;")
+            button.btn.btn-default.btn-create.center-block(data-toggle='modal', data-target='#myModal2') Thêm tài khoản mới
+            table#danhsach.table.table-striped.table-bordered
+                thead
+                    tr
+                        th Họ tên
+                        th Email
+                        th Loại tài khoản
+                        th Trạng thái
+                        th Thao tác
+                tbody
+                    each user in users
+                        tr
+                            td
+                                form(id=user._id, action='/admin/user/edit', method='post')
+                                    input(form=user._id, type="hidden", name='id', value=user._id) 
+                                    input.form-control(form=user._id, type='text', name='name', required, placeholder=user.name, value=user.name)
+                            td 
+                                | #{user.email}
+                            td
+                                if (user.id == current_user)
+                                    if (user.role == 'admin')
+                                        | Admin
+                                    else
+                                        | Khách hàng
+                                else
+                                    select.form-control(form=user._id, name='role', required)
+                                        if (user.role == 'admin')
+                                            option(value='admin' selected) Admin
+                                            option(value='customer') Khách hàng
+                                        else
+                                            option(value='admin') Admin
+                                            option(value='customer' selected) Khách hàng
+                            td 
+                                h4
+                                    if (user.blocked)
+                                        a
+                                        span.label.label-danger
+                                            i.fa.fa-ban  Đã vô hiệu hóa
+                                    else
+                                        a
+                                        span.label.label-success
+                                            i.fa.fa-check-circle-o  Bình thường
+                                    | 
+                                    if (user.id == current_user)
+                                        a
+                                        span.label.label-success
+                                            i.fa.fa-check-circle-o  Hiện tại
+                            td
+                                button.btn.btn-default(form=user._id, type='submit')
+                                    | Cập nhật
+                                | 
+                                if (user.id != current_user)
+                                    if (!user.blocked)
+                                        button.delete.btn.btn-default(value=user._id, style="width: 82px")
+                                            | Khóa
+                                    else
+                                        button.restore.btn.btn-default(value=user._id, style="width: 82px")
+                                            | Mở khóa 
+                .clearfix
+
+    //- Modal block user confirm
+    #delConfirm.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+        .modal-dialog.modal-dialog-centered(role='document')
+            .modal-content
+                .modal-header
+                    h5.modal-title Xác nhận
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') ×
+                .modal-body
+                    p
+                        | Khóa tài khoản này ?
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') 
+                        | Hủy
+                    button#btn-confirm-delete.btn.btn-primary(type='button', data-dismiss='modal') 
+                        | Xác nhận
+    //- Modal restore user confirm
+    #restoreConfirm.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+        .modal-dialog.modal-dialog-centered(role='document')
+            .modal-content
+                .modal-header
+                    h5.modal-title Xác nhận
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') ×
+                .modal-body
+                    p
+                        | Mở khóa tài khoản này ?
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') 
+                        | Hủy
+                    button#btn-confirm-restore.btn.btn-primary(type='button', data-dismiss='modal') 
+                        | Xác nhận
+
+    #myModal2.modal.fade(tabindex='-1', role='dialog')
+      .modal-dialog
+        // Modal content
+        .modal-content
+          .modal-header(style='display: block; border-bottom: none;')
+            button.close(type='button', data-dismiss='modal') ×
+          .modal-body.modal-body-sub_agile
+            .col-md-12.modal_body_left.modal_body_left1
+              h3.agileinfo_sign
+                | Tạo tài khoản mới
+              form(action='/user/signup', method='post')
+                .styled-input.agile-styled-input-top
+                    input.name(type='text', name='name', required='', placeholder=' ', text-transform: capitalize)
+                    label Họ Tên
+                    span
+                .styled-input
+                    input.email(type='email', name='email', required='', placeholder=' ')
+                    label Email
+                    span
+                .styled-input
+                    input.password(type='password', name='password', required='', placeholder=' ')
+                    label Mật khẩu (tối thiểu 4 ký tự)
+                    span
+                .styled-input
+                    input.confirmpassword(type='password', name='confirm password', required='', placeholder=' ')
+                    label Nhập lại mật khẩu
+                    span
+                .styled-input
+                    select.role.select2_group.form-control(name='role', required='')
+                        option(value='' selected disabled hidden) Chọn loại tài khoản
+                        option(value='admin') Admin
+                        option(value='customer') Khách hàng
+                        span
+                input.token(type='hidden', name='_csrf')
+                input.submit(type='submit', value='Tạo mới', style='float: right')
+              .clearfix
+              p
+                a(href='#', style='float: right') By clicking register, I agree to your terms
+            .clearfix
+        // //Modal content
+    
+
+    //- Init pluggin
+    script.
+        $(document).ready(function() {
+            var table = $('#danhsach').DataTable();
+        });
+
+    //- Chức năng cho button
+    script.
+        // Hiện modal xác nhận block user
+        $('.delete').click(function() {
+        var id = this.value; 
+        $("#btn-confirm-delete").val(id);
+        $('#delConfirm').modal('show')
+        });
+        // Xác nhận khóa user
+        $("#btn-confirm-delete").click(function() {
+        var id = this.value; 
+        $.ajax({
+            url: '/admin/delete',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+            item_type: "user",
+            id: id,
+            }
+        }).done(function(status) {
+            localStorage.setItem("Status", status)
+            window.location.reload(); 
+        });
+        });
+
+        // Hiện modal xác nhận khôi phục tài khoản
+        $('.restore').click(function() {
+        var id = this.value; 
+        $("#btn-confirm-restore").val(id);
+        $('#restoreConfirm').modal('show')
+        });
+        // Xác nhận khôi phục manufacturer
+        $("#btn-confirm-restore").click(function() {
+        var id = this.value; 
+        $.ajax({
+            url: '/admin/restore',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+            item_type: "user",
+            id: id,
+            }
+        }).done(function(status) {
+            localStorage.setItem("Status", status)
+            window.location.reload(); 
+        });
+        });
+
+
+                                        

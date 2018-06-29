@@ -23,14 +23,7 @@ block content
     .container
       // mens
       .col-md-4.products-left
-        .filter-price
-          h3
-            | Filter By 
-            span Price
-          ul.dropdown-menu6
-            li
-              #slider-range(class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all")
-              input#amount(type='text', style='border: 0; color: #ffffff; font-weight: normal;')
+
         .css-treeview
           h4 Categories
           ul.tree-list-pad
@@ -45,27 +38,7 @@ block content
                     a(href='?manufacturer=#{manufacturer.id}') #{manufacturer.name}
         .clearfix
       .col-md-8.products-right
-        .sort-grid
-          .sorting-StyleCss
-            h6 Sort By
-            select#country1.frm-field.required.sect(onchange='change_country(this.value)')
-              option(value='null') Default
-              option(value='null') Name(A - Z)
-              option(value='null') Name(Z - A)
-              option(value='null') Price(High - Low)
-              option(value='null') Price(Low - High)
-              option(value='null') Model(A - Z)
-              option(value='null') Model(Z - A)
-            .clearfix
-          .sorting-StyleCss
-            h6 Showing
-            select#country2.frm-field.required.sect(onchange='change_country(this.value)')
-              option(value='null') 7
-              option(value='null') 14
-              option(value='null') 28
-              option(value='null') 35
-            .clearfix
-          .clearfix
+
         .men-wear-top
           #top.callbacks_container
             ul#slider3.rslides

@@ -1,10 +1,105 @@
 extends layout
 
 block content
-  .container.text-center
-    h1= 'Thông tin cá nhân'
+  .banner-bootom-w3-agileits
+    .container
+      .row
+        .col-md-6.col-md-offset-3
+          h1.text-center
+            | THÔNG TIN CÁ NHÂN
+          img(src=user.avatar, alt="Avatar" class="avatar")
+          form.form-horizontal(action='/admin/user/edit', method='post')
+            .form-group
+              input(type="hidden", name='id', value=user._id) 
+              label.control-label.col-md-3 Họ tên
+                span.required  *
+              .col-md-9
+                input.form-control(type='text', name='name', required, placeholder=user.name, value=user.name)
+            .form-group
+              label.control-label.col-md-3 Email
+              .col-md-9
+                p(style='padding-top: 7px; margin-bottom: 0px;') #{user.email}
+            if (user.role == 'admin')
+              .form-group
+                label.control-label.col-md-3 Chức vụ
+                .col-md-9
+                  p(style='padding-top: 7px; margin-bottom: 0px;') Quản lý trang web
+            div(style='float:right')
+              if (user.role == 'admin')
+                button.btn.btn-default(onclick="location.href='/admin'", type='button') Giao diện Admin
+                | 
+              button.btn.btn-default(type='submit') Cập nhật thông tin
+              | 
+              button.btn.btn-default(type='button', data-toggle='modal', data-target='#change_avatar') Đổi ảnh đại diện
+              | 
+              button.btn.btn-default(type='button', data-toggle='modal', data-target='#change_password') Đổi mật khẩu
 
-    p Welcome to #{title}
-    p Welcome to #{title}
-    p Welcome to #{title}
-    p Welcome to #{title}
+
+  #change_avatar.table-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        form.form-horizontal.form-label-left(action='/admin/user/edit', method='post', enctype="multipart/form-data")
+          .modal-header
+            h5#edit-modal-title.modal-title Cập nhật ảnh đại diện
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            .x_panel
+              .x_title
+                input.id(type='hidden', name='id', value=user._id)
+                .clearfix
+              .x_content
+                br              
+                .form-group
+                  label.control-label.col-md-4 Chọn ảnh đại diện
+                    span.required  *
+                  .col-md-8
+                    input.form-control(type='file', name='avatar' required)
+              .clearfix
+          .modal-footer
+            button.btn.btn-secondary(type='button', data-dismiss='modal') Đóng
+            button.btn.btn-primary(type='submit') Cập nhật
+
+  
+  #change_password.table-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        form.form-horizontal.form-label-left(action='/user/changepassword', method='post')
+          .modal-header
+            h5#edit-modal-title.modal-title Cập nhật mật khẩu
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            .x_panel
+              .x_title
+                input.id(type='hidden', name='id', value=user._id)
+                .clearfix
+              .x_content
+                br              
+                .form-group
+                  label.control-label.col-md-4 Mật khẩu cũ
+                    span.required  *
+                  .col-md-8
+                    input.form-control(type='password', name='oldpassword' required)
+                .form-group
+                  label.control-label.col-md-4 Mật khẩu mới
+                    span.required  *
+                  .col-md-8
+                    input.form-control(type='password', name='newpassword' required)
+                .form-group
+                  label.control-label.col-md-4 Nhập lại mật khẩu mới
+                    span.required  *
+                  .col-md-8
+                    input.form-control(type='password', name='confirmnewpassword' required)
+              .clearfix
+          .modal-footer
+              button.btn.btn-secondary(type='button', data-dismiss='modal') Đóng
+              | 
+              input.token(type='hidden', name='_csrf')
+              button.btn.btn-primary(type='submit') Đổi
+
+  script.
+    $('#change_password').on('show.bs.modal', function () {
+      console.log(localStorage.getItem('token'));
+      $(".token").val(localStorage.getItem('token'));
+    });

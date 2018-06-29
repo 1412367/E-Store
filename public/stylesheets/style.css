@@ -154,6 +154,14 @@ th {
 	background:#fff;
 	color:#212121;
 }
+.avatar {
+    vertical-align: middle;
+    width: 200px;
+    height: 200px;
+	border-radius: 50%;
+	margin: 20px auto;
+    display: block;
+}
 /* end of my custom */
 
 

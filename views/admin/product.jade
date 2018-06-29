@@ -160,9 +160,9 @@ block content
                       option(value='null' ) [Đang cập nhật]
                 .form-group
                   label.control-label.col-md-3.col-sm-3.col-xs-12 Thêm ảnh sản phẩm
-                    span.required  *
+                    span.imageuploadlabel.required  *
                   .col-md-9.col-sm-9.col-xs-12
-                    input.form-control(type='file', name='image_paths')
+                    input.imageupload.form-control(type='file', multiple='multiple', name='image_paths')
                 .form-group
                   label.control-label.col-md-3.col-sm-3.col-xs-12 Các màu hiện có
                     span.required  *
@@ -273,7 +273,8 @@ block content
 
     // Hủy định dạng giá trước khi submit
     $("form").submit(function(){
-      console.log('sss');
+      console.log($('.imageupload').val());
+
       var price = $(".product_price").val()
       $(".product_price").val(unformat(price));
     });
@@ -290,7 +291,7 @@ block content
     // Hiện modal xác nhận xóa sp
     $('.delete').click(function() {
       var id = this.value; 
-      $("#btn-confirm-delete").val(id);
+      $("#btn-confirm-delete").files[0].name;
       $('#delConfirm').modal('show')
     });
     // Xác nhận xóa SP
@@ -344,6 +345,8 @@ block content
       $(".product_title").attr('placeholder', 'Tên sản phẩm').val('');
       $(".specifications").val('');
       $(".manufacturer").val('');
+        $('.imageuploadlabel').show();
+      $(".imageupload").attr("required", true);
       $('.product_colors').tagsinput('removeAll');
       $(".product_description").val('');
       $(".product_price").val('');
@@ -389,7 +392,8 @@ block content
         $(".accessories_types").change();
         $(".specifications").change();
         $(".manufacturer").change();
-        
+        $('.imageuploadlabel').hide();
+        $(".imageupload").removeAttr("required");
         $('.product_colors').tagsinput('removeAll');
         product.colors.forEach(function(color) {
           $('.product_colors').tagsinput('add', color);

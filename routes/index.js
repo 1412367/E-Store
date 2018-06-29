@@ -9,6 +9,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/index', function(req, res, next) {
+  console.log(req.user);
+  console.log(req.token);
   Product.find()
   .populate({
     path: 'product_type',

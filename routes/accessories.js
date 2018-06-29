@@ -31,8 +31,15 @@ router.get('/', function(req, res, next) {
     .populate('specifications')
     .exec(function (err, products) {
         products = products.filter(function(product) {
-            // return only ative products in active accessories_types and active manufacturers
-            return product.accessories_type && !product.deleted && !product.accessories_type.deleted && product.manufacturer && !product.manufacturer.deleted; 
+            // return only products with product_type != undefined and not hidden
+            result = product.product_type && !product.deleted;
+            if (product.manufacturer) {
+              result = result && !product.manufacturer.deleted;
+            }
+            if (product.accessories_type) {
+              result = result && !product.accessories_type.deleted;
+            }
+            return result;
         });
         console.log("Manufacturer list is loading....");
         Manufacturer.find({deleted : false})

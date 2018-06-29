@@ -4,10 +4,18 @@ var mongoose = require('mongoose');
 var multer = require('multer');
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, '/public/product_img/');
+        cb(null, './public/product_img/');
     },
     filename: function(req, file, cb) {
-        cb(null, new Date().toISOString().replace(/:/g, '-') + file.mimetype);
+        cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
+    }
+});
+var avartarstorage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './public/avatar/');
+    },
+    filename: function(req, file, cb) {
+        cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
     }
 });
 var fileFilter = function(req, file, cb) {
@@ -19,11 +27,43 @@ var fileFilter = function(req, file, cb) {
     }
 }
 var upload = multer({storage: storage, fileFilter: fileFilter});
-
+var avartar = multer({storage: avartarstorage, fileFilter: fileFilter});
 var Product = require('../models/product');
+var User = require('../models/user');
+
 
 //- Chặn user chưa đăng nhập dùng các router bên dưới
-router.use('/', isLoggedIn, function(req, res, next) {
+router.post('/user/edit', isLoggedIn, avartar.single('avatar'), function(req, res, next) {
+    var obj = req.body;
+    if (req.file)
+        obj.avatar = req.file.path.substring(req.file.path.indexOf("\\avatar"), req.file.path.length);
+    if (req.body.id) {
+        var id = mongoose.Types.ObjectId(obj.id);
+        delete obj.id;
+    }
+    else
+        var id = mongoose.Types.ObjectId();
+    obj.update_date = Date(Date.now);
+
+    setTimeout(function() { User.update({_id: id}, obj, 
+        {upsert: true, setDefaultsOnInsert: true}, 
+        function (err) {
+            if (err) 
+                req.flash('error', err);
+            else
+                req.flash('success', 'Lưu lại thành công.');
+            if (id.equals(req.user._id)) {
+                res.redirect('/user/profile');
+            }
+            else {
+                res.redirect('/admin/user');
+            }
+        }
+    )},500);
+});
+
+//- Chặn user không phải admin dùng các router bên dưới
+router.use('/', isAdmin, function(req, res, next) {
     next();
 });
 
@@ -63,6 +103,13 @@ router.get('/accessories_type', function(req, res, next) {
     });
 });
 
+router.get('/user', function(req, res, next) {
+    User.find()
+    .exec(function (err, users) {
+        res.render('admin/users', { title: 'Express', users: users, current_user: req.user._id, errors: req.flash('error'), successes: req.flash('success')});
+    });
+});
+
 router.post('/product', function(req, res, next) {
     var id = req.body.id;
     Product.findOne({_id: id})
@@ -75,17 +122,20 @@ router.post('/product', function(req, res, next) {
     });
 });
 
-router.post('/product/edit', upload.single('image_paths'), function(req, res, next) {
-    console.log(req.file);
+router.post('/product/edit', upload.array('image_paths', 6), function(req, res, next) {
+    console.log(req.files);
     console.log(req.body);
     var obj = req.body;
     if (req.body.id != 'null') {
         console.log('Cap nhat');
         var id = mongoose.Types.ObjectId(obj.id);
-        if (req.file) {
+        if (req.files) {
             console.log('Co file');
-            Product.findOne({_id:id}, function(product) {
-                product.image_paths.push(req.file.path);
+            Product.findOne({_id:id}, function(err, product) {
+                console.log(product);
+                req.files.forEach(function(file) {
+                    product.image_paths.push(file.path.substring(file.path.indexOf("\\product_img"), file.path.length));
+                });
                 product.save(function (err) {
                     if (err) return handleError(err);
                 });
@@ -97,8 +147,13 @@ router.post('/product/edit', upload.single('image_paths'), function(req, res, ne
     else {
         console.log('Them moi');
         var id = mongoose.Types.ObjectId();
-        if (req.file)
-            obj.image_paths = req.file.path;
+        if (req.files) {
+            var image_paths = [];
+            obj['image_paths'] = image_paths;
+            req.files.forEach(function(file) {
+                obj.image_paths.push(file.path.substring(file.path.indexOf("\\product_img"), file.path.length));
+            });
+        }
         else
             delete obj.image_paths;
     }
@@ -304,6 +359,22 @@ router.post('/delete', function(req, res, next) {
                 res.json('Xóa thành công');
             });
             break;
+        case "user":
+            User.findOne({_id: id}, function (err, user) {
+                if (err)
+                    console.log(err+" - find error");
+                else {
+                    user.update_date = Date(Date.now);
+                    user.blocked = true;
+                    user.save(function (err) {
+                        if (err) 
+                            console.log(err+" - save error");
+                        else
+                            res.json("Khóa thành công");
+                    });
+                }
+            });
+            break;
         default:
             res.send("404 - Item type not found");
     };
@@ -316,13 +387,13 @@ router.post('/restore', function(req, res, next) {
         case "product":
             Product.findOne({_id: id}, function (err, product) {
                 if (err)
-                    console.log(err+" 1");
+                    console.log(err+" - find error");
                 else {
                     product.update_date = Date(Date.now);
                     product.deleted = false;
                     product.save(function (err, updatedProduct) {
                         if (err) 
-                            console.log(err+" 2");
+                            console.log(err+" - save error");
                         else
                             res.json("Khôi phục thành công");
                     });
@@ -332,13 +403,13 @@ router.post('/restore', function(req, res, next) {
         case "accessories_type":
             Accessories_type.findOne({_id: id}, function (err, accessories_type) {
                 if (err)
-                    console.log(err+" 1");
+                    console.log(err+" - find error");
                 else {
                     accessories_type.update_date = Date(Date.now);
                     accessories_type.deleted = false;
                     accessories_type.save(function (err, updatedAccessories_type) {
                         if (err) 
-                            console.log(err+" 2");
+                            console.log(err+" - save error");
                         else
                             res.json("Hiện thành công");
                     });
@@ -348,15 +419,31 @@ router.post('/restore', function(req, res, next) {
         case "manufacturer":
             Manufacturer.findOne({_id: id}, function (err, manufacturer) {
                 if (err)
-                    console.log(err+" 1");
+                    console.log(err+" - find error");
                 else {
                     manufacturer.update_date = Date(Date.now);
                     manufacturer.deleted = false;
                     manufacturer.save(function (err, updatedManufacturer) {
                         if (err) 
-                            console.log(err+" 2");
+                            console.log(err+" - save error");
                         else
                             res.json("Hiện thành công");
+                    });
+                }
+            });
+            break;
+            case "user":
+            User.findOne({_id: id}, function (err, user) {
+                if (err)
+                    console.log(err+" - find error");
+                else {
+                    user.update_date = Date(Date.now);
+                    user.blocked = false;
+                    user.save(function (err) {
+                        if (err) 
+                            console.log(err+" - save error");
+                        else
+                            res.json("Mở khóa thành công");
                     });
                 }
             });
@@ -370,6 +457,13 @@ module.exports = router;
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect('/');
+  };
+
+function isAdmin(req, res, next) {
+    if (req.isAuthenticated() && req.user.role == 'admin') {
       return next();
     }
     res.redirect('/');

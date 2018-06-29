@@ -526,6 +526,9 @@ html
           dataType: 'json'
         }).done(function(csrfToken) {
             $(".token").val(csrfToken);
+            console.log(csrfToken);
+            //toastr.success("Tokened", "", {"positionClass": "toast-bottom-center"});
+            localStorage.setItem('token', csrfToken);
           });
       });
 

@@ -14,6 +14,7 @@ var Navbar_tab = require('./models/navbar_tab');
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
 var aboutRouter = require('./routes/about');
+var contactRouter = require('./routes/contact');
 var mobileTabletRouter = require('./routes/mobile&tablet')
 var laptopRouter = require('./routes/laptop');
 var accessoriesRouter = require('./routes/accessories');
@@ -54,7 +55,6 @@ app.use(session({secret: 'mysupersecret', resave: false, saveUninitialized: fals
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/public', express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next) {
@@ -64,6 +64,7 @@ app.use(function(req, res, next) {
 
 app.use('/', indexRouter);adminRouter
 app.use('/about', aboutRouter);
+app.use('/contact', contactRouter);
 app.use('/mobile&tablet', mobileTabletRouter);
 app.use('/laptop', laptopRouter);
 app.use('/accessories', accessoriesRouter);

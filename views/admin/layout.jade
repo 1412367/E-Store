@@ -132,7 +132,7 @@ html
                     a.menu__link(href='/admin/accessories_type')
                       | Danh mục phụ kiện
                   li.menu__item
-                    a.menu__link(href='#')
+                    a.menu__link(href='/admin/user')
                       | Tài khoản
 
                   //- li.dropdown.menu__item
@@ -394,8 +394,7 @@ html
     // set active navbar
     script(type='text/javascript').
       $(document).ready(function() {
-        // get current URL path and cut pathname from '/about' to 'about' then assign 'active' class
-        var pathname = window.location.pathname.substring(1); 
+        var pathname = window.location.pathname; 
         console.log(pathname);
         $('.nav > li > a[href="'+pathname+'"]').parent().addClass('menu__item--current');
       });
@@ -436,7 +435,7 @@ html
         if(localStorage.getItem("Status"))
         {
           toastr.success(localStorage.getItem("Status"), "", {"positionClass": "toast-bottom-center"});
-          localStorage.clear();
+          localStorage.removeItem("Status");
         }
       });
 
